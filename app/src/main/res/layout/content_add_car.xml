@@ -13,4 +13,204 @@
     tools:context="com.example.mervesimsek.vehicleapp.AddCarActivity"
     tools:showIn="@layout/activity_add_car">
 
+    <TextView
+    android:layout_marginTop="11dp"
+    android:text="Brand Of Vehicle: "
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/textView2"
+    android:textSize="15sp"
+    android:textStyle="bold"
+    android:textColor="@color/colorPrimaryDark"
+    android:layout_alignParentTop="true"
+    android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="Enter Vehicle"
+        android:textColorHint="@color/grey"
+        android:ems="10"
+        android:id="@+id/editText"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true" />
+
+
+    <TextView
+        android:layout_marginTop="51dp"
+        android:text="Model Of Vehicle: "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView3"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:textColor="@color/colorPrimaryDark"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_marginTop="40dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="Enter Model"
+        android:textColorHint="@color/grey"
+        android:ems="10"
+        android:id="@+id/editText1"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true" />
+
+
+    <TextView
+        android:layout_marginTop="91dp"
+        android:text="Type Of Vehicle: "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView4"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:textColor="@color/colorPrimaryDark"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_marginTop="80dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="Enter Type"
+        android:textColorHint="@color/grey"
+        android:ems="10"
+        android:id="@+id/editText2"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true" />
+
+
+    <TextView
+        android:layout_marginTop="131dp"
+        android:text="Model Year : "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView5"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:textColor="@color/colorPrimaryDark"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
+
+
+
+    <EditText
+        android:layout_marginTop="120dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="date"
+        android:hint="Enter Type Year"
+        android:textColorHint="@color/grey"
+        android:ems="10"
+        android:id="@+id/editText3"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+    android:layout_marginTop="171dp"
+    android:text="Color of Vehicle : "
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/textView6"
+    android:textSize="15sp"
+    android:textStyle="bold"
+    android:textColor="@color/colorPrimaryDark"
+    android:layout_alignParentTop="true"
+    android:layout_alignParentStart="true" />
+
+
+
+    <EditText
+        android:layout_marginTop="160dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="date"
+        android:hint="Enter Color"
+        android:textColorHint="@color/grey"
+        android:ems="10"
+        android:id="@+id/editText4"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true" />
+
+
+    <TextView
+        android:layout_marginTop="211dp"
+        android:text="Plate of Vehicle : "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView7"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:textColor="@color/colorPrimaryDark"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
+
+
+
+    <EditText
+        android:layout_marginTop="200dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="date"
+        android:hint="Enter Plate"
+        android:textColorHint="@color/grey"
+        android:ems="10"
+        android:id="@+id/editText5"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_marginTop="251dp"
+        android:text="Vehicle Nickname :"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView8"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:textColor="@color/colorPrimaryDark"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
+
+
+
+    <EditText
+        android:layout_marginTop="240dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="date"
+        android:hint="Enter Nickname"
+        android:textColorHint="@color/grey"
+        android:ems="10"
+        android:id="@+id/editText6"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_marginTop="291dp"
+        android:text="Whether or not the vehicle is active :"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView9"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:textColor="@color/colorPrimaryDark"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/checkBox"
+        android:layout_below="@+id/editText6"
+        android:layout_toEndOf="@+id/textView9"
+        android:layout_marginStart="22dp" />
+
+
 </RelativeLayout>
