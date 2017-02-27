@@ -18,6 +18,10 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_main"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".AddCarActivity"
+            android:label="@string/title_activity_add_car"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
