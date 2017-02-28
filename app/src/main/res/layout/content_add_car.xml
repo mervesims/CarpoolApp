@@ -212,5 +212,17 @@
         android:layout_toEndOf="@+id/textView9"
         android:layout_marginStart="22dp" />
 
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fabsave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|left"
+        app:srcCompat="@drawable/check"
+        app:layout_anchor="@+id/include"
+        app:layout_anchorGravity="bottom|right"
+        android:layout_marginLeft="@dimen/fab_margin"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true" />
+
 
 </RelativeLayout>

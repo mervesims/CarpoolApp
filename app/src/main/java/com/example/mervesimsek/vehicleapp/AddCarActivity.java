@@ -17,6 +17,15 @@ public class AddCarActivity extends AppCompatActivity {
         Toolbar toolbar2 = (Toolbar) findViewById(R.id.toolbar2);
         setSupportActionBar(toolbar2);
 
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fabsave);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        });
+
         //previous işlemi buradan yapılmaktadır.
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
