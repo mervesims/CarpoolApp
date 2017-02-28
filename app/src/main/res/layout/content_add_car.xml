@@ -32,7 +32,7 @@
         android:hint="Enter Vehicle"
         android:textColorHint="@color/grey"
         android:ems="10"
-        android:id="@+id/editText"
+        android:id="@+id/brand"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true" />
 
@@ -57,7 +57,7 @@
         android:hint="Enter Model"
         android:textColorHint="@color/grey"
         android:ems="10"
-        android:id="@+id/editText1"
+        android:id="@+id/model"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true" />
 
@@ -82,7 +82,7 @@
         android:hint="Enter Type"
         android:textColorHint="@color/grey"
         android:ems="10"
-        android:id="@+id/editText2"
+        android:id="@+id/type"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true" />
 
@@ -109,7 +109,7 @@
         android:hint="Enter Type Year"
         android:textColorHint="@color/grey"
         android:ems="10"
-        android:id="@+id/editText3"
+        android:id="@+id/modelyear"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true" />
 
@@ -135,7 +135,7 @@
         android:hint="Enter Color"
         android:textColorHint="@color/grey"
         android:ems="10"
-        android:id="@+id/editText4"
+        android:id="@+id/color"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true" />
 
@@ -162,7 +162,7 @@
         android:hint="Enter Plate"
         android:textColorHint="@color/grey"
         android:ems="10"
-        android:id="@+id/editText5"
+        android:id="@+id/plate"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true" />
 
@@ -188,7 +188,7 @@
         android:hint="Enter Nickname"
         android:textColorHint="@color/grey"
         android:ems="10"
-        android:id="@+id/editText6"
+        android:id="@+id/nickname"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true" />
 
@@ -208,7 +208,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/checkBox"
-        android:layout_below="@+id/editText6"
+        android:layout_below="@+id/nickname"
         android:layout_toEndOf="@+id/textView9"
         android:layout_marginStart="22dp" />
 
