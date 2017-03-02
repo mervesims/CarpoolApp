@@ -67,8 +67,7 @@ public class AddCarActivity extends AppCompatActivity {
                 }
                 }
         });
-
-            }
+    }
 
     private void saveRecord(String brand, String model, String type, String modelyear, String color, String plate, String nickname) {
         SQLiteDatabase db = vehicle.getWritableDatabase();
