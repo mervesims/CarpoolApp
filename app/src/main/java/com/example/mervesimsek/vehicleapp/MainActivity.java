@@ -89,6 +89,8 @@ public class MainActivity extends AppCompatActivity
             startActivity(intentadd);
 
         } else if (id == R.id.nav_aboutappsims) {
+            Intent intentitem = new Intent(MainActivity.this, ItemListActivity.class);
+            startActivity(intentitem);
 
         } else if (id == R.id.nav_share) {
 

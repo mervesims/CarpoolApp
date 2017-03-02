@@ -65,6 +65,8 @@ public class AddCarActivity extends AppCompatActivity {
                 finally {
                     vehicle.close();
                 }
+                Intent intent = new Intent(AddCarActivity.this, ItemListActivity.class);
+                startActivity(intent);
                 }
         });
     }
@@ -105,19 +107,22 @@ public class AddCarActivity extends AppCompatActivity {
             String nickname = cursor.getString(cursor.getColumnIndex("nickname"));
 
 
-            builder.append(id).append("Brand Name");
-            builder.append(brand).append("Model Name");
-            builder.append(model).append("Type Name");
-            builder.append(type).append("Model Year");
-            builder.append(modelyear).append("Color");
-            builder.append(color).append("Plate Name");
-            builder.append(plate).append("Nickname");
-            builder.append(nickname).append("\n");
+            builder.append(id).append("\n" + "Brand Name : ");
+            builder.append(brand).append("\n" + "Model Name : ");
+            builder.append(model).append("\n" + "Type Name : ");
+            builder.append(type).append("\n" + "Model Year : ");
+            builder.append(modelyear).append("\n" + "Color : ");
+            builder.append(color).append("\n" + "Plate Name : ");
+            builder.append(plate).append("\n" + "Nickname : ");
+            builder.append(nickname).append("\n \n");
         }
-
-        TextView textview = (TextView)findViewById(R.id.showrecord);
-        textview.setText(builder);
+        TextView text = (TextView)findViewById(R.id.showrecord);
+        text.setText(builder);
     }
+
+ //   final Bundle bundle = new Bundle();
+
+  //  final Intent intent = new Intent(AddCarActivity.this,ItemListActivity.class);
 
 }
 

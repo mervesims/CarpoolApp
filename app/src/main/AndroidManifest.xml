@@ -22,7 +22,20 @@
         <activity
             android:name=".AddCarActivity"
             android:label="@string/title_activity_add_car"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ItemListActivity"
+            android:label="@string/title_item_list"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".ItemDetailActivity"
+            android:label="@string/title_item_detail"
+            android:parentActivityName=".ItemListActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.mervesimsek.vehicleapp.ItemListActivity" />
+        </activity>
     </application>
 
 </manifest>
