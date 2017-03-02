@@ -15,6 +15,7 @@ import android.widget.TextView;
 public class AddCarActivity extends AppCompatActivity {
     EditText brand, model, type, modelyear, color, plate, nickname;
     private Database vehicle;
+   // TextView showdata =(TextView)findViewById(R.id.showrecord);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +47,8 @@ public class AddCarActivity extends AppCompatActivity {
         plate = (EditText)findViewById(R.id.plate);
         nickname =(EditText)findViewById(R.id.nickname);
 
+      //  final Bundle bundle = new Bundle();
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fabsave);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,7 +68,11 @@ public class AddCarActivity extends AppCompatActivity {
                 finally {
                     vehicle.close();
                 }
-                Intent intent = new Intent(AddCarActivity.this, ItemListActivity.class);
+               Intent intent = new Intent(AddCarActivity.this, ItemListActivity.class);
+              /*   String data = brand.getText().toString();
+                bundle.putString("dataitem", data);
+                intent.putExtras(bundle);
+                showdata.setText(brand.getText());*/
                 startActivity(intent);
                 }
         });
@@ -120,9 +127,12 @@ public class AddCarActivity extends AppCompatActivity {
         text.setText(builder);
     }
 
- //   final Bundle bundle = new Bundle();
 
-  //  final Intent intent = new Intent(AddCarActivity.this,ItemListActivity.class);
+
+
+
+
+
 
 }
 

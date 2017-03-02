@@ -24,6 +24,8 @@ public class ItemDetailFragment extends Fragment {
      */
     public static final String ARG_ITEM_ID = "item_id";
 
+
+
     /**
      * The dummy content this fragment is presenting.
      */
