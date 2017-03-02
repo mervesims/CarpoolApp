@@ -10,6 +10,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.ActionBar;
 import android.view.MenuItem;
 
+import com.example.mervesimsek.vehicleapp.dummy.DummyContent;
+
 /**
  * An activity representing a single Item detail screen. This
  * activity is only used narrow width devices. On tablet-size devices,
@@ -53,10 +55,16 @@ public class ItemDetailActivity extends AppCompatActivity {
             // Create the detail fragment and add it to the activity
             // using a fragment transaction.
             Bundle arguments = new Bundle();
-            arguments.putString(ItemDetailFragment.ARG_ITEM_ID,
-                    getIntent().getStringExtra(ItemDetailFragment.ARG_ITEM_ID));
+            //arguments.putString(ItemDetailFragment.ARG_ITEM_ID, getIntent().getStringExtra(ItemDetailFragment.ARG_ITEM_ID));
+
+            //TODO: diger ekrandan gonderilen modeli ya da veri yapısını buradan okuyoruz.
+            Bundle vehicleBundle = new Bundle();
+            vehicleBundle = getIntent().getExtras();
+
+
             ItemDetailFragment fragment = new ItemDetailFragment();
-            fragment.setArguments(arguments);
+            fragment.setArguments(vehicleBundle);
+            //fragment.setArguments(arguments);
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.item_detail_container, fragment)
                     .commit();

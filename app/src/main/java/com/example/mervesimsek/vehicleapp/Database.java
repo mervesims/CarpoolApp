@@ -53,7 +53,7 @@ public class Database extends SQLiteOpenHelper {
     }
 
 
-    public void deleteRecord(int id) { //id si belli olan row u silmek için
+    public void deleteRecord(int id) { //TODO:id si belli olan row u silmek için
 
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_NAME, ID + " = ?",
@@ -62,7 +62,7 @@ public class Database extends SQLiteOpenHelper {
     }
 
     public void insertRecord(String brand_name, String model_name, String model_year, String type,String color_name, String plate, String nickname) {
-        //insertRecord methodu Databese veri eklemek için
+        //TODO:insertRecord methodu Databese veri eklemek için
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(BRAND_NAME, brand_name);
@@ -78,10 +78,10 @@ public class Database extends SQLiteOpenHelper {
     }
 
     public HashMap<String, String> detailRecord(int id){
-        //Databaseden id si belli olan row u çekmek için.
-        //Bu methodda sadece tek row değerleri alınır.
-        //HashMap bir çift boyutlu arraydir.anahtar-değer ikililerini bir arada tutmak için tasarlanmıştır.
-        //map.put("x","300"); mesala burda anahtar x değeri 300.
+        /* TODO:Databaseden id si belli olan row u çekmek için...
+        Bu methodda sadece tek row değerleri alınır.
+        HashMap bir çift boyutlu arraydir.anahtar-değer ikililerini bir arada tutmak için tasarlanmıştır.
+        map.put("x","300"); mesala burda anahtar x değeri 300.*/
 
         HashMap<String,String> record = new HashMap<String,String>();
         String selectQuery = "SELECT * FROM " + TABLE_NAME+ " WHERE id="+id;

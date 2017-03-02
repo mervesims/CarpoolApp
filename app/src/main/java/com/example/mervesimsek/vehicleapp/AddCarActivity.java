@@ -93,6 +93,9 @@ public class AddCarActivity extends AppCompatActivity {
 
     private String[] SELECT = {"id,brand,model,type,modelyear,color,plate,nickname"};
 
+
+
+
     private Cursor getRecord(){
         SQLiteDatabase db = vehicle.getReadableDatabase();
         Cursor cursor = db.query("vehicles",SELECT,null,null,null,null,null,null);

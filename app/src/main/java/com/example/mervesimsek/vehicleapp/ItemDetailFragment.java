@@ -29,7 +29,7 @@ public class ItemDetailFragment extends Fragment {
     /**
      * The dummy content this fragment is presenting.
      */
-    private DummyContent.DummyItem mItem;
+    private DummyContent.VehicleModel vehicleModel;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -42,16 +42,21 @@ public class ItemDetailFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if (getArguments().containsKey(ARG_ITEM_ID)) {
+        //TODO: burası list ekranından gonderilen model yada veri yapısını alıp ekrandaki textview üzerine bastıgımız kısımdır.
+        if (getArguments().containsKey("UniqueObjectName")) {
             // Load the dummy content specified by the fragment
             // arguments. In a real-world scenario, use a Loader
             // to load content from a content provider.
-            mItem = DummyContent.ITEM_MAP.get(getArguments().getString(ARG_ITEM_ID));
+
+            DummyContent.VehicleModel vehicleDetailModel = new DummyContent.VehicleModel();
+            vehicleDetailModel = (DummyContent.VehicleModel) getArguments().getSerializable("UniqueObjectName");
+            this.vehicleModel = vehicleDetailModel;
+
 
             Activity activity = this.getActivity();
             CollapsingToolbarLayout appBarLayout = (CollapsingToolbarLayout) activity.findViewById(R.id.toolbar_layout);
             if (appBarLayout != null) {
-                appBarLayout.setTitle(mItem.content);
+                appBarLayout.setTitle(vehicleModel.nickname);
             }
         }
     }
@@ -62,8 +67,15 @@ public class ItemDetailFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.item_detail, container, false);
 
         // Show the dummy content as text in a TextView.
-        if (mItem != null) {
-            ((TextView) rootView.findViewById(R.id.item_detail)).setText(mItem.details);
+        if (vehicleModel != null) {
+            //TODO: burası da detail ekranında textview içine set edilen baska bir yer fakat burada modelYear verisini set edildi
+            ((TextView) rootView.findViewById(R.id.item_detail)).setText(vehicleModel.modelyear);
+
+            //TODO: yukarıdaki text gibi ekrana textler koyarak detay ekranında gostermek istedigin bilgileri aşağıdaki örnekte gösterildiği gibi doldurarak gosterebilirsin.
+            /*((TextView) rootView.findViewById(R.id.item_detail)).setText(vehicleModel.brand);
+            ((TextView) rootView.findViewById(R.id.item_detail)).setText(vehicleModel.color);
+            ((TextView) rootView.findViewById(R.id.item_detail)).setText(vehicleModel.nickname);
+            */
         }
 
         return rootView;

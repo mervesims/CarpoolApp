@@ -93,6 +93,8 @@ public class MainActivity extends AppCompatActivity
             startActivity(intentitem);
 
         } else if (id == R.id.nav_share) {
+            Intent inte = new Intent(MainActivity.this, ItemDetailActivity.class);
+            startActivity(inte);
 
         } else if (id == R.id.nav_send) {
 

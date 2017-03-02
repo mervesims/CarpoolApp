@@ -2,13 +2,14 @@ package com.example.mervesimsek.vehicleapp;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,8 +18,6 @@ import android.widget.TextView;
 
 import com.example.mervesimsek.vehicleapp.dummy.DummyContent;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -59,6 +58,13 @@ public class ItemListActivity extends AppCompatActivity {
 
         View recyclerView = findViewById(R.id.item_list);
         assert recyclerView != null;
+
+        //TODO: veritabanı ile baglantı kuruldu ve select sorgusu calıstırıldı.
+        Cursor vehicleDataFromDB = DummyContent.setupVehicleDatabase(this);
+
+        //TODO: olusturulan sorgu sonucuna gore Vehicle tipinde bir list olusturuldu.
+        DummyContent.createVehicleList(vehicleDataFromDB);
+
         setupRecyclerView((RecyclerView) recyclerView);
 
         if (findViewById(R.id.item_detail_container) != null) {
@@ -67,15 +73,20 @@ public class ItemListActivity extends AppCompatActivity {
     }
 
     private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
-        recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(DummyContent.ITEMS));
+        recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(DummyContent.vehicleModelList));
     }
 
     public class SimpleItemRecyclerViewAdapter
             extends RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder> {
 
-        private final List<DummyContent.DummyItem> mValues;
+        //private final List<DummyContent.DummyItem> mValues;
+        private final List<DummyContent.VehicleModel> mValues;
 
-        public SimpleItemRecyclerViewAdapter(List<DummyContent.DummyItem> items) {
+        /*public SimpleItemRecyclerViewAdapter(List<DummyContent.DummyItem> items) {
+            mValues = items;
+        }*/
+
+        public SimpleItemRecyclerViewAdapter(List<DummyContent.VehicleModel> items) {
             mValues = items;
         }
 
@@ -89,21 +100,18 @@ public class ItemListActivity extends AppCompatActivity {
 
         @Override
         public void onBindViewHolder(final ViewHolder holder, int position) {
-            holder.mItem = mValues.get(position);
-            holder.mIdView.setText(mValues.get(position).id);
-            holder.mContentView.setText(mValues.get(position).content);
+            holder.vehicleViewHolder = mValues.get(position);
+            holder.mIdView.setText(mValues.get(position).brand);
+            holder.mContentView.setText(mValues.get(position).model);
 
+            //TODO: detay acilan kisim. Butona basınca buradan detay ekranını acıyor.
             holder.mView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if (mTwoPane) {
 
-
-
-
-
                         Bundle arguments = new Bundle();
-                       arguments.putString(ItemDetailFragment.ARG_ITEM_ID, holder.mItem.id);
+                       arguments.putString(ItemDetailFragment.ARG_ITEM_ID, holder.vehicleViewHolder.brand);
                         ItemDetailFragment fragment = new ItemDetailFragment();
                         fragment.setArguments(arguments);
                         getSupportFragmentManager().beginTransaction()
@@ -112,7 +120,13 @@ public class ItemListActivity extends AppCompatActivity {
                     } else {
                         Context context = v.getContext();
                         Intent intent = new Intent(context, ItemDetailActivity.class);
-                        intent.putExtra(ItemDetailFragment.ARG_ITEM_ID, holder.mItem.id);
+
+                        //TODO: burada cagirilan ekrana parametre geciriyor. Bir model yaptık ve modeli diger ekranda kullanacagız demektir bu. list ve detail gibi dusunebiliriz.
+                        //intent.putExtra("UniqueObjectName", (Parcelable) holder.vehicleViewHolder);
+
+                        Bundle vehicleBundle = new Bundle();
+                        vehicleBundle.putSerializable("UniqueObjectName", holder.vehicleViewHolder);
+                        intent.putExtras(vehicleBundle);
 
                         context.startActivity(intent);
                     }
@@ -129,7 +143,7 @@ public class ItemListActivity extends AppCompatActivity {
             public final View mView;
             public final TextView mIdView;
             public final TextView mContentView;
-            public DummyContent.DummyItem mItem;
+            public DummyContent.VehicleModel vehicleViewHolder;
 
             public ViewHolder(View view) {
                 super(view);
