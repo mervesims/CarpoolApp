@@ -224,5 +224,14 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true" />
 
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/checkBox"
+        android:layout_alignEnd="@+id/textView8"
+        android:layout_marginTop="21dp"
+        android:id="@+id/showrecord" />
+
 
 </RelativeLayout>

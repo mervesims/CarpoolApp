@@ -19,7 +19,7 @@ public class Database extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE vehicles (id INTEGER PRIMARY_KEY AUTOINCREMENT, brand_name TEXT, model_name TEXT, type TEXT, model_year DATE, color TEXT, plate TEXT, nickname TEXT, active BOOLEAN);"
+        db.execSQL("CREATE TABLE vehicles (id INTEGER PRIMARY KEY AUTOINCREMENT, brand TEXT, model TEXT, type TEXT, modelyear TEXT, color TEXT, plate TEXT, nickname TEXT);"
 
         );
     }
