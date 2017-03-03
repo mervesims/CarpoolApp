@@ -68,14 +68,15 @@ public class ItemDetailFragment extends Fragment {
 
         // Show the dummy content as text in a TextView.
         if (vehicleModel != null) {
-            //TODO: burası da detail ekranında textview içine set edilen baska bir yer fakat burada modelYear verisini set edildi
-            ((TextView) rootView.findViewById(R.id.item_detail)).setText(vehicleModel.modelyear);
+            //TODO: burası da detail ekranında textview içine set edilen baska bir yer fakat burada modelYear verisi set edildi
+            ((TextView) rootView.findViewById(R.id.item_detail)).setText("Brand Name : " + vehicleModel.brand);
+            ((TextView) rootView.findViewById(R.id.item_detail2)).setText("Model : " + vehicleModel.model);
+            ((TextView) rootView.findViewById(R.id.item_detail3)).setText("Model Year : " + vehicleModel.modelyear);
+            ((TextView) rootView.findViewById(R.id.item_detail4)).setText("Type : " + vehicleModel.type);
+            ((TextView) rootView.findViewById(R.id.item_detail5)).setText("Color : " + vehicleModel.color);
+            ((TextView) rootView.findViewById(R.id.item_detail6)).setText("Plate : " + vehicleModel.plate);
+            ((TextView) rootView.findViewById(R.id.item_detail7)).setText("Nickname : " + vehicleModel.nickname);
 
-            //TODO: yukarıdaki text gibi ekrana textler koyarak detay ekranında gostermek istedigin bilgileri aşağıdaki örnekte gösterildiği gibi doldurarak gosterebilirsin.
-            /*((TextView) rootView.findViewById(R.id.item_detail)).setText(vehicleModel.brand);
-            ((TextView) rootView.findViewById(R.id.item_detail)).setText(vehicleModel.color);
-            ((TextView) rootView.findViewById(R.id.item_detail)).setText(vehicleModel.nickname);
-            */
         }
 
         return rootView;

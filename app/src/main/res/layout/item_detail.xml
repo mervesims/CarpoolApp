@@ -1,9 +1,75 @@
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/item_detail"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<TextView
+android:id="@+id/item_detail"
+style="?android:attr/textAppearanceLarge"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:padding="16dp"
+tools:context="com.example.mervesimsek.vehicleapp.ItemDetailFragment"
+/>
+
+    <TextView
+        android:id="@+id/item_detail2"
+        style="?android:attr/textAppearanceLarge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:padding="16dp"
+        tools:context="com.example.mervesimsek.vehicleapp.ItemDetailFragment"
+        />
+
+
+    <TextView
+        android:id="@+id/item_detail3"
+        style="?android:attr/textAppearanceLarge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="120dp"
+        android:padding="16dp"
+        tools:context="com.example.mervesimsek.vehicleapp.ItemDetailFragment"
+       />
+
+    <TextView
+    android:id="@+id/item_detail4"
     style="?android:attr/textAppearanceLarge"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="180dp"
     android:padding="16dp"
-    android:textIsSelectable="true"
-    tools:context="com.example.mervesimsek.vehicleapp.ItemDetailFragment" />
+    tools:context="com.example.mervesimsek.vehicleapp.ItemDetailFragment"
+    />
+
+    <TextView
+        android:id="@+id/item_detail5"
+        style="?android:attr/textAppearanceLarge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="240dp"
+        android:padding="16dp"
+        tools:context="com.example.mervesimsek.vehicleapp.ItemDetailFragment"
+        />
+
+    <TextView
+        android:id="@+id/item_detail6"
+        style="?android:attr/textAppearanceLarge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="300dp"
+        android:padding="16dp"
+        tools:context="com.example.mervesimsek.vehicleapp.ItemDetailFragment"
+        />
+
+    <TextView
+        android:id="@+id/item_detail7"
+        style="?android:attr/textAppearanceLarge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="360dp"
+        android:padding="16dp"
+        tools:context="com.example.mervesimsek.vehicleapp.ItemDetailFragment"
+        />
+    </RelativeLayout>
