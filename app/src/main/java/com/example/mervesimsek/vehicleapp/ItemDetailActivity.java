@@ -5,10 +5,13 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.Toolbar;
+import android.text.InputFilter;
+import android.text.Spanned;
 import android.view.View;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.ActionBar;
 import android.view.MenuItem;
+import android.widget.EditText;
 
 import com.example.mervesimsek.vehicleapp.dummy.DummyContent;
 
@@ -27,13 +30,26 @@ public class ItemDetailActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.detail_toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fabedit);
         fab.setOnClickListener(new View.OnClickListener() {
+            EditText editText = (EditText)findViewById(R.id.item_detail);
+            EditText editText1 = (EditText)findViewById(R.id.item_detail2);
+            EditText editText2 = (EditText)findViewById(R.id.item_detail3);
+            EditText editText3 = (EditText)findViewById(R.id.item_detail4);
+            EditText editText4 = (EditText)findViewById(R.id.item_detail5);
+            EditText editText5 = (EditText)findViewById(R.id.item_detail6);
+            EditText editText6 = (EditText)findViewById(R.id.item_detail7);
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own detail action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
+                editText.setEnabled(true);
+                editText1.setEnabled(true);
+                editText2.setEnabled(true);
+                editText3.setEnabled(true);
+                editText4.setEnabled(true);
+                editText5.setEnabled(true);
+                editText6.setEnabled(true);
+                                       }
         });
 
         // Show the Up button in the action bar.
@@ -83,7 +99,9 @@ public class ItemDetailActivity extends AppCompatActivity {
             //
             navigateUpTo(new Intent(this, ItemListActivity.class));
             return true;
+
         }
         return super.onOptionsItemSelected(item);
+
     }
 }

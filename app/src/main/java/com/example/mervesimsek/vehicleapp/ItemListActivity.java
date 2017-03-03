@@ -101,8 +101,8 @@ public class ItemListActivity extends AppCompatActivity {
         @Override
         public void onBindViewHolder(final ViewHolder holder, int position) {
             holder.vehicleViewHolder = mValues.get(position);
-            holder.mIdView.setText(mValues.get(position).brand);
-            holder.mContentView.setText(mValues.get(position).model);
+            holder.mIdView.setText(mValues.get(position).nickname);
+            holder.mContentView.setText(mValues.get(position).brand);
 
             //TODO: detay acilan kisim. Butona basınca buradan detay ekranını acıyor.
             holder.mView.setOnClickListener(new View.OnClickListener() {

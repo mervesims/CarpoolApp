@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.mervesimsek.vehicleapp.dummy.DummyContent;
@@ -69,13 +70,13 @@ public class ItemDetailFragment extends Fragment {
         // Show the dummy content as text in a TextView.
         if (vehicleModel != null) {
             //TODO: burası da detail ekranında textview içine set edilen baska bir yer fakat burada modelYear verisi set edildi
-            ((TextView) rootView.findViewById(R.id.item_detail)).setText("Brand Name : " + vehicleModel.brand);
-            ((TextView) rootView.findViewById(R.id.item_detail2)).setText("Model : " + vehicleModel.model);
-            ((TextView) rootView.findViewById(R.id.item_detail3)).setText("Model Year : " + vehicleModel.modelyear);
-            ((TextView) rootView.findViewById(R.id.item_detail4)).setText("Type : " + vehicleModel.type);
-            ((TextView) rootView.findViewById(R.id.item_detail5)).setText("Color : " + vehicleModel.color);
-            ((TextView) rootView.findViewById(R.id.item_detail6)).setText("Plate : " + vehicleModel.plate);
-            ((TextView) rootView.findViewById(R.id.item_detail7)).setText("Nickname : " + vehicleModel.nickname);
+            ((EditText) rootView.findViewById(R.id.item_detail)).setText("Brand Name : " + vehicleModel.brand);
+            ((EditText) rootView.findViewById(R.id.item_detail2)).setText("Model : " + vehicleModel.model);
+            ((EditText) rootView.findViewById(R.id.item_detail3)).setText("Model Year : " + vehicleModel.modelyear);
+            ((EditText) rootView.findViewById(R.id.item_detail4)).setText("Type : " + vehicleModel.type);
+            ((EditText) rootView.findViewById(R.id.item_detail5)).setText("Color : " + vehicleModel.color);
+            ((EditText) rootView.findViewById(R.id.item_detail6)).setText("Plate : " + vehicleModel.plate);
+            ((EditText) rootView.findViewById(R.id.item_detail7)).setText("Nickname : " + vehicleModel.nickname);
 
         }
 
