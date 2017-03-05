@@ -33,22 +33,16 @@ public class ItemDetailActivity extends AppCompatActivity {
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fabedit);
         fab.setOnClickListener(new View.OnClickListener() {
-            EditText editText = (EditText)findViewById(R.id.item_detail);
+          /*  EditText editText = (EditText)findViewById(R.id.item_detail);
             EditText editText1 = (EditText)findViewById(R.id.item_detail2);
             EditText editText2 = (EditText)findViewById(R.id.item_detail3);
             EditText editText3 = (EditText)findViewById(R.id.item_detail4);
             EditText editText4 = (EditText)findViewById(R.id.item_detail5);
             EditText editText5 = (EditText)findViewById(R.id.item_detail6);
-            EditText editText6 = (EditText)findViewById(R.id.item_detail7);
+            EditText editText6 = (EditText)findViewById(R.id.item_detail7);*/
             @Override
             public void onClick(View view) {
-                editText.setEnabled(true);
-                editText1.setEnabled(true);
-                editText2.setEnabled(true);
-                editText3.setEnabled(true);
-                editText4.setEnabled(true);
-                editText5.setEnabled(true);
-                editText6.setEnabled(true);
+
                                        }
         });
 

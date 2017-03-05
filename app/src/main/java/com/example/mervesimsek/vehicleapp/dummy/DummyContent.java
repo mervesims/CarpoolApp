@@ -36,14 +36,8 @@ public class DummyContent {
 
     static Context context;
 
-    static {
-        // Add some sample items.
-        //for (int i = 1; i <= COUNT; i++) {
-        //    addItem(createDummyItem(Integer.toString(i)));
-        //}
-
-        //Cursor db = setupVehicleDatabase();
-        //createVehicleList(db);
+    static
+    {
     }
     public static String[] SELECT = {"id,brand,model,type,modelyear,color,plate,nickname"};
     public static Cursor setupVehicleDatabase(Context currentContext) {
@@ -68,6 +62,7 @@ public class DummyContent {
         return new DummyItem("1" + index,  "Merve" + index, "Simsek" + index);
     }
     public static void createVehicleList(Cursor cursor) {
+        vehicleModelList.clear();
         while (cursor.moveToNext()) {
             long id = cursor.getLong(cursor.getColumnIndex("id"));
             String brand = cursor.getString(cursor.getColumnIndex("brand"));

@@ -36,8 +36,6 @@ public class ItemListActivity extends AppCompatActivity {
      */
     private boolean mTwoPane;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,11 +57,13 @@ public class ItemListActivity extends AppCompatActivity {
         View recyclerView = findViewById(R.id.item_list);
         assert recyclerView != null;
 
+
         //TODO: veritabanı ile baglantı kuruldu ve select sorgusu calıstırıldı.
         Cursor vehicleDataFromDB = DummyContent.setupVehicleDatabase(this);
 
         //TODO: olusturulan sorgu sonucuna gore Vehicle tipinde bir list olusturuldu.
         DummyContent.createVehicleList(vehicleDataFromDB);
+
 
         setupRecyclerView((RecyclerView) recyclerView);
 
@@ -122,10 +122,15 @@ public class ItemListActivity extends AppCompatActivity {
                         Intent intent = new Intent(context, ItemDetailActivity.class);
 
                         //TODO: burada cagirilan ekrana parametre geciriyor. Bir model yaptık ve modeli diger ekranda kullanacagız demektir bu. list ve detail gibi dusunebiliriz.
-                        //intent.putExtra("UniqueObjectName", (Parcelable) holder.vehicleViewHolder);
 
+                        //diger ekrana veri gondermek icin ekranlar arasi iletisimde java bundle yapisini kullandigi icin bunu tanimliyoruz.
                         Bundle vehicleBundle = new Bundle();
+
+                        // Elimizdeki var olan modeli diger ekranda kullabilmek icin bunu diger ekrana gondermeye ihtiyacimiz var.
+                        // Bu yuzden elimizdeki modeli Serializable yaparak string json haline cevirip PUT kelimesi ile bundle icerisine atiyoruz.
                         vehicleBundle.putSerializable("UniqueObjectName", holder.vehicleViewHolder);
+
+                        //serialize ettigimiz modelimizi acacagimiz detay ekraninin icerisine koyuyoruz. Sebebi ise detay ekraninin icerisinden buna ulasabilmek.
                         intent.putExtras(vehicleBundle);
 
                         context.startActivity(intent);
