@@ -1,6 +1,7 @@
 package com.example.mervesimsek.vehicleapp;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -82,21 +83,35 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_car) {
-            // Handle the camera action
+
+            Intent intentitem = new Intent(MainActivity.this, ItemListActivity.class);
+            startActivity(intentitem);
+
         } else if (id == R.id.nav_add) {
 
             Intent intentadd = new Intent(MainActivity.this,AddCarActivity.class);
             startActivity(intentadd);
 
         } else if (id == R.id.nav_aboutappsims) {
-            Intent intentitem = new Intent(MainActivity.this, ItemListActivity.class);
-            startActivity(intentitem);
+            Intent browser = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.appsims.com"));
+            startActivity(browser);
 
         } else if (id == R.id.nav_share) {
-            Intent inte = new Intent(MainActivity.this, ItemDetailActivity.class);
-            startActivity(inte);
+            String message = " ";
+            Intent share = new Intent(Intent.ACTION_SEND);
+            share.setType("text/plain");
+            share.putExtra(Intent.EXTRA_TEXT, message);
+
+            startActivity(Intent.createChooser(share, "Carpool"));
 
         } else if (id == R.id.nav_send) {
+
+            String message = " ";
+            Intent share = new Intent(Intent.ACTION_SEND);
+            share.setType("text/plain");
+            share.putExtra(Intent.EXTRA_TEXT, message);
+
+            startActivity(Intent.createChooser(share, "Carpool"));
 
         }
 

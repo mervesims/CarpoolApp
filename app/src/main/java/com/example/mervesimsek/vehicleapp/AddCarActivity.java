@@ -10,12 +10,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 
 public class AddCarActivity extends AppCompatActivity {
     EditText brand, model, type, modelyear, color, plate, nickname;
     private Database vehicle;
-   // TextView showdata =(TextView)findViewById(R.id.showrecord);
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,10 +68,6 @@ public class AddCarActivity extends AppCompatActivity {
                     vehicle.close();
                 }
                Intent intent = new Intent(AddCarActivity.this, ItemListActivity.class);
-              /*   String data = brand.getText().toString();
-                bundle.putString("dataitem", data);
-                intent.putExtras(bundle);
-                showdata.setText(brand.getText());*/
                 startActivity(intent);
                 }
         });
@@ -126,8 +121,7 @@ public class AddCarActivity extends AppCompatActivity {
             builder.append(plate).append("\n" + "Nickname : ");
             builder.append(nickname).append("\n \n");
         }
-        TextView text = (TextView)findViewById(R.id.showrecord);
-        text.setText(builder);
+
     }
 
 

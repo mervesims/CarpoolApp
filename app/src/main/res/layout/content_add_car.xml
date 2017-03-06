@@ -192,25 +192,6 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true" />
 
-    <TextView
-        android:layout_marginTop="291dp"
-        android:text="Whether or not the vehicle is active :"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView9"
-        android:textSize="15sp"
-        android:textStyle="bold"
-        android:textColor="@color/colorPrimaryDark"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
-
-    <CheckBox
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/checkBox"
-        android:layout_below="@+id/nickname"
-        android:layout_toEndOf="@+id/textView9"
-        android:layout_marginStart="22dp" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fabsave"
@@ -224,15 +205,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true" />
 
-    <TextView
-        android:text="TextView"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="21dp"
-        android:id="@+id/showrecord"
-        android:layout_below="@+id/checkBox"
 
-         />
 
 
 </RelativeLayout>

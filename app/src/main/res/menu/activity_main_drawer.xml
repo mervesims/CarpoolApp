@@ -10,10 +10,11 @@
             android:id="@+id/nav_add"
             android:icon="@drawable/plus"
             android:title="Add New Car" />
+
         <item
-        android:id="@+id/nav_aboutappsims"
-        android:icon="@drawable/question"
-        android:title="About AppSims" />
+            android:id="@+id/nav_aboutappsims"
+            android:icon="@drawable/question"
+            android:title="About AppSims" />
     </group>
 
     <item android:title="Communicate">

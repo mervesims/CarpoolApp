@@ -1,6 +1,10 @@
 package com.example.mervesimsek.vehicleapp;
 
+import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -65,6 +69,7 @@ public class ItemDetailActivity extends AppCompatActivity {
 
                 EditText editText6 = (EditText)findViewById(R.id.item_detail7);
                 editText6.setEnabled(true);
+
                                        }
         });
 
@@ -95,7 +100,6 @@ public class ItemDetailActivity extends AppCompatActivity {
 
             ItemDetailFragment fragment = new ItemDetailFragment();
             fragment.setArguments(vehicleBundle);
-            //fragment.setArguments(arguments);
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.item_detail_container, fragment)
                     .commit();

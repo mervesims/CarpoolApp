@@ -50,4 +50,15 @@
         app:layout_anchorGravity="top|end"
         app:srcCompat="@android:drawable/ic_menu_edit" />
 
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fabeditsave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/fab_margin"
+        app:layout_anchor="@+id/item_detail_container"
+        app:srcCompat="@drawable/check"
+        app:layout_anchorGravity="center_vertical|right|bottom"
+        />
+
+
 </android.support.design.widget.CoordinatorLayout>
