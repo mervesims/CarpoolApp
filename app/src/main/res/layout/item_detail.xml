@@ -3,14 +3,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-<EditText
-android:id="@+id/item_detail"
-style="?android:attr/textAppearanceLargePopupMenu"
-android:layout_width="match_parent"
-android:layout_height="wrap_content"
-android:padding="16dp"
-tools:context="com.example.mervesimsek.vehicleapp.ItemDetailFragment"
-    android:editable="false" />
+    <EditText
+        android:id="@+id/item_detail"
+        style="?android:attr/textAppearanceLargePopupMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        tools:context="com.example.mervesimsek.vehicleapp.ItemDetailFragment"
+        android:enabled="false"
+        android:inputType="none"
+         />
 
     <EditText
         android:id="@+id/item_detail2"
@@ -20,7 +22,9 @@ tools:context="com.example.mervesimsek.vehicleapp.ItemDetailFragment"
         android:layout_marginTop="60dp"
         android:padding="16dp"
         tools:context="com.example.mervesimsek.vehicleapp.ItemDetailFragment"
-        android:editable="false" />
+        android:enabled="false"
+        android:inputType="none"
+        />
 
 
     <EditText
@@ -31,17 +35,20 @@ tools:context="com.example.mervesimsek.vehicleapp.ItemDetailFragment"
         android:layout_marginTop="120dp"
         android:padding="16dp"
         tools:context="com.example.mervesimsek.vehicleapp.ItemDetailFragment"
-        android:editable="false" />
+        android:enabled="false"
+        android:inputType="none"
+        />
 
     <EditText
-    android:id="@+id/item_detail4"
-    style="?android:attr/textAppearanceLargePopupMenu"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="180dp"
-    android:padding="16dp"
-    tools:context="com.example.mervesimsek.vehicleapp.ItemDetailFragment"
-        android:editable="false"
+        android:id="@+id/item_detail4"
+        style="?android:attr/textAppearanceLargePopupMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="180dp"
+        android:padding="16dp"
+        tools:context="com.example.mervesimsek.vehicleapp.ItemDetailFragment"
+        android:enabled="false"
+        android:inputType="none"
        />
 
     <EditText
@@ -52,7 +59,9 @@ tools:context="com.example.mervesimsek.vehicleapp.ItemDetailFragment"
         android:layout_marginTop="240dp"
         android:padding="16dp"
         tools:context="com.example.mervesimsek.vehicleapp.ItemDetailFragment"
-        android:editable="false" />
+        android:enabled="false"
+        android:inputType="none"
+        />
 
     <EditText
         android:id="@+id/item_detail6"
@@ -62,7 +71,9 @@ tools:context="com.example.mervesimsek.vehicleapp.ItemDetailFragment"
         android:layout_marginTop="300dp"
         android:padding="16dp"
         tools:context="com.example.mervesimsek.vehicleapp.ItemDetailFragment"
-        android:editable="false" />
+        android:enabled="false"
+        android:inputType="none"
+         />
 
     <EditText
         android:id="@+id/item_detail7"
@@ -72,5 +83,7 @@ tools:context="com.example.mervesimsek.vehicleapp.ItemDetailFragment"
         android:layout_marginTop="360dp"
         android:padding="16dp"
         tools:context="com.example.mervesimsek.vehicleapp.ItemDetailFragment"
-        android:editable="false" />
+        android:enabled="false"
+        android:inputType="none"
+        />
     </RelativeLayout>

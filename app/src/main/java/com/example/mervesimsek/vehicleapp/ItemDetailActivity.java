@@ -23,26 +23,48 @@ import com.example.mervesimsek.vehicleapp.dummy.DummyContent;
  */
 public class ItemDetailActivity extends AppCompatActivity {
 
+    private EditText editText;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item_detail);
+
+        /*EditText editText= (EditText) findViewById(R.id.item_detail);
+        editText.setTag(editText.getKeyListener());
+        editText.setKeyListener(null); */
+
+
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.detail_toolbar);
         setSupportActionBar(toolbar);
 
-
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fabedit);
         fab.setOnClickListener(new View.OnClickListener() {
-          /*  EditText editText = (EditText)findViewById(R.id.item_detail);
-            EditText editText1 = (EditText)findViewById(R.id.item_detail2);
-            EditText editText2 = (EditText)findViewById(R.id.item_detail3);
-            EditText editText3 = (EditText)findViewById(R.id.item_detail4);
-            EditText editText4 = (EditText)findViewById(R.id.item_detail5);
-            EditText editText5 = (EditText)findViewById(R.id.item_detail6);
-            EditText editText6 = (EditText)findViewById(R.id.item_detail7);*/
+
+
             @Override
             public void onClick(View view) {
+                EditText editText = (EditText)findViewById(R.id.item_detail);
+                editText.setEnabled(true);
 
+                EditText editText1 = (EditText)findViewById(R.id.item_detail2);
+                editText1.setEnabled(true);
+
+                EditText editText2 = (EditText)findViewById(R.id.item_detail3);
+                editText2.setEnabled(true);
+
+                EditText editText3 = (EditText)findViewById(R.id.item_detail4);
+                editText3.setEnabled(true);
+
+                EditText editText4 = (EditText)findViewById(R.id.item_detail5);
+                editText4.setEnabled(true);
+
+                EditText editText5 = (EditText)findViewById(R.id.item_detail6);
+                editText5.setEnabled(true);
+
+                EditText editText6 = (EditText)findViewById(R.id.item_detail7);
+                editText6.setEnabled(true);
                                        }
         });
 
@@ -64,8 +86,7 @@ public class ItemDetailActivity extends AppCompatActivity {
         if (savedInstanceState == null) {
             // Create the detail fragment and add it to the activity
             // using a fragment transaction.
-            Bundle arguments = new Bundle();
-            //arguments.putString(ItemDetailFragment.ARG_ITEM_ID, getIntent().getStringExtra(ItemDetailFragment.ARG_ITEM_ID));
+
 
             //TODO: diger ekrandan gonderilen modeli ya da veri yapısını buradan okuyoruz.
             Bundle vehicleBundle = new Bundle();
