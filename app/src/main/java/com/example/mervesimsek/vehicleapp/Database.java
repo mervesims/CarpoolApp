@@ -65,7 +65,7 @@ public class Database extends SQLiteOpenHelper {
     }
 
     public void insertRecord(String brand_name, String model_name, String model_year, String type,String color_name, String plate, String nickname) {
-        //TODO:insertRecord methodu Databese veri eklemek için
+        //TODO:insertRecord methodu Database veri eklemek için
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(BRAND_NAME, brand_name);
@@ -81,7 +81,7 @@ public class Database extends SQLiteOpenHelper {
     }
 
     public HashMap<String, String> detailRecord(int id){
-        /* TODO:Databaseden id si belli olan row u çekmek için...
+        /* TODO:Databaseden id si belli olan row u çekmek için
         Bu methodda sadece tek row değerleri alınır.
         HashMap bir çift boyutlu arraydir.anahtar-değer ikililerini bir arada tutmak için tasarlanmıştır.
         map.put("x","300"); mesala burda anahtar x değeri 300.*/
