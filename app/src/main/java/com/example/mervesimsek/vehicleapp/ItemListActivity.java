@@ -11,13 +11,16 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.support.design.widget.FloatingActionButton;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import com.example.mervesimsek.vehicleapp.dummy.DummyContent;
 
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -35,6 +38,7 @@ public class ItemListActivity extends AppCompatActivity {
      * device.
      */
     private boolean mTwoPane;
+   private boolean longClickActive = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -113,6 +117,37 @@ public class ItemListActivity extends AppCompatActivity {
             holder.vehicleViewHolder = mValues.get(position);
             holder.mIdView.setText(mValues.get(position).nickname);
             holder.mContentView.setText(mValues.get(position).brand);
+            holder.mContentView.setOnTouchListener(new View.OnTouchListener() {
+
+                private static final int MIN_CLICK_DURATION = 1000;
+                private long startClickTime;
+
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+
+                    switch (event.getAction()) {
+                        case MotionEvent.ACTION_UP:
+                            longClickActive = false;
+                            break;
+                        case MotionEvent.ACTION_DOWN:
+                            if (longClickActive == false) {
+                                longClickActive = true;
+                                startClickTime = Calendar.getInstance().getTimeInMillis();
+                            }
+                            break;
+                        case MotionEvent.ACTION_MOVE:
+                            if (longClickActive == true) {
+                                long clickDuration = Calendar.getInstance().getTimeInMillis() - startClickTime;
+                                if (clickDuration >= MIN_CLICK_DURATION) {
+                                    Toast.makeText(ItemListActivity.this, "LONG PRESSED!",Toast.LENGTH_SHORT).show();
+                                    longClickActive = false;
+                                }
+                            }
+                            break;
+                    }
+                    return true;
+                }
+            });
 
             //TODO: detay acilan kisim. Butona basınca buradan detay ekranını acıyor.
             holder.mView.setOnClickListener(new View.OnClickListener() {
@@ -165,6 +200,7 @@ public class ItemListActivity extends AppCompatActivity {
                 mView = view;
                 mIdView = (TextView) view.findViewById(R.id.id);
                 mContentView = (TextView) view.findViewById(R.id.content);
+
             }
 
             @Override

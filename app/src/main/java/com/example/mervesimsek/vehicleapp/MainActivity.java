@@ -1,6 +1,8 @@
 package com.example.mervesimsek.vehicleapp;
 
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -14,9 +16,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+    final Context context = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,12 +29,17 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        TextView logo = (TextView) findViewById(R.id.logo);
+        Typeface font = Typeface.createFromAsset(context.getAssets(),"fonts/gist.ttf");
+        logo.setTypeface(font);
+
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent intgo = new Intent(MainActivity.this, AddCarActivity.class);
+                startActivity(intgo);
             }
         });
 
@@ -82,7 +91,12 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_car) {
+        if(id == R.id.nav_main) {
+
+            Intent intentmain = new Intent(MainActivity.this, MainActivity.class);
+            startActivity(intentmain);
+
+        } else if (id == R.id.nav_car) {
 
             Intent intentitem = new Intent(MainActivity.this, ItemListActivity.class);
             startActivity(intentitem);

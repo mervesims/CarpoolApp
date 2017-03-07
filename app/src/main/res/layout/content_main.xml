@@ -13,4 +13,32 @@
     tools:context="com.example.mervesimsek.vehicleapp.MainActivity"
     tools:showIn="@layout/app_bar_main">
 
+
+    <ImageView
+        android:layout_width="128dp"
+        android:layout_height="128dp"
+        app:srcCompat="@drawable/carpoollogo"
+        android:id="@+id/imageView2"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="41dp" />
+
+    <TextView
+        android:text="   Carpool is designed to make it easy to keep track of and keep track of the tools you have."
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:id="@+id/explain"
+        android:layout_alignParentStart="true"
+        android:textColor="@android:color/black" />
+
+    <TextView
+        android:text="Carpool"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/logo"
+        android:textSize="30sp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:layout_below="@+id/imageView2"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>
