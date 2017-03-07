@@ -44,6 +44,7 @@ public class DummyContent {
         Database vehicle = new Database(currentContext);
         SQLiteDatabase db = vehicle.getReadableDatabase();
         Cursor cursor = db.query("vehicles",SELECT,null,null,null,null,null,null);
+
        // vehicle.close();
 
         //startManagingCursor(cursor);
@@ -64,7 +65,7 @@ public class DummyContent {
     public static void createVehicleList(Cursor cursor) {
         vehicleModelList.clear();
         while (cursor.moveToNext()) {
-            long id = cursor.getLong(cursor.getColumnIndex("id"));
+            String id = cursor.getString(cursor.getColumnIndex("id"));
             String brand = cursor.getString(cursor.getColumnIndex("brand"));
             String model = cursor.getString(cursor.getColumnIndex("model"));
             String type = cursor.getString(cursor.getColumnIndex("type"));
@@ -74,6 +75,7 @@ public class DummyContent {
             String nickname = cursor.getString(cursor.getColumnIndex("nickname"));
 
             VehicleModel vehicleModel = new VehicleModel();
+            vehicleModel.id = id;
             vehicleModel.brand = brand;
             vehicleModel.model = model;
             vehicleModel.type = type;
@@ -84,7 +86,13 @@ public class DummyContent {
             vehicleModelList.add(vehicleModel);
         }
     }
-    private static String makeDetails(Cursor cursor) {
+    public static void deleteRow(String vehicleid, Context currentContext) {
+        Database vehicle = new Database(currentContext);
+        SQLiteDatabase db = vehicle.getReadableDatabase();
+        vehicle.deleteRecord(db,vehicleid);
+    }
+
+   /* private static String makeDetails(Cursor cursor) {
         StringBuilder builder = new StringBuilder("Vehicles: \n");
 
         while (cursor.moveToNext()) {
@@ -109,7 +117,7 @@ public class DummyContent {
         }
 
         return builder.toString();
-    }
+    }*/
 
 
     /**
@@ -133,6 +141,7 @@ public class DummyContent {
     }
 
     public static class VehicleModel implements Serializable {
+        public String id ="";
         public String brand = "";
         public String model = "";
         public String type = "";

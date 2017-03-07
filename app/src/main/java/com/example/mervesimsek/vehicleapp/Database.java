@@ -56,11 +56,8 @@ public class Database extends SQLiteOpenHelper {
     }
 
 
-    public void deleteRecord(int id) { //TODO:id si belli olan row u silmek için
-
-        SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(TABLE_NAME, ID + " = ?",
-                new String[]{String.valueOf(id)});
+    public void deleteRecord(SQLiteDatabase db,String id) { //TODO:id si belli olan row u silmek için
+        db.delete(TABLE_NAME, ID + " = ?",new String[]{String.valueOf(id)});
         db.close();
     }
 

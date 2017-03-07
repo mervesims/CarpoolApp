@@ -133,8 +133,8 @@ public class ItemListActivity extends AppCompatActivity {
                                                           public boolean onMenuItemClick(MenuItem item) {
                                                              switch(item.getItemId()) {
                                                                  case  R.id.item_delete:
+                                                                     DummyContent.deleteRow(holder.vehicleViewHolder.id,mContext);
                                                                      mValues.remove(position);
-
                                                                      notifyDataSetChanged();
                                                                      Toast.makeText(mContext, "Deleted", Toast.LENGTH_LONG).show();
                                                                      break;
@@ -202,6 +202,8 @@ public class ItemListActivity extends AppCompatActivity {
                 mOption =(TextView)view.findViewById(R.id.option);
 
             }
+
+
 
             @Override
             public String toString() {
