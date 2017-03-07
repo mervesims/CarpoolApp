@@ -23,14 +23,6 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="41dp" />
 
-    <TextView
-        android:text="   Carpool is designed to make it easy to keep track of and keep track of the tools you have."
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:id="@+id/explain"
-        android:layout_alignParentStart="true"
-        android:textColor="@android:color/black" />
 
     <TextView
         android:text="Carpool"
@@ -41,4 +33,25 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         android:layout_below="@+id/imageView2"
         android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:text="   With the Carpool application you can follow your vehicles at any time or at any place."
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/explain2"
+        android:textColor="@android:color/black"
+        android:layout_marginTop="26dp"
+        android:layout_below="@+id/explain"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+    android:text="   Carpool is designed to make it easy to keep track of and keep track of the tools you have."
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/explain"
+    android:textColor="@android:color/black"
+        android:layout_centerVertical="true"
+        android:layout_alignParentStart="true" />
+
+
 </RelativeLayout>

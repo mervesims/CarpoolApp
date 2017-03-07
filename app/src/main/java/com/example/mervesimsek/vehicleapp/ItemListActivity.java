@@ -45,6 +45,7 @@ public class ItemListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item_list);
 
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -77,8 +78,6 @@ public class ItemListActivity extends AppCompatActivity {
 
         //TODO: olusturulan sorgu sonucuna gore Vehicle tipinde bir list olusturuldu.
         DummyContent.createVehicleList(vehicleDataFromDB);
-
-
         setupRecyclerView((RecyclerView) recyclerView);
 
         if (findViewById(R.id.item_detail_container) != null) {
@@ -86,8 +85,11 @@ public class ItemListActivity extends AppCompatActivity {
         }
     }
 
+
+
     private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
         recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(DummyContent.vehicleModelList));
+
     }
 
     public class SimpleItemRecyclerViewAdapter
@@ -117,37 +119,7 @@ public class ItemListActivity extends AppCompatActivity {
             holder.vehicleViewHolder = mValues.get(position);
             holder.mIdView.setText(mValues.get(position).nickname);
             holder.mContentView.setText(mValues.get(position).brand);
-            holder.mContentView.setOnTouchListener(new View.OnTouchListener() {
 
-                private static final int MIN_CLICK_DURATION = 1000;
-                private long startClickTime;
-
-                @Override
-                public boolean onTouch(View v, MotionEvent event) {
-
-                    switch (event.getAction()) {
-                        case MotionEvent.ACTION_UP:
-                            longClickActive = false;
-                            break;
-                        case MotionEvent.ACTION_DOWN:
-                            if (longClickActive == false) {
-                                longClickActive = true;
-                                startClickTime = Calendar.getInstance().getTimeInMillis();
-                            }
-                            break;
-                        case MotionEvent.ACTION_MOVE:
-                            if (longClickActive == true) {
-                                long clickDuration = Calendar.getInstance().getTimeInMillis() - startClickTime;
-                                if (clickDuration >= MIN_CLICK_DURATION) {
-                                    Toast.makeText(ItemListActivity.this, "LONG PRESSED!",Toast.LENGTH_SHORT).show();
-                                    longClickActive = false;
-                                }
-                            }
-                            break;
-                    }
-                    return true;
-                }
-            });
 
             //TODO: detay acilan kisim. Butona basınca buradan detay ekranını acıyor.
             holder.mView.setOnClickListener(new View.OnClickListener() {
