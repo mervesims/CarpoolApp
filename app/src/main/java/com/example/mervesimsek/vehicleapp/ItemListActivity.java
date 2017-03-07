@@ -7,10 +7,12 @@ import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.support.design.widget.FloatingActionButton;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,7 +40,8 @@ public class ItemListActivity extends AppCompatActivity {
      * device.
      */
     private boolean mTwoPane;
-   private boolean longClickActive = false;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,15 +98,15 @@ public class ItemListActivity extends AppCompatActivity {
     public class SimpleItemRecyclerViewAdapter
             extends RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder> {
 
-        //private final List<DummyContent.DummyItem> mValues;
         private final List<DummyContent.VehicleModel> mValues;
 
-        /*public SimpleItemRecyclerViewAdapter(List<DummyContent.DummyItem> items) {
-            mValues = items;
-        }*/
+
+
+
 
         public SimpleItemRecyclerViewAdapter(List<DummyContent.VehicleModel> items) {
             mValues = items;
+
         }
 
         @Override
@@ -115,10 +118,33 @@ public class ItemListActivity extends AppCompatActivity {
 
 
         @Override
-        public void onBindViewHolder(final ViewHolder holder, int position) {
+        public void onBindViewHolder(final ViewHolder holder, final int position) {
             holder.vehicleViewHolder = mValues.get(position);
             holder.mIdView.setText(mValues.get(position).nickname);
             holder.mContentView.setText(mValues.get(position).brand);
+            holder.mOption.setOnClickListener(new View.OnClickListener() {
+                                                  @Override
+                                                  public void onClick(View v) {
+                                                      final Context mContext = v.getContext();
+                                                      PopupMenu popupMenu = new PopupMenu(mContext, holder.mOption);
+                                                      popupMenu.inflate(R.menu.option_menu);
+                                                      popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                                                          @Override
+                                                          public boolean onMenuItemClick(MenuItem item) {
+                                                             switch(item.getItemId()) {
+                                                                 case  R.id.item_delete:
+                                                                     mValues.remove(position);
+
+                                                                     notifyDataSetChanged();
+                                                                     Toast.makeText(mContext, "Deleted", Toast.LENGTH_LONG).show();
+                                                                     break;
+                                                             }
+                                                              return false;
+                                                          }
+                                                      });
+                                                      popupMenu.show();
+                                                  }
+                                              });
 
 
             //TODO: detay acilan kisim. Butona basınca buradan detay ekranını acıyor.
@@ -136,7 +162,7 @@ public class ItemListActivity extends AppCompatActivity {
                                 .commit();
                     } else {
                         Context context = v.getContext();
-                        Intent intent = new Intent(context, ItemDetailActivity.class);
+                       Intent intent = new Intent(context, ItemDetailActivity.class);
 
                         //TODO: burada cagirilan ekrana parametre geciriyor. Bir model yaptık ve modeli diger ekranda kullanacagız demektir bu. list ve detail gibi dusunebiliriz.
 
@@ -165,6 +191,7 @@ public class ItemListActivity extends AppCompatActivity {
             public final View mView;
             public final TextView mIdView;
             public final TextView mContentView;
+            public final TextView mOption;
             public DummyContent.VehicleModel vehicleViewHolder;
 
             public ViewHolder(View view) {
@@ -172,6 +199,7 @@ public class ItemListActivity extends AppCompatActivity {
                 mView = view;
                 mIdView = (TextView) view.findViewById(R.id.id);
                 mContentView = (TextView) view.findViewById(R.id.content);
+                mOption =(TextView)view.findViewById(R.id.option);
 
             }
 
