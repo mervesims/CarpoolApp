@@ -69,9 +69,17 @@ public class ItemDetailActivity extends AppCompatActivity {
 
                 EditText editText6 = (EditText)findViewById(R.id.item_detail7);
                 editText6.setEnabled(true);
-
-                                       }
+                }
         });
+
+
+        FloatingActionButton fabeditsave = (FloatingActionButton)findViewById(R.id.fabeditsave);
+        fabeditsave.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View view) {
+
+             }
+             });
 
         // Show the Up button in the action bar.
         ActionBar actionBar = getSupportActionBar();
