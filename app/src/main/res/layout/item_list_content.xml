@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:background="@color/white"
+    >
     <View
         android:id="@+id/dividerTop"
         android:layout_width="match_parent"
@@ -21,6 +24,7 @@
 
     <TextView
         android:id="@+id/id"
+        android:text="Item Nickname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toEndOf="@+id/circle"
@@ -31,6 +35,7 @@
 
     <TextView
         android:id="@+id/content"
+        android:text="Item Brand"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/id"
@@ -57,39 +62,70 @@
         android:layout_marginRight="16dp"
         android:background="#E4E6E3" />
 
-    <TextView
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/divider">
+        <Button
+            android:id="@+id/option"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:layout_weight="0.5"
+            android:textSize="12sp"
+            android:textAlignment="center"
+            android:paddingLeft="50dp"
+            android:paddingRight="50dp"
+            android:drawableLeft="@drawable/information"
+            android:text="DETAIL"
+            android:textColor="@color/grey"
+            android:textCursorDrawable="@drawable/information" />
+
+        <Button
+            android:id="@+id/optiondetail"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textSize="12sp"
+            android:background="@color/white"
+            android:textAlignment="center"
+            android:paddingLeft="50dp"
+            android:paddingRight="50dp"
+            android:drawableLeft="@drawable/deleted"
+            android:layout_weight="0.5"
+            android:text="DELETE"
+            android:textColor="@color/grey"
+            />
+
+     <!--   <TextView
         android:id="@+id/optionbin"
-        android:layout_width="22dp"
-        android:layout_height="24dp"
-        android:layout_below="@+id/divider"
-        android:layout_marginLeft="257dp"
+        android:layout_width="16dp"
+        android:layout_height="18dp"
+        android:layout_marginLeft="197dp"
         android:layout_marginTop="9dp"
-        android:background="@android:drawable/ic_menu_delete"
-        android:paddingTop="6dp"
-        android:textStyle="bold"
-        android:tint="@color/grey"/>
-    <TextView
-        android:id="@+id/option"
-        android:layout_width="wrap_content"
-        android:layout_height="33dp"
-        android:layout_below="@+id/divider"
-        android:layout_marginLeft="280dp"
-        android:layout_marginTop="5dp"
-        android:textSize="16sp"
-        android:text="Delete"
+        android:background="@drawable/deleted"
         android:paddingTop="6dp"
         android:textStyle="bold"
         android:tint="@color/grey"/>
 
+        <TextView
+            android:id="@+id/option"
+            android:layout_width="wrap_content"
+            android:layout_height="33dp"
+            android:layout_marginTop="5dp"
 
-    <TextView
+            android:textSize="12sp"
+            android:text="DELETE"
+            android:paddingTop="6dp"
+            android:tint="@color/grey"/>
+
+
+        <TextView
         android:id="@+id/optiondetitem"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_below="@+id/divider"
-        android:layout_marginLeft="10dp"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
+        android:layout_marginLeft="70dp"
         android:layout_marginTop="9dp"
-        android:background="@android:drawable/ic_menu_info_details"
+        android:background="@drawable/information"
         android:paddingTop="6dp"
         android:textStyle="bold"
         android:tint="@color/grey"/>
@@ -97,15 +133,12 @@
         android:id="@+id/optiondetail"
         android:layout_width="wrap_content"
         android:layout_height="33dp"
-        android:layout_below="@+id/divider"
-        android:layout_marginLeft="35dp"
         android:layout_marginTop="5dp"
-        android:textSize="16sp"
-        android:text="Detail"
+        android:textSize="12sp"
+        android:text="DETAIL"
         android:paddingTop="6dp"
-        android:textStyle="bold"
-        android:tint="@color/grey"/>
-
+        android:tint="@color/grey"/> -->
+</LinearLayout>
 
 
 </RelativeLayout>

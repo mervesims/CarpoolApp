@@ -133,12 +133,15 @@ public class ItemListActivity extends AppCompatActivity {
                                                           @Override
                                                           public boolean onMenuItemClick(MenuItem item) {
                                                              switch(item.getItemId()) {
-                                                                 case  R.id.item_delete:
+                                                                 case  R.id.option:
                                                                      DummyContent.deleteRow(holder.vehicleViewHolder.id,mContext);
                                                                      mValues.remove(position);
                                                                      notifyDataSetChanged();
                                                                      Toast.makeText(mContext, "Deleted", Toast.LENGTH_LONG).show();
                                                                      break;
+                                                                 case R.id.optiondetail:
+                                                                     Intent intentdetail = new Intent(ItemListActivity.this,ItemDetailActivity.class);
+                                                                     startActivity(intentdetail);
                                                              }
                                                               return false;
                                                           }
