@@ -1,6 +1,7 @@
 package com.example.mervesimsek.vehicleapp;
 
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -10,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class AddCarActivity extends AppCompatActivity {
     EditText brand, model, type, modelyear, color, plate, nickname;
@@ -52,6 +54,7 @@ public class AddCarActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+               if ( brand.getText().toString().length() >= 1 && nickname.getText().length() >= 1 && modelyear.getText().length() >=1 ) {
                 try{
                 saveRecord(brand.getText().toString(),
                            model.getText().toString(),
@@ -67,8 +70,23 @@ public class AddCarActivity extends AppCompatActivity {
                 finally {
                     vehicle.close();
                 }
-               Intent intent = new Intent(AddCarActivity.this, ItemListActivity.class);
-                startActivity(intent);
+                   Intent intent = new Intent(AddCarActivity.this, ItemListActivity.class);
+                   startActivity(intent);
+               }
+                else
+               {
+                   final Context context = view.getContext();
+                   Toast.makeText(context, "Empty spaces are available.", Toast.LENGTH_SHORT).show();
+                   if (brand.getText().length() == 0){
+                   brand.setError( "Brand is required!" ); }
+                   if (nickname.getText().length() == 0){
+                   nickname.setError("Nickname is required!"); }
+                   if (modelyear.getText().length() == 0){
+                   modelyear.setError("Model year is required!"); }
+               }
+
+
+
                 }
         });
     }

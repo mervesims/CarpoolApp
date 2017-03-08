@@ -34,11 +34,6 @@ public class ItemDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item_detail);
 
-        /*EditText editText= (EditText) findViewById(R.id.item_detail);
-        editText.setTag(editText.getKeyListener());
-        editText.setKeyListener(null); */
-
-
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.detail_toolbar);
         setSupportActionBar(toolbar);
