@@ -122,6 +122,7 @@ public class ItemListActivity extends AppCompatActivity {
             holder.vehicleViewHolder = mValues.get(position);
             holder.mIdView.setText(mValues.get(position).nickname);
             holder.mContentView.setText(mValues.get(position).brand);
+            holder.mModelYear.setText(mValues.get(position).modelyear);
             holder.mOption.setOnClickListener(new View.OnClickListener() {
                                                   @Override
                                                   public void onClick(View v) {
@@ -192,6 +193,7 @@ public class ItemListActivity extends AppCompatActivity {
             public final TextView mIdView;
             public final TextView mContentView;
             public final TextView mOption;
+            public final TextView mModelYear;
             public DummyContent.VehicleModel vehicleViewHolder;
 
             public ViewHolder(View view) {
@@ -200,6 +202,7 @@ public class ItemListActivity extends AppCompatActivity {
                 mIdView = (TextView) view.findViewById(R.id.id);
                 mContentView = (TextView) view.findViewById(R.id.content);
                 mOption =(TextView)view.findViewById(R.id.option);
+                mModelYear = (TextView)view.findViewById(R.id.modelyearcontent);
 
             }
 
