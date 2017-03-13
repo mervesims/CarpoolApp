@@ -5,7 +5,7 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
+import com.oguzdev.circularfloatingactionmenu.library.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -16,7 +16,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.oguzdev.circularfloatingactionmenu.library.FloatingActionMenu;
+import com.oguzdev.circularfloatingactionmenu.library.SubActionButton;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -30,10 +35,61 @@ public class MainActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
         TextView logo = (TextView) findViewById(R.id.logo);
-        Typeface font = Typeface.createFromAsset(context.getAssets(),"fonts/gist.ttf");
+        Typeface font = Typeface.createFromAsset(context.getAssets(), "fonts/gist.ttf");
         logo.setTypeface(font);
 
 
+        ImageView icon = new ImageView(this);
+        icon.setImageResource(R.drawable.plusneww);
+
+        final FloatingActionButton fab = new FloatingActionButton.Builder(this).setContentView(icon).build();
+        SubActionButton.Builder builder = new SubActionButton.Builder(this);
+
+        ImageView addcarIcon = new ImageView(this);
+        addcarIcon.setImageResource(R.drawable.plusnew);
+        SubActionButton addcarBtn = builder.setContentView(addcarIcon).build();
+
+        ImageView shareIcon = new ImageView(this);
+        shareIcon.setImageResource(R.drawable.share);
+        SubActionButton shareBtn = builder.setContentView(shareIcon).build();
+
+        ImageView infoIcon = new ImageView(this);
+        infoIcon.setImageResource(R.drawable.infovar);
+        SubActionButton infoBtn = builder.setContentView(infoIcon).build();
+
+        final FloatingActionMenu fam = new FloatingActionMenu.Builder(this)
+                .addSubActionView(infoBtn)
+                .addSubActionView(shareBtn)
+                .addSubActionView(addcarBtn)
+                .attachTo(fab)
+                .build();
+        infoBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent browser = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.appsims.com"));
+                startActivity(browser);
+            }
+        });
+        shareBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String message = " ";
+                Intent share = new Intent(Intent.ACTION_SEND);
+                share.setType("text/plain");
+                share.putExtra(Intent.EXTRA_TEXT, message);
+                startActivity(Intent.createChooser(share, "Carpool"));
+            }
+        });
+        addcarBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intentadd = new Intent(MainActivity.this,AddCarActivity.class);
+                startActivity(intentadd);
+            }
+        });
+
+
+/*
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -41,7 +97,7 @@ public class MainActivity extends AppCompatActivity
                 Intent intgo = new Intent(MainActivity.this, AddCarActivity.class);
                 startActivity(intgo);
             }
-        });
+        }); */
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -132,4 +188,7 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+
+
 }
