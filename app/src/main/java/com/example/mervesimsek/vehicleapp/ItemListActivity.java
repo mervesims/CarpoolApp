@@ -16,6 +16,7 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -123,42 +124,15 @@ public class ItemListActivity extends AppCompatActivity {
             holder.mIdView.setText(mValues.get(position).nickname);
             holder.mContentView.setText(mValues.get(position).brand);
             holder.mModelYear.setText(mValues.get(position).modelyear);
-            holder.mOption.setOnClickListener(new View.OnClickListener() {
-                                                  @Override
-                                                  public void onClick(View v) {
-                                                      final Context mContext = v.getContext();
-                                                      PopupMenu popupMenu = new PopupMenu(mContext, holder.mOption);
-                                                      popupMenu.inflate(R.menu.option_menu);
-                                                      popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                                                          @Override
-                                                          public boolean onMenuItemClick(MenuItem item) {
-                                                             switch(item.getItemId()) {
-                                                                 case  R.id.option:
-                                                                     DummyContent.deleteRow(holder.vehicleViewHolder.id,mContext);
-                                                                     mValues.remove(position);
-                                                                     notifyDataSetChanged();
-                                                                     Toast.makeText(mContext, "Deleted", Toast.LENGTH_LONG).show();
-                                                                     break;
-                                                                 case R.id.optiondetail:
-                                                                     Intent intentdetail = new Intent(ItemListActivity.this,ItemDetailActivity.class);
-                                                                     startActivity(intentdetail);
-                                                             }
-                                                              return false;
-                                                          }
-                                                      });
-                                                      popupMenu.show();
-                                                  }
-                                              });
-
 
             //TODO: detay acilan kisim. Butona basınca buradan detay ekranını acıyor.
-            holder.mView.setOnClickListener(new View.OnClickListener() {
+            holder.mDetail.setOnClickListener(new Button.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if (mTwoPane) {
 
                         Bundle arguments = new Bundle();
-                       arguments.putString(ItemDetailFragment.ARG_ITEM_ID, holder.vehicleViewHolder.brand);
+                        arguments.putString(ItemDetailFragment.ARG_ITEM_ID, holder.vehicleViewHolder.brand);
                         ItemDetailFragment fragment = new ItemDetailFragment();
                         fragment.setArguments(arguments);
                         getSupportFragmentManager().beginTransaction()
@@ -166,7 +140,7 @@ public class ItemListActivity extends AppCompatActivity {
                                 .commit();
                     } else {
                         Context context = v.getContext();
-                       Intent intent = new Intent(context, ItemDetailActivity.class);
+                        Intent intent = new Intent(context, ItemDetailActivity.class);
 
                         //TODO: burada cagirilan ekrana parametre geciriyor. Bir model yaptık ve modeli diger ekranda kullanacagız demektir bu. list ve detail gibi dusunebiliriz.
 
@@ -184,6 +158,21 @@ public class ItemListActivity extends AppCompatActivity {
                     }
                 }
             });
+
+            holder.mDelete.setOnClickListener(new Button.OnClickListener() {
+                                                  @Override
+                                                  public void onClick(View v) {
+                                                      final Context mContext = v.getContext();
+                                                      DummyContent.deleteRow(holder.vehicleViewHolder.id,mContext);
+                                                      mValues.remove(position);
+                                                      notifyDataSetChanged();
+                                                      Toast.makeText(mContext, "Deleted", Toast.LENGTH_LONG).show();
+                                                  }
+                                              });
+
+
+
+
         }
 
         @Override
@@ -195,8 +184,9 @@ public class ItemListActivity extends AppCompatActivity {
             public final View mView;
             public final TextView mIdView;
             public final TextView mContentView;
-            public final TextView mOption;
+            public final Button mDelete;
             public final TextView mModelYear;
+            public final Button mDetail;
             public DummyContent.VehicleModel vehicleViewHolder;
 
             public ViewHolder(View view) {
@@ -204,8 +194,9 @@ public class ItemListActivity extends AppCompatActivity {
                 mView = view;
                 mIdView = (TextView) view.findViewById(R.id.id);
                 mContentView = (TextView) view.findViewById(R.id.content);
-                mOption =(TextView)view.findViewById(R.id.option);
+                mDelete =(Button)view.findViewById(R.id.optiondetail);
                 mModelYear = (TextView)view.findViewById(R.id.modelyearcontent);
+                mDetail = (Button)view.findViewById(R.id.option);
 
             }
 
