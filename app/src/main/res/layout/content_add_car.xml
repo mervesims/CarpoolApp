@@ -1,29 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/content_add_car"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.example.mervesimsek.vehicleapp.AddCarActivity"
-    tools:showIn="@layout/activity_add_car">
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/content_add_car"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:context="com.example.mervesimsek.vehicleapp.AddCarActivity"
+        tools:showIn="@layout/activity_add_car">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin">
 
     <TextView
-    android:layout_marginTop="11dp"
-    android:text="Brand Of Vehicle : "
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:id="@+id/textView2"
-    android:textSize="15sp"
-    android:textStyle="bold"
-    android:textColor="@color/colorPrimaryDark"
-    android:layout_alignParentTop="true"
-    android:layout_alignParentStart="true" />
+        android:layout_marginTop="11dp"
+        android:text="Brand Of Vehicle : "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView2"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:textColor="@color/colorPrimaryDark"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
 
     <EditText
         android:layout_width="match_parent"
@@ -48,7 +55,8 @@
         android:textStyle="bold"
         android:textColor="@color/colorPrimaryDark"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_toStartOf="@+id/brand" />
 
     <EditText
         android:layout_marginTop="40dp"
@@ -74,7 +82,8 @@
         android:textStyle="bold"
         android:textColor="@color/colorPrimaryDark"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_toStartOf="@+id/model" />
 
     <EditText
         android:layout_marginTop="80dp"
@@ -100,7 +109,8 @@
         android:textStyle="bold"
         android:textColor="@color/colorPrimaryDark"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_toStartOf="@+id/type" />
 
 
 
@@ -118,16 +128,17 @@
         android:layout_alignParentEnd="true" />
 
     <TextView
-    android:layout_marginTop="171dp"
-    android:text="Color of Vehicle :   "
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:id="@+id/textView6"
-    android:textSize="15sp"
-    android:textStyle="bold"
-    android:textColor="@color/colorPrimaryDark"
-    android:layout_alignParentTop="true"
-    android:layout_alignParentStart="true" />
+        android:layout_marginTop="171dp"
+        android:text="Color of Vehicle :   "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView6"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:textColor="@color/colorPrimaryDark"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_toStartOf="@+id/model" />
 
 
 
@@ -155,7 +166,8 @@
         android:textStyle="bold"
         android:textColor="@color/colorPrimaryDark"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_toStartOf="@+id/color" />
 
 
 
@@ -174,7 +186,7 @@
 
     <TextView
         android:layout_marginTop="251dp"
-        android:text="Nickname :                "
+        android:text="Nickname :               "
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView8"
@@ -182,7 +194,8 @@
         android:textStyle="bold"
         android:textColor="@color/colorPrimaryDark"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_toStartOf="@+id/plate" />
 
 
 
@@ -200,6 +213,9 @@
         android:layout_alignParentEnd="true" />
 
 
+    </RelativeLayout>
+    </ScrollView>
+
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fabsave"
         android:layout_width="wrap_content"
@@ -210,9 +226,9 @@
         app:layout_anchorGravity="bottom|right"
         android:layout_marginLeft="@dimen/fab_margin"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true" />
-
-
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="13dp"
+        android:layout_marginBottom="13dp" />
 
 
 </RelativeLayout>
