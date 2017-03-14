@@ -15,7 +15,7 @@
 
     <TextView
     android:layout_marginTop="11dp"
-    android:text="Brand Of Vehicle: "
+    android:text="Brand Of Vehicle : "
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:id="@+id/textView2"
@@ -26,20 +26,21 @@
     android:layout_alignParentStart="true" />
 
     <EditText
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="text"
         android:hint="Enter Vehicle"
         android:textColorHint="@color/grey"
         android:ems="10"
         android:id="@+id/brand"
+        android:layout_toEndOf="@+id/textView2"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true" />
 
 
     <TextView
         android:layout_marginTop="51dp"
-        android:text="Model Of Vehicle: "
+        android:text="Model Of Vehicle : "
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView3"
@@ -51,20 +52,21 @@
 
     <EditText
         android:layout_marginTop="40dp"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="text"
         android:hint="Enter Model"
         android:textColorHint="@color/grey"
         android:ems="10"
         android:id="@+id/model"
+        android:layout_toEndOf="@+id/textView3"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true" />
 
 
     <TextView
         android:layout_marginTop="91dp"
-        android:text="Type Of Vehicle: "
+        android:text="Type Of Vehicle :   "
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView4"
@@ -76,20 +78,21 @@
 
     <EditText
         android:layout_marginTop="80dp"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="text"
         android:hint="Enter Type"
         android:textColorHint="@color/grey"
         android:ems="10"
         android:id="@+id/type"
+        android:layout_toEndOf="@+id/textView4"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true" />
 
 
     <TextView
         android:layout_marginTop="131dp"
-        android:text="Model Year : "
+        android:text="Model Year :            "
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView5"
@@ -103,19 +106,20 @@
 
     <EditText
         android:layout_marginTop="120dp"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="date"
         android:hint="Enter Type Year"
         android:textColorHint="@color/grey"
         android:ems="10"
         android:id="@+id/modelyear"
+        android:layout_toEndOf="@+id/textView5"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true" />
 
     <TextView
     android:layout_marginTop="171dp"
-    android:text="Color of Vehicle : "
+    android:text="Color of Vehicle :   "
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:id="@+id/textView6"
@@ -129,20 +133,21 @@
 
     <EditText
         android:layout_marginTop="160dp"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="text"
         android:hint="Enter Color"
         android:textColorHint="@color/grey"
         android:ems="10"
         android:id="@+id/color"
+        android:layout_toEndOf="@+id/textView6"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true" />
 
 
     <TextView
         android:layout_marginTop="211dp"
-        android:text="Plate of Vehicle : "
+        android:text="Plate of Vehicle :    "
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView7"
@@ -156,19 +161,20 @@
 
     <EditText
         android:layout_marginTop="200dp"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="text"
         android:hint="Enter Plate"
         android:textColorHint="@color/grey"
         android:ems="10"
         android:id="@+id/plate"
+        android:layout_toEndOf="@+id/textView7"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true" />
 
     <TextView
         android:layout_marginTop="251dp"
-        android:text="Nickname :"
+        android:text="Nickname :                "
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView8"
@@ -182,13 +188,14 @@
 
     <EditText
         android:layout_marginTop="240dp"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="text"
         android:hint="Enter Nickname"
         android:textColorHint="@color/grey"
         android:ems="10"
         android:id="@+id/nickname"
+        android:layout_toEndOf="@+id/textView8"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true" />
 
