@@ -62,15 +62,17 @@ public class MainActivity extends AppCompatActivity
         actionA.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intcars = new Intent(MainActivity.this, ItemListActivity.class);
+                startActivity(intcars);
             }
         });
 
         final FloatingActionButton actionB = (FloatingActionButton) findViewById(R.id.action_b);
-        actionA.setOnClickListener(new View.OnClickListener() {
+        actionB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intgo = new Intent(MainActivity.this, AddCarActivity.class);
+                startActivity(intgo);
             }
         });
 

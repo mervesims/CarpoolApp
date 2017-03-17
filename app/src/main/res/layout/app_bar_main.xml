@@ -61,6 +61,7 @@
                 fab:fab_colorNormal="@color/colorPrimary"
                 fab:fab_title="My Cars"
                 android:src="@drawable/car"
+                android:paddingTop="3dp"
                 fab:fab_colorPressed="@color/buttonpressed2"/>
 
             <com.getbase.floatingactionbutton.FloatingActionButton
@@ -69,6 +70,7 @@
                 android:layout_height="wrap_content"
                 fab:fab_colorNormal="@color/colorPrimary"
                 fab:fab_title="Add New Car"
+                android:paddingTop="3dp"
                 android:src="@drawable/plus"
                 fab:fab_colorPressed="@color/buttonpressed2"/>
 
