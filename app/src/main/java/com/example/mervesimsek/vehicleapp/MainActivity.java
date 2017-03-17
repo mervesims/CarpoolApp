@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity
 
 
         ShapeDrawable drawable = new ShapeDrawable(new OvalShape());
-        drawable.getPaint().setColor(getResources().getColor(R.color.white));
+        drawable.getPaint().setColor(getResources().getColor(R.color.buttonpressed2));
 
 
         final FloatingActionButton actionA = (FloatingActionButton) findViewById(R.id.action_a);
