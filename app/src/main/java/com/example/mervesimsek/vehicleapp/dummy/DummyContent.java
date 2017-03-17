@@ -64,60 +64,37 @@ public class DummyContent {
     }
     public static void createVehicleList(Cursor cursor) {
         vehicleModelList.clear();
-        while (cursor.moveToNext()) {
-            String id = cursor.getString(cursor.getColumnIndex("id"));
-            String brand = cursor.getString(cursor.getColumnIndex("brand"));
-            String model = cursor.getString(cursor.getColumnIndex("model"));
-            String type = cursor.getString(cursor.getColumnIndex("type"));
-            String modelyear = cursor.getString(cursor.getColumnIndex("modelyear"));
-            String color = cursor.getString(cursor.getColumnIndex("color"));
-            String plate = cursor.getString(cursor.getColumnIndex("plate"));
-            String nickname = cursor.getString(cursor.getColumnIndex("nickname"));
+            while (cursor.moveToNext()) {
+                String id = cursor.getString(cursor.getColumnIndex("id"));
+                String brand = cursor.getString(cursor.getColumnIndex("brand"));
+                String model = cursor.getString(cursor.getColumnIndex("model"));
+                String type = cursor.getString(cursor.getColumnIndex("type"));
+                String modelyear = cursor.getString(cursor.getColumnIndex("modelyear"));
+                String color = cursor.getString(cursor.getColumnIndex("color"));
+                String plate = cursor.getString(cursor.getColumnIndex("plate"));
+                String nickname = cursor.getString(cursor.getColumnIndex("nickname"));
 
-            VehicleModel vehicleModel = new VehicleModel();
-            vehicleModel.id = id;
-            vehicleModel.brand = brand;
-            vehicleModel.model = model;
-            vehicleModel.type = type;
-            vehicleModel.modelyear = modelyear;
-            vehicleModel.color = color;
-            vehicleModel.plate = plate;
-            vehicleModel.nickname = nickname;
-            vehicleModelList.add(vehicleModel);
+                VehicleModel vehicleModel = new VehicleModel();
+                vehicleModel.id = id;
+                vehicleModel.brand = brand;
+                vehicleModel.model = model;
+                vehicleModel.type = type;
+                vehicleModel.modelyear = modelyear;
+                vehicleModel.color = color;
+                vehicleModel.plate = plate;
+                vehicleModel.nickname = nickname;
+                vehicleModelList.add(vehicleModel);
         }
     }
+
+
+
+
     public static void deleteRow(String vehicleid, Context currentContext) {
         Database vehicle = new Database(currentContext);
         SQLiteDatabase db = vehicle.getReadableDatabase();
         vehicle.deleteRecord(db,vehicleid);
     }
-
-   /* private static String makeDetails(Cursor cursor) {
-        StringBuilder builder = new StringBuilder("Vehicles: \n");
-
-        while (cursor.moveToNext()) {
-            long id = cursor.getLong(cursor.getColumnIndex("id"));
-            String brand = cursor.getString(cursor.getColumnIndex("brand"));
-            String model = cursor.getString(cursor.getColumnIndex("model"));
-            String type = cursor.getString(cursor.getColumnIndex("type"));
-            String modelyear = cursor.getString(cursor.getColumnIndex("modelyear"));
-            String color = cursor.getString(cursor.getColumnIndex("color"));
-            String plate = cursor.getString(cursor.getColumnIndex("plate"));
-            String nickname = cursor.getString(cursor.getColumnIndex("nickname"));
-
-
-            builder.append(id).append("\n" + "Brand Name : ");
-            builder.append(brand).append("\n" + "Model Name : ");
-            builder.append(model).append("\n" + "Type Name : ");
-            builder.append(type).append("\n" + "Model Year : ");
-            builder.append(modelyear).append("\n" + "Color : ");
-            builder.append(color).append("\n" + "Plate Name : ");
-            builder.append(plate).append("\n" + "Nickname : ");
-            builder.append(nickname).append("\n \n");
-        }
-
-        return builder.toString();
-    }*/
 
 
     /**

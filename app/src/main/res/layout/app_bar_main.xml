@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
     android:fitsSystemWindows="true"
     tools:context="com.example.mervesimsek.vehicleapp.MainActivity">
 
@@ -22,10 +22,7 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_main"
-        android:id="@+id/include" />
-
- <!--   <android.support.design.widget.FloatingActionButton
+    <!--   <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -34,5 +31,52 @@
         app:srcCompat="@drawable/plusbutton"
         app:layout_anchor="@+id/include"
         app:layout_anchorGravity="bottom|right" /> -->
+
+    <RelativeLayout
+        android:background="@color/background"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+
+
+        <include layout="@layout/content_main"
+            android:id="@+id/include" />
+
+        <com.getbase.floatingactionbutton.FloatingActionsMenu
+            android:id="@+id/multiple_actions"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            fab:fab_addButtonColorNormal="@color/colorPrimary"
+            fab:fab_addButtonColorPressed="@color/buttonpressed2"
+            fab:fab_addButtonPlusIconColor="@color/white_pressed"
+            fab:fab_labelStyle="@style/menu_labels_style"
+            android:layout_marginRight="3dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true">
+
+            <com.getbase.floatingactionbutton.FloatingActionButton
+                android:id="@+id/action_a"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                fab:fab_colorNormal="@color/colorPrimary"
+                fab:fab_title="My Cars"
+                android:src="@drawable/car"
+                fab:fab_colorPressed="@color/buttonpressed2"/>
+
+            <com.getbase.floatingactionbutton.FloatingActionButton
+                android:id="@+id/action_b"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                fab:fab_colorNormal="@color/colorPrimary"
+                fab:fab_title="Add New Car"
+                android:src="@drawable/plus"
+                fab:fab_colorPressed="@color/buttonpressed2"/>
+
+
+        </com.getbase.floatingactionbutton.FloatingActionsMenu>
+
+
+    </RelativeLayout>
+
 
 </android.support.design.widget.CoordinatorLayout>

@@ -28,7 +28,24 @@ import com.example.mervesimsek.vehicleapp.dummy.DummyContent;
 public class ItemDetailActivity extends AppCompatActivity {
 
     private EditText editText;
+    EditText brand, model, type, modelyear, color, plate, nickname;
+    private Database vehicle;
 
+    public void updateRecord(String id, String brand, String model, String type, String modelyear, String color, String plate, String nickname) {
+        SQLiteDatabase db = vehicle.getWritableDatabase();
+        ContentValues data = new ContentValues();
+        data.put("brand", brand);
+        data.put("model", model);
+        data.put("type", type);
+        data.put("modelyear", modelyear);
+        data.put("color", color);
+        data.put("plate", plate);
+        data.put("nickname", nickname);
+        db.update("vehicle", data, "id" + "=" + id, null); //TODO :id degerine göre güncelleme yapilir
+
+
+
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,43 +55,67 @@ public class ItemDetailActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.detail_toolbar);
         setSupportActionBar(toolbar);
 
+
+
+
+        vehicle = new Database(this);
+
+
+
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fabedit);
         fab.setOnClickListener(new View.OnClickListener() {
 
 
             @Override
             public void onClick(View view) {
-                EditText editText = (EditText)findViewById(R.id.item_detail);
-                editText.setEnabled(true);
 
-                EditText editText1 = (EditText)findViewById(R.id.item_detail2);
-                editText1.setEnabled(true);
 
-                EditText editText2 = (EditText)findViewById(R.id.item_detail3);
-                editText2.setEnabled(true);
+                brand = (EditText)findViewById(R.id.item_detail);
+                brand.setEnabled(true);
 
-                EditText editText3 = (EditText)findViewById(R.id.item_detail4);
-                editText3.setEnabled(true);
+                model = (EditText)findViewById(R.id.item_detail2);
+                model.setEnabled(true);
 
-                EditText editText4 = (EditText)findViewById(R.id.item_detail5);
-                editText4.setEnabled(true);
+                type =(EditText)findViewById(R.id.item_detail3);
+                type.setEnabled(true);
 
-                EditText editText5 = (EditText)findViewById(R.id.item_detail6);
-                editText5.setEnabled(true);
+                modelyear = (EditText)findViewById(R.id.item_detail4);
+                modelyear.setEnabled(true);
 
-                EditText editText6 = (EditText)findViewById(R.id.item_detail7);
-                editText6.setEnabled(true);
+                color =(EditText)findViewById(R.id.item_detail5);
+                color.setEnabled(true);
+
+                plate = (EditText)findViewById(R.id.item_detail6);
+                plate.setEnabled(true);
+
+                nickname =(EditText)findViewById(R.id.item_detail7);
+                nickname.setEnabled(true);
                 }
         });
 
 
         FloatingActionButton fabeditsave = (FloatingActionButton)findViewById(R.id.fabeditsave);
         fabeditsave.setOnClickListener(new View.OnClickListener() {
-             @Override
-             public void onClick(View view) {
+                                           @Override
+                                           public void onClick(View v) {
+                                                       updateRecord(
+                                                       ItemDetailFragment.vehicleid,
+                                                       brand.getText().toString(),
+                                                       model.getText().toString(),
+                                                       type.getText().toString(),
+                                                       modelyear.getText().toString(),
+                                                       color.getText().toString(),
+                                                       plate.getText().toString(),
+                                                       nickname.getText().toString());
+                                            // TODO: Parametreleri methoda bagliyoruz.
+                                           }
 
-             }
-             });
+
+
+                                       });
+
+
 
         // Show the Up button in the action bar.
         ActionBar actionBar = getSupportActionBar();

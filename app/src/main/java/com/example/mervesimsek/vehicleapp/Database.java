@@ -74,11 +74,11 @@ public class Database extends SQLiteOpenHelper {
         values.put(NICKNAME, nickname);
 
         db.insert(TABLE_NAME, null, values);
-        db.close(); //Database Bağlantısını kapattık*/
+        db.close(); //TODO : // Database Bağlantısını kapattık*/
     }
 
     public HashMap<String, String> detailRecord(int id){
-        /* TODO:Databaseden id si belli olan row u çekmek için
+        /** TODO:Databaseden id si belli olan row u çekmek için
         Bu methodda sadece tek row değerleri alınır.
         HashMap bir çift boyutlu arraydir.anahtar-değer ikililerini bir arada tutmak için tasarlanmıştır.
         map.put("x","300"); mesala burda anahtar x değeri 300.*/
@@ -106,16 +106,16 @@ public class Database extends SQLiteOpenHelper {
     }
     public ArrayList<HashMap<String, String>> records(){
 
-        //Bu methodda ise tablodaki tüm değerleri alıyoruz
-        //ArrayList adı üstünde Array lerin listelendiği bir Array.Burda hashmapleri listeleyeceğiz
-        //Herbir satırı değer ve value ile hashmap a atıyoruz. Her bir satır 1 tane hashmap arrayı demek.
-        //olusturdugumuz tüm hashmapleri ArrayList e atıp geri dönüyoruz(return).
+        /** TODO :Bu methodda ise tablodaki tüm değerleri alıyoruz
+        ** ArrayList adı üstünde Array lerin listelendiği bir Array.Burda hashmapleri listeleyeceğiz
+        ** Herbir satırı değer ve value ile hashmap a atıyoruz. Her bir satır 1 tane hashmap arrayı demek.
+        ** olusturdugumuz tüm hashmapleri ArrayList e atıp geri dönüyoruz(return). **/
 
         SQLiteDatabase db = this.getReadableDatabase();
         String selectQuery = "SELECT * FROM " + TABLE_NAME;
         Cursor cursor = db.rawQuery(selectQuery, null);
         ArrayList<HashMap<String, String>> recordlist = new ArrayList<HashMap<String, String>>();
-        // looping through all rows and adding to list
+
 
         if (cursor.moveToFirst()) {
             do {
@@ -129,13 +129,13 @@ public class Database extends SQLiteOpenHelper {
             } while (cursor.moveToNext());
         }
         db.close();
-        // return record list
         return recordlist;
     }
     public void updateRecord(String brand_name, String model_name, String model_year, String type,String color_name, String plate, String nickname,int id) {
         SQLiteDatabase db = this.getWritableDatabase();
-        //Bu methodda ise var olan veriyi güncelliyoruz(update)
+        // TODO: Bu methodda ise var olan veriyi güncelliyoruz(update)
         ContentValues values = new ContentValues();
+        values.put(ID, id);
         values.put(BRAND_NAME, brand_name);
         values.put(MODEL_NAME, model_name);
         values.put(MODEL_YEAR, model_year);
@@ -149,21 +149,19 @@ public class Database extends SQLiteOpenHelper {
                 new String[] { String.valueOf(id) });
     }
     public int getRowCount() {
-        // Bu method bu uygulamada kullanılmıyor ama appsentence'ta lazım olacak.Tablodaki row sayısını geri döner.
-        //Login uygulamasında da kullanılabilir.
+        // TODO: Bu method bu uygulamada kullanılmıyor ama appsentence'ta lazım olacak.Tablodaki row sayısını geri döner.
+        //TODO:Login uygulamasında da kullanılabilir.
         String countQuery = "SELECT  * FROM " + TABLE_NAME;
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(countQuery, null);
         int rowCount = cursor.getCount();
         db.close();
         cursor.close();
-        // return row count
         return rowCount;
     }
     public void resetTables(){
-        // Tüm verileri siler. tabloyu resetler.
+        // TODO: Tüm verileri siler. tabloyu resetler.
         SQLiteDatabase db = this.getWritableDatabase();
-        // Delete All Rows
         db.delete(TABLE_NAME, null, null);
         db.close();
 }

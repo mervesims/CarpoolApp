@@ -45,9 +45,7 @@ public class ItemDetailFragment extends Fragment {
 
         //TODO: burası list ekranından gonderilen model yada veri yapısını alıp ekrandaki textview üzerine bastıgımız kısımdır.
         if (getArguments().containsKey("UniqueObjectName")) {
-            // Load the dummy content specified by the fragment
-            // arguments. In a real-world scenario, use a Loader
-            // to load content from a content provider.
+
 
             DummyContent.VehicleModel vehicleDetailModel = new DummyContent.VehicleModel();
             vehicleDetailModel = (DummyContent.VehicleModel) getArguments().getSerializable("UniqueObjectName");
@@ -61,7 +59,7 @@ public class ItemDetailFragment extends Fragment {
             }
         }
     }
-
+    public static String vehicleid = "-1";
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -70,7 +68,8 @@ public class ItemDetailFragment extends Fragment {
 
         // Show the dummy content as text in a TextView.
         if (vehicleModel != null) {
-            //TODO: burası da detail ekranında textview içine set edilen baska bir yer fakat burada modelYear verisi set edildi
+            //TODO: burası da detail ekranında textview içine set edilen baska bir yer.
+            vehicleid = vehicleModel.id;
             ((EditText) rootView.findViewById(R.id.item_detail)).setText("Brand Name : " + vehicleModel.brand);
             ((EditText) rootView.findViewById(R.id.item_detail2)).setText("Model : " + vehicleModel.model);
             ((EditText) rootView.findViewById(R.id.item_detail3)).setText("Model Year : " + vehicleModel.modelyear);
