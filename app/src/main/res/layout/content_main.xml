@@ -40,7 +40,7 @@
         android:layout_centerHorizontal="true" />
 
     <TextView
-        android:text="   With the Carpool application you can follow your vehicles at any time or at any place."
+        android:text="   Do you want to know where your vehicle is from where you are at anytime?"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/explain2"
@@ -50,7 +50,7 @@
         android:layout_alignParentStart="true" />
 
     <TextView
-    android:text="   Carpool is designed to make it easy to keep track of and keep track of the tools you have."
+    android:text="   Carpool is designed to make your vehicle tracking easier."
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:id="@+id/explain"

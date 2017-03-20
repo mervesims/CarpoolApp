@@ -34,6 +34,7 @@ public class ItemDetailActivity extends AppCompatActivity {
     public void updateRecord(String id, String brand, String model, String type, String modelyear, String color, String plate, String nickname) {
         SQLiteDatabase db = vehicle.getWritableDatabase();
         ContentValues data = new ContentValues();
+        data.put("id", id);
         data.put("brand", brand);
         data.put("model", model);
         data.put("type", type);
@@ -69,10 +70,9 @@ public class ItemDetailActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-
-
-                brand = (EditText)findViewById(R.id.item_detail);
+                brand =(EditText)findViewById(R.id.item_detail);
                 brand.setEnabled(true);
+
 
                 model = (EditText)findViewById(R.id.item_detail2);
                 model.setEnabled(true);
@@ -109,6 +109,7 @@ public class ItemDetailActivity extends AppCompatActivity {
                                                        plate.getText().toString(),
                                                        nickname.getText().toString());
                                             // TODO: Parametreleri methoda bagliyoruz.
+
                                            }
 
 

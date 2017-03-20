@@ -4,28 +4,19 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.support.design.widget.FloatingActionButton;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-
-
 import com.example.mervesimsek.vehicleapp.dummy.DummyContent;
-
-import java.util.Calendar;
 import java.util.List;
-
 /**
  * An activity representing a list of Items. This activity
  * has different presentations for handset and tablet-size devices. On
@@ -48,6 +39,19 @@ public class ItemListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item_list);
+
+        /** Random Color*/
+
+
+      /**  final TextView textViewcircle = (TextView) findViewById(R.id.circle);
+            Random random = new Random();
+                        int color = Color.argb(255, random.nextInt(256), random.nextInt(256), random.nextInt(256));
+                        textViewcircle.setBackgroundColor(color);
+
+*/
+
+
+
 
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -199,6 +203,7 @@ public class ItemListActivity extends AppCompatActivity {
                 mDetail = (Button)view.findViewById(R.id.option);
 
             }
+
 
 
 

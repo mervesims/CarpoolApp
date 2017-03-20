@@ -12,6 +12,8 @@ import android.widget.TextView;
 
 import com.example.mervesimsek.vehicleapp.dummy.DummyContent;
 
+import static com.example.mervesimsek.vehicleapp.R.id.container;
+
 /**
  * A fragment representing a single Item detail screen.
  * This fragment is either contained in a {@link ItemListActivity}
@@ -59,6 +61,13 @@ public class ItemDetailFragment extends Fragment {
             }
         }
     }
+    public void SetTextEdit (String valueText, Integer editTextXmlid, View rootView) {
+
+        EditText editTextdetail = ((EditText) rootView.findViewById(editTextXmlid));
+        editTextdetail.setText(valueText);
+        editTextdetail.setTextColor(R.color.colorPrimary);
+    }
+
     public static String vehicleid = "-1";
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -70,13 +79,14 @@ public class ItemDetailFragment extends Fragment {
         if (vehicleModel != null) {
             //TODO: burası da detail ekranında textview içine set edilen baska bir yer.
             vehicleid = vehicleModel.id;
-            ((EditText) rootView.findViewById(R.id.item_detail)).setText("Brand Name : " + vehicleModel.brand);
-            ((EditText) rootView.findViewById(R.id.item_detail2)).setText("Model : " + vehicleModel.model);
-            ((EditText) rootView.findViewById(R.id.item_detail3)).setText("Model Year : " + vehicleModel.modelyear);
-            ((EditText) rootView.findViewById(R.id.item_detail4)).setText("Type : " + vehicleModel.type);
-            ((EditText) rootView.findViewById(R.id.item_detail5)).setText("Color : " + vehicleModel.color);
-            ((EditText) rootView.findViewById(R.id.item_detail6)).setText("Plate : " + vehicleModel.plate);
-            ((EditText) rootView.findViewById(R.id.item_detail7)).setText("Nickname : " + vehicleModel.nickname);
+
+           SetTextEdit("Brand Name : " + vehicleModel.brand,R.id.item_detail,rootView);
+           SetTextEdit("Model : " + vehicleModel.model,R.id.item_detail2,rootView);
+           SetTextEdit("Model Year : " + vehicleModel.modelyear,R.id.item_detail3,rootView);
+           SetTextEdit("Type : " + vehicleModel.type,R.id.item_detail4,rootView);
+           SetTextEdit("Color : " + vehicleModel.color,R.id.item_detail5,rootView);
+           SetTextEdit("Plate : " + vehicleModel.plate,R.id.item_detail6,rootView);
+           SetTextEdit("Nickname : " + vehicleModel.nickname,R.id.item_detail7,rootView);
 
         }
 
