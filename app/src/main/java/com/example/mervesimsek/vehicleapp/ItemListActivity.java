@@ -2,9 +2,16 @@ package com.example.mervesimsek.vehicleapp;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.database.Cursor;
+import android.graphics.Color;
+import android.graphics.ColorFilter;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -16,7 +23,12 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.example.mervesimsek.vehicleapp.dummy.DummyContent;
+
+import org.w3c.dom.Text;
+
 import java.util.List;
+import java.util.Random;
+
 /**
  * An activity representing a list of Items. This activity
  * has different presentations for handset and tablet-size devices. On
@@ -35,21 +47,11 @@ public class ItemListActivity extends AppCompatActivity {
 
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item_list);
-
-        /** Random Color*/
-
-
-      /**  final TextView textViewcircle = (TextView) findViewById(R.id.circle);
-            Random random = new Random();
-                        int color = Color.argb(255, random.nextInt(256), random.nextInt(256), random.nextInt(256));
-                        textViewcircle.setBackgroundColor(color);
-
-*/
-
 
 
 
@@ -128,7 +130,7 @@ public class ItemListActivity extends AppCompatActivity {
             holder.mIdView.setText(mValues.get(position).nickname);
             holder.mContentView.setText(mValues.get(position).brand);
             holder.mModelYear.setText(mValues.get(position).modelyear);
-
+            holder.mCircle.setText(mValues.get(position).nickname.substring(0,1));
             //TODO: detay acilan kisim. Butona basınca buradan detay ekranını acıyor.
             holder.mDetail.setOnClickListener(new Button.OnClickListener() {
                 @Override
@@ -191,6 +193,8 @@ public class ItemListActivity extends AppCompatActivity {
             public final Button mDelete;
             public final TextView mModelYear;
             public final Button mDetail;
+            public final TextView mNickname;
+            public final TextView mCircle;
             public DummyContent.VehicleModel vehicleViewHolder;
 
             public ViewHolder(View view) {
@@ -201,8 +205,19 @@ public class ItemListActivity extends AppCompatActivity {
                 mDelete =(Button)view.findViewById(R.id.optiondetail);
                 mModelYear = (TextView)view.findViewById(R.id.modelyearcontent);
                 mDetail = (Button)view.findViewById(R.id.option);
-
+                mNickname = (TextView)view.findViewById(R.id.nickname);
+                mCircle = (TextView)view.findViewById(R.id.circle);
+                setSettingsCircle();
             }
+            // TODO : ItemListActivity içindeki circle Random renk ayarı
+            private void setSettingsCircle () {
+
+            Random random = new Random();
+            int color = Color.argb(255, random.nextInt(256), random.nextInt(256), random.nextInt(256));
+
+                ((GradientDrawable)mCircle.getBackground()).setColor(color);
+        }
+
 
 
 

@@ -65,7 +65,9 @@ public class ItemDetailFragment extends Fragment {
 
         EditText editTextdetail = ((EditText) rootView.findViewById(editTextXmlid));
         editTextdetail.setText(valueText);
-        editTextdetail.setTextColor(R.color.colorPrimary);
+        editTextdetail.setFocusableInTouchMode(false);
+        editTextdetail.setFocusable(false);
+       // editTextdetail.setTextColor(R.color.black_semi_transparent);
     }
 
     public static String vehicleid = "-1";

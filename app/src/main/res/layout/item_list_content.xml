@@ -20,6 +20,11 @@
         android:layout_below="@+id/dividerTop"
         android:layout_margin="16dp"
         android:background="@drawable/circle"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:gravity="center"
+
          />
 
     <TextView

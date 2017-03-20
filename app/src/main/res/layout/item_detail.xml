@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:padding="16dp"
         tools:context="com.example.mervesimsek.vehicleapp.ItemDetailFragment"
-        android:enabled="false"
+
         android:inputType="none"
          />
 
@@ -23,7 +23,6 @@
         android:layout_marginTop="60dp"
         android:padding="16dp"
         tools:context="com.example.mervesimsek.vehicleapp.ItemDetailFragment"
-        android:enabled="false"
         android:inputType="none"
         />
 
@@ -36,7 +35,6 @@
         android:layout_marginTop="120dp"
         android:padding="16dp"
         tools:context="com.example.mervesimsek.vehicleapp.ItemDetailFragment"
-        android:enabled="false"
         android:inputType="none"
         />
 
@@ -48,7 +46,6 @@
         android:layout_marginTop="180dp"
         android:padding="16dp"
         tools:context="com.example.mervesimsek.vehicleapp.ItemDetailFragment"
-        android:enabled="false"
         android:inputType="none"
        />
 
@@ -60,7 +57,6 @@
         android:layout_marginTop="240dp"
         android:padding="16dp"
         tools:context="com.example.mervesimsek.vehicleapp.ItemDetailFragment"
-        android:enabled="false"
         android:inputType="none"
         />
 
@@ -72,7 +68,6 @@
         android:layout_marginTop="300dp"
         android:padding="16dp"
         tools:context="com.example.mervesimsek.vehicleapp.ItemDetailFragment"
-        android:enabled="false"
         android:inputType="none"
          />
 
@@ -84,7 +79,6 @@
         android:layout_marginTop="360dp"
         android:padding="16dp"
         tools:context="com.example.mervesimsek.vehicleapp.ItemDetailFragment"
-        android:enabled="false"
         android:inputType="none"
         />
 

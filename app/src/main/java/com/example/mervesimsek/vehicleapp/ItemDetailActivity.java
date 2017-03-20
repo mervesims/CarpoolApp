@@ -62,35 +62,40 @@ public class ItemDetailActivity extends AppCompatActivity {
         vehicle = new Database(this);
 
 
-
-
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fabedit);
         fab.setOnClickListener(new View.OnClickListener() {
 
 
             @Override
             public void onClick(View view) {
-                brand =(EditText)findViewById(R.id.item_detail);
-                brand.setEnabled(true);
 
+                brand =(EditText)findViewById(R.id.item_detail);
+                brand.setFocusable(true);
+                brand.setFocusableInTouchMode(true);
 
                 model = (EditText)findViewById(R.id.item_detail2);
-                model.setEnabled(true);
+                model.setFocusable(true);
+                model.setFocusableInTouchMode(true);
 
                 type =(EditText)findViewById(R.id.item_detail3);
-                type.setEnabled(true);
+                type.setFocusable(true);
+                type.setFocusableInTouchMode(true);
 
                 modelyear = (EditText)findViewById(R.id.item_detail4);
-                modelyear.setEnabled(true);
+                modelyear.setFocusable(true);
+                modelyear.setFocusableInTouchMode(true);
 
                 color =(EditText)findViewById(R.id.item_detail5);
-                color.setEnabled(true);
+                color.setFocusable(true);
+                color.setFocusableInTouchMode(true);
 
                 plate = (EditText)findViewById(R.id.item_detail6);
-                plate.setEnabled(true);
+                plate.setFocusable(true);
+                plate.setFocusableInTouchMode(true);
 
                 nickname =(EditText)findViewById(R.id.item_detail7);
-                nickname.setEnabled(true);
+                nickname.setFocusable(true);
+                nickname.setFocusableInTouchMode(true);
                 }
         });
 
