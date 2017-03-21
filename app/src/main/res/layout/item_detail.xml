@@ -4,6 +4,35 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:text="Brand Name"
+        android:padding="16dp"
+        android:id="@+id/brandlabname"
+        android:textColor="@color/colorPrimary"
+        android:textStyle="bold"
+        android:textSize="@dimen/activity_horizontal_margin"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:text=": "
+        android:layout_marginLeft="100dp"
+        android:padding="16dp"
+        android:id="@+id/name1"
+        android:textColor="@color/colorPrimary"
+        android:textStyle="bold"
+        android:textSize="@dimen/activity_horizontal_margin"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"/>
+
     <EditText
         android:id="@+id/item_detail"
         style="?android:attr/textAppearanceLargePopupMenu"
@@ -11,9 +40,35 @@
         android:layout_height="wrap_content"
         android:padding="16dp"
         tools:context="com.example.mervesimsek.vehicleapp.ItemDetailFragment"
-
         android:inputType="none"
-         />
+        android:layout_toEndOf="@+id/name1" />
+
+
+
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="62dp"
+        android:text="Model Name"
+        android:padding="16dp"
+        android:id="@+id/modellabname"
+        android:textColor="@color/colorPrimary"
+        android:textStyle="bold"
+        android:textSize="@dimen/activity_horizontal_margin"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="62dp"
+        android:text=": "
+        android:padding="16dp"
+        android:id="@+id/name2"
+        android:layout_marginLeft="100dp"
+        android:textColor="@color/colorPrimary"
+        android:textStyle="bold"
+        android:textSize="@dimen/activity_horizontal_margin"/>
 
     <EditText
         android:id="@+id/item_detail2"
@@ -24,8 +79,33 @@
         android:padding="16dp"
         tools:context="com.example.mervesimsek.vehicleapp.ItemDetailFragment"
         android:inputType="none"
+        android:layout_toEndOf="@+id/name2"
         />
 
+
+
+
+    <TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="122dp"
+    android:text="Model Year"
+    android:padding="16dp"
+    android:id="@+id/modelyearlabname"
+    android:textColor="@color/colorPrimary"
+    android:textStyle="bold"
+    android:textSize="@dimen/activity_horizontal_margin"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="122dp"
+        android:text=": "
+        android:padding="16dp"
+        android:layout_marginLeft="100dp"
+        android:id="@+id/name3"
+        android:textColor="@color/colorPrimary"
+        android:textStyle="bold"
+        android:textSize="@dimen/activity_horizontal_margin"/>
 
     <EditText
         android:id="@+id/item_detail3"
@@ -36,7 +116,35 @@
         android:padding="16dp"
         tools:context="com.example.mervesimsek.vehicleapp.ItemDetailFragment"
         android:inputType="none"
+        android:layout_toEndOf="@+id/name3"
         />
+
+
+
+
+
+
+    <TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="182dp"
+    android:text="Type Name"
+    android:padding="16dp"
+    android:id="@+id/typelabname"
+    android:textColor="@color/colorPrimary"
+    android:textStyle="bold"
+    android:textSize="@dimen/activity_horizontal_margin"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="182dp"
+        android:text=": "
+        android:padding="16dp"
+        android:layout_marginLeft="100dp"
+        android:id="@+id/name4"
+        android:textColor="@color/colorPrimary"
+        android:textStyle="bold"
+        android:textSize="@dimen/activity_horizontal_margin"/>
 
     <EditText
         android:id="@+id/item_detail4"
@@ -47,8 +155,34 @@
         android:padding="16dp"
         tools:context="com.example.mervesimsek.vehicleapp.ItemDetailFragment"
         android:inputType="none"
+        android:layout_toEndOf="@+id/name4"
        />
 
+
+
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="242dp"
+        android:text="Color Name"
+        android:padding="16dp"
+        android:id="@+id/colorlabname"
+        android:textColor="@color/colorPrimary"
+        android:textStyle="bold"
+        android:textSize="@dimen/activity_horizontal_margin"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="242dp"
+        android:text=": "
+        android:padding="16dp"
+        android:id="@+id/name5"
+        android:textColor="@color/colorPrimary"
+        android:textStyle="bold"
+        android:layout_marginLeft="100dp"
+        android:textSize="@dimen/activity_horizontal_margin"/>
     <EditText
         android:id="@+id/item_detail5"
         style="?android:attr/textAppearanceLargePopupMenu"
@@ -58,7 +192,32 @@
         android:padding="16dp"
         tools:context="com.example.mervesimsek.vehicleapp.ItemDetailFragment"
         android:inputType="none"
+        android:layout_toEndOf="@+id/name5"
         />
+
+    <TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="302dp"
+    android:text=": "
+    android:padding="16dp"
+    android:id="@+id/name6"
+        android:layout_marginLeft="100dp"
+    android:textColor="@color/colorPrimary"
+    android:textStyle="bold"
+    android:textSize="@dimen/activity_horizontal_margin"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="302dp"
+        android:text="Plate Name"
+        android:padding="16dp"
+        android:id="@+id/platelabname"
+        android:textColor="@color/colorPrimary"
+        android:textStyle="bold"
+        android:textSize="@dimen/activity_horizontal_margin"/>
 
     <EditText
         android:id="@+id/item_detail6"
@@ -69,7 +228,33 @@
         android:padding="16dp"
         tools:context="com.example.mervesimsek.vehicleapp.ItemDetailFragment"
         android:inputType="none"
+        android:layout_toEndOf="@+id/name6"
          />
+
+
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="362dp"
+        android:text=": "
+        android:padding="16dp"
+        android:id="@+id/name7"
+        android:textColor="@color/colorPrimary"
+        android:textStyle="bold"
+        android:layout_marginLeft="100dp"
+        android:textSize="@dimen/activity_horizontal_margin"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="362dp"
+        android:text="Nickname"
+        android:padding="16dp"
+        android:id="@+id/nicknamelabname"
+        android:textColor="@color/colorPrimary"
+        android:textStyle="bold"
+        android:textSize="@dimen/activity_horizontal_margin"/>
 
     <EditText
         android:id="@+id/item_detail7"
@@ -80,6 +265,7 @@
         android:padding="16dp"
         tools:context="com.example.mervesimsek.vehicleapp.ItemDetailFragment"
         android:inputType="none"
+        android:layout_toEndOf="@+id/name7"
         />
 
 
