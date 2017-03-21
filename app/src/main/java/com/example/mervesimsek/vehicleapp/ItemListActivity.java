@@ -42,7 +42,7 @@ public class ItemListActivity extends AppCompatActivity {
      * device.
      */
     private boolean mTwoPane;
-    public ArrayAdapter<String>  mValues;
+
 
 
 

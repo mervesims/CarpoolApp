@@ -39,16 +39,6 @@
         android:layout_alignTop="@+id/circle" />
 
     <TextView
-        android:id="@+id/content"
-        android:text="Item Brand"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/id"
-        android:layout_below="@+id/id"
-        android:layout_marginBottom="10dp"
-        android:textColor="@color/grey" />
-
-    <TextView
         android:id="@+id/modelyearcontent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -144,6 +134,35 @@
         android:paddingTop="6dp"
         android:tint="@color/grey"/> -->
 </LinearLayout>
+
+    <TextView
+        android:id="@+id/contentname"
+        android:text="Brand Name : "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/grey"
+        android:layout_alignBaseline="@+id/content"
+        android:layout_alignBottom="@+id/content"
+        android:layout_toEndOf="@+id/circle" />
+
+    <TextView
+        android:id="@+id/content"
+        android:text="Item Brand"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/grey"
+        android:layout_below="@+id/id"
+        android:layout_toEndOf="@+id/contentname" />
+
+    <TextView
+        android:id="@+id/modelyearcontentname"
+        android:text="Model Year : "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/grey"
+        android:layout_alignBaseline="@+id/modelyearcontent"
+        android:layout_alignBottom="@+id/modelyearcontent"
+        android:layout_toEndOf="@+id/circle" />
 
 
 </RelativeLayout>
