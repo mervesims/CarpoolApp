@@ -2,29 +2,27 @@ package com.example.mervesimsek.vehicleapp;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.database.Cursor;
 import android.graphics.Color;
-import android.graphics.ColorFilter;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.support.design.widget.FloatingActionButton;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.example.mervesimsek.vehicleapp.dummy.DummyContent;
-
-import org.w3c.dom.Text;
 
 import java.util.List;
 import java.util.Random;
@@ -44,7 +42,7 @@ public class ItemListActivity extends AppCompatActivity {
      * device.
      */
     private boolean mTwoPane;
-
+    public ArrayAdapter<String>  mValues;
 
 
 
@@ -94,6 +92,31 @@ public class ItemListActivity extends AppCompatActivity {
     }
 
 
+    /**
+     * Search
+     */
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_search, menu);
+        MenuItem item = menu.findItem(R.id.menuSearch);
+        SearchView searchView = (SearchView) item.getActionView();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+
+
+                return false;
+            }
+        });
+        return super.onCreateOptionsMenu(menu);
+    }
+
 
     private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
         recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(DummyContent.vehicleModelList));
@@ -113,6 +136,7 @@ public class ItemListActivity extends AppCompatActivity {
             mValues = items;
 
         }
+
 
         @Override
         public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -227,5 +251,7 @@ public class ItemListActivity extends AppCompatActivity {
             }
         }
     }
+
+
 }
 
