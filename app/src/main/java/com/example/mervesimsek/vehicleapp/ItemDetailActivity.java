@@ -32,19 +32,8 @@ public class ItemDetailActivity extends AppCompatActivity {
     private Database vehicle;
 
     public void updateRecord(String id, String brand, String model, String type, String modelyear, String color, String plate, String nickname) {
-        SQLiteDatabase db = vehicle.getWritableDatabase();
-        ContentValues data = new ContentValues();
-        data.put("id", id);
-        data.put("brand", brand);
-        data.put("model", model);
-        data.put("type", type);
-        data.put("modelyear", modelyear);
-        data.put("color", color);
-        data.put("plate", plate);
-        data.put("nickname", nickname);
-        db.update("vehicle", data, "id" + "=" + id, null); //TODO :id degerine göre güncelleme yapilir
-
-
+      //  SQLiteDatabase db = vehicle.getWritableDatabase();
+        vehicle.updateRecord(brand,model,modelyear,type,color,plate,nickname, Integer.parseInt(id));
 
     }
     @Override
@@ -114,7 +103,8 @@ public class ItemDetailActivity extends AppCompatActivity {
                                                        plate.getText().toString(),
                                                        nickname.getText().toString());
                                             // TODO: Parametreleri methoda bagliyoruz.
-
+                           Intent in = new Intent(ItemDetailActivity.this,ItemListActivity.class);
+                                               startActivity(in);
                                            }
 
 

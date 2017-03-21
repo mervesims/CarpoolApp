@@ -82,13 +82,13 @@ public class ItemDetailFragment extends Fragment {
             //TODO: burası da detail ekranında textview içine set edilen baska bir yer.
             vehicleid = vehicleModel.id;
 
-           SetTextEdit("Brand Name : " + vehicleModel.brand,R.id.item_detail,rootView);
-           SetTextEdit("Model : " + vehicleModel.model,R.id.item_detail2,rootView);
-           SetTextEdit("Model Year : " + vehicleModel.modelyear,R.id.item_detail3,rootView);
-           SetTextEdit("Type : " + vehicleModel.type,R.id.item_detail4,rootView);
-           SetTextEdit("Color : " + vehicleModel.color,R.id.item_detail5,rootView);
-           SetTextEdit("Plate : " + vehicleModel.plate,R.id.item_detail6,rootView);
-           SetTextEdit("Nickname : " + vehicleModel.nickname,R.id.item_detail7,rootView);
+           SetTextEdit(vehicleModel.brand,R.id.item_detail,rootView);
+           SetTextEdit(vehicleModel.model,R.id.item_detail2,rootView);
+           SetTextEdit(vehicleModel.modelyear,R.id.item_detail3,rootView);
+           SetTextEdit(vehicleModel.type,R.id.item_detail4,rootView);
+           SetTextEdit(vehicleModel.color,R.id.item_detail5,rootView);
+           SetTextEdit(vehicleModel.plate,R.id.item_detail6,rootView);
+           SetTextEdit(vehicleModel.nickname,R.id.item_detail7,rootView);
 
         }
 

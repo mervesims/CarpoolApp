@@ -71,8 +71,9 @@
                 fab:fab_colorNormal="@color/colorPrimary"
                 fab:fab_title="Add New Car"
                 android:paddingTop="3dp"
-                android:src="@drawable/plus"
-                fab:fab_colorPressed="@color/buttonpressed2"/>
+                android:src="@drawable/ic_plus_circle_outline"
+                fab:fab_colorPressed="@color/buttonpressed2"
+                />
 
 
         </com.getbase.floatingactionbutton.FloatingActionsMenu>

@@ -130,7 +130,8 @@ public class ItemListActivity extends AppCompatActivity {
             holder.mIdView.setText(mValues.get(position).nickname);
             holder.mContentView.setText(mValues.get(position).brand);
             holder.mModelYear.setText(mValues.get(position).modelyear);
-            holder.mCircle.setText(mValues.get(position).nickname.substring(0,1));
+            holder.mCircle.setText(mValues.get(position).nickname.substring(0,1).toUpperCase());
+
             //TODO: detay acilan kisim. Butona basınca buradan detay ekranını acıyor.
             holder.mDetail.setOnClickListener(new Button.OnClickListener() {
                 @Override

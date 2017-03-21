@@ -208,7 +208,7 @@ public class MainActivity extends AppCompatActivity
             startActivity(browser);
 
         } else if (id == R.id.nav_share) {
-            String message = " ";
+            String message = "Merveco ";
             Intent share = new Intent(Intent.ACTION_SEND);
             share.setType("text/plain");
             share.putExtra(Intent.EXTRA_TEXT, message);
