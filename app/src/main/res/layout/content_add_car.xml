@@ -38,7 +38,7 @@
 
     <TextView
         android:layout_marginTop="20dp"
-        android:text="Brand Of Vehicle : "
+        android:text="Brand Of Vehicle          "
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/brandlabel"
@@ -47,6 +47,18 @@
         android:textColor="@color/colorPrimaryDark"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true" />
+
+        <TextView
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="130dp"
+            android:text=":  "
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/blab"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:textColor="@color/colorPrimaryDark"
+          />
 
     <EditText
         android:layout_width="match_parent"
@@ -65,7 +77,7 @@
 
     <TextView
         android:layout_marginTop="70dp"
-        android:text="Model Of Vehicle : "
+        android:text="Model Of Vehicle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/modellabel"
@@ -75,6 +87,8 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
         android:layout_toStartOf="@+id/brandedit" />
+
+
 
     <EditText
         android:layout_marginTop="50dp"
@@ -92,9 +106,22 @@
         android:layout_alignParentEnd="true" />
 
 
+        <TextView
+            android:layout_marginTop="70dp"
+            android:layout_marginLeft="130dp"
+            android:text=":  "
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/mlab"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:textColor="@color/colorPrimaryDark"
+            />
+
+
     <TextView
         android:layout_marginTop="120dp"
-        android:text="Type Of Vehicle :   "
+        android:text="Type Of Vehicle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/typelabel"
@@ -120,10 +147,22 @@
         android:maxLength="20"
         android:maxLines="4"/>
 
+        <TextView
+            android:layout_marginTop="120dp"
+            android:layout_marginLeft="130dp"
+            android:text=":  "
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tlab"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:textColor="@color/colorPrimaryDark"
+            />
 
-    <TextView
+
+        <TextView
         android:layout_marginTop="170dp"
-        android:text="Model Year :            "
+        android:text="Model Year"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/modelyearlabel"
@@ -151,9 +190,22 @@
         android:maxLength="4"
         android:maxLines="4"/>
 
-    <TextView
+        <TextView
+            android:layout_marginTop="170dp"
+            android:layout_marginLeft="130dp"
+            android:text=":  "
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/mylab"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:textColor="@color/colorPrimaryDark"
+            />
+
+
+        <TextView
         android:layout_marginTop="220dp"
-        android:text="Color of Vehicle :   "
+        android:text="Color of Vehicle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/colorlabel"
@@ -183,10 +235,23 @@
         android:maxLength="20"
         android:maxLines="4"/>
 
+        <TextView
+            android:layout_marginTop="220dp"
+            android:layout_marginLeft="130dp"
+            android:text=":  "
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/clab"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:textColor="@color/colorPrimaryDark"
+            />
 
-    <TextView
+
+
+        <TextView
         android:layout_marginTop="270dp"
-        android:text="Plate of Vehicle :    "
+        android:text="Plate of Vehicle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/platelabel"
@@ -214,9 +279,22 @@
         android:maxLength="20"
         android:maxLines="4"/>
 
-    <TextView
+        <TextView
+            android:layout_marginTop="270dp"
+            android:layout_marginLeft="130dp"
+            android:text=":  "
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/plab"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:textColor="@color/colorPrimaryDark"
+            />
+
+
+        <TextView
         android:layout_marginTop="320dp"
-        android:text="Nickname :               "
+        android:text="Nickname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/nicknamelabel"
@@ -242,6 +320,19 @@
         android:layout_toEndOf="@+id/nicknamelabel"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true" />
+
+        <TextView
+            android:layout_marginTop="320dp"
+            android:layout_marginLeft="130dp"
+            android:text=":  "
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/nlab"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:textColor="@color/colorPrimaryDark"
+            />
+
 
 
     </RelativeLayout>

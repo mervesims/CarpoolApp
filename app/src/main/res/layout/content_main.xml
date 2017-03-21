@@ -41,25 +41,24 @@
 
     <TextView
         android:text="   Do you want to know where your vehicle is from where you are at anytime?"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:id="@+id/explain2"
         android:textColor="@android:color/black"
         android:layout_marginTop="26dp"
         android:layout_below="@+id/explain"
-        android:layout_alignParentStart="true" />
+        android:gravity="center"/>
 
     <TextView
-    android:text="   Carpool is designed to make your vehicle tracking easier."
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:id="@+id/explain"
-    android:textColor="@android:color/black"
+        android:text="   Carpool is designed to make your vehicle tracking easier."
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/explain"
+        android:gravity="center"
+        android:paddingTop="16dp"
+        android:textColor="@android:color/black"
         android:layout_centerVertical="true"
-        android:layout_alignParentStart="true"
         android:layout_below="@+id/logo"/>
-
-
 
 
 </RelativeLayout>
