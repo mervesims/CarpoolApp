@@ -63,9 +63,7 @@ public class ItemListActivity extends AppCompatActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intentback = new Intent(ItemListActivity.this, MainActivity.class);
-                startActivity(intentback);
-                finish();
+                onBackPressed();
             }
         });
         toolbar.setTitle(getTitle());
@@ -206,7 +204,7 @@ public class ItemListActivity extends AppCompatActivity {
                 mDelete =(Button)view.findViewById(R.id.optiondetail);
                 mModelYear = (TextView)view.findViewById(R.id.modelyearcontent);
                 mDetail = (Button)view.findViewById(R.id.option);
-                mNickname = (TextView)view.findViewById(R.id.nickname);
+                mNickname = (TextView)view.findViewById(R.id.nicknamelabel);
                 mCircle = (TextView)view.findViewById(R.id.circle);
                 setSettingsCircle();
             }

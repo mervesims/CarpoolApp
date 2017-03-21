@@ -28,25 +28,23 @@ public class AddCarActivity extends AppCompatActivity {
         //previous işlemi buradan yapılmaktadır.
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        toolbar2.setNavigationOnClickListener(new View.OnClickListener() {
+      toolbar2.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intentback = new Intent(AddCarActivity.this, MainActivity.class);
-                startActivity(intentback);
-                finish();
+                onBackPressed(); // Hangi sayfadan gelindiyse oraya geri döner.
             }
         });
 
 
         vehicle = new Database(this);
 
-        brand = (EditText)findViewById(R.id.brand);
-        model = (EditText)findViewById(R.id.model);
-        type =(EditText)findViewById(R.id.type);
-        modelyear = (EditText)findViewById(R.id.modelyear);
-        color =(EditText)findViewById(R.id.color);
-        plate = (EditText)findViewById(R.id.plate);
-        nickname =(EditText)findViewById(R.id.nickname);
+        brand = (EditText)findViewById(R.id.brandedit);
+        model = (EditText)findViewById(R.id.modeledit);
+        type =(EditText)findViewById(R.id.typeedit);
+        modelyear = (EditText)findViewById(R.id.modelyearedit);
+        color =(EditText)findViewById(R.id.coloredit);
+        plate = (EditText)findViewById(R.id.plateedit);
+        nickname =(EditText)findViewById(R.id.nicknameedit);
 
       //  final Bundle bundle = new Bundle();
 
