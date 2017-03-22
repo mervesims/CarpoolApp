@@ -111,11 +111,11 @@
         android:id="@+id/item_detail3"
         style="?android:attr/textAppearanceLargePopupMenu"
         android:layout_width="match_parent"
+        android:inputType="date"
         android:layout_height="wrap_content"
         android:layout_marginTop="120dp"
         android:padding="16dp"
         tools:context="com.example.mervesimsek.vehicleapp.ItemDetailFragment"
-        android:inputType="none"
         android:layout_toEndOf="@+id/name3"
         />
 

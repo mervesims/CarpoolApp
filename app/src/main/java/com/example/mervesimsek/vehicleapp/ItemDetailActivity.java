@@ -61,6 +61,7 @@ public class ItemDetailActivity extends AppCompatActivity {
                 brand =(EditText)findViewById(R.id.item_detail);
                 brand.setFocusable(true);
                 brand.setFocusableInTouchMode(true);
+                
 
                 model = (EditText)findViewById(R.id.item_detail2);
                 model.setFocusable(true);
