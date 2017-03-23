@@ -39,7 +39,6 @@ public class AddCarActivity extends AppCompatActivity {
             }
         });
 
-        // TODO : İlk harfin boşluk olamama durumu
 
 
         vehicle = new Database(this);
@@ -58,6 +57,9 @@ public class AddCarActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                // TODO : İlk harfin boşluk olamama durumu
+
 //                if (brand.getText().toString().contains("") && nickname.getText().toString().contains("") && modelyear.getText().toString().contains("")) {
 //                    if (brand.getText().toString().matches(" ")) {
 //                        brand.setError("No Spaces Allowed");

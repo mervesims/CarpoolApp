@@ -44,16 +44,7 @@ public class MainActivity extends AppCompatActivity
         Typeface font = Typeface.createFromAsset(context.getAssets(), "fonts/gist.ttf");
         logo.setTypeface(font);
 
-
-
-
-
-
-
-
-
-
-
+        //TODO : Sirali floating action button yaratma.
         ShapeDrawable drawable = new ShapeDrawable(new OvalShape());
         drawable.getPaint().setColor(getResources().getColor(R.color.buttonpressed2));
 
@@ -76,70 +67,6 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-
-
-  /*
-        ImageView icon = new ImageView(this);
-        icon.setImageResource(R.drawable.plusneww);
-
-
-
-        final FloatingActionButton fab = new FloatingActionButton.Builder(this).setContentView(icon).build();
-        SubActionButton.Builder builder = new SubActionButton.Builder(this);
-
-        ImageView addcarIcon = new ImageView(this);
-        addcarIcon.setImageResource(R.drawable.plusnew);
-        SubActionButton addcarBtn = builder.setContentView(addcarIcon).build();
-
-        ImageView shareIcon = new ImageView(this);
-        shareIcon.setImageResource(R.drawable.share);
-        SubActionButton shareBtn = builder.setContentView(shareIcon).build();
-
-        ImageView infoIcon = new ImageView(this);
-        infoIcon.setImageResource(R.drawable.infovar);
-        SubActionButton infoBtn = builder.setContentView(infoIcon).build();
-
-        final FloatingActionMenu fam = new FloatingActionMenu.Builder(this)
-                .addSubActionView(infoBtn)
-                .addSubActionView(shareBtn)
-                .addSubActionView(addcarBtn)
-                .attachTo(fab)
-                .build();
-        infoBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent browser = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.appsims.com"));
-                startActivity(browser);
-            }
-        });
-        shareBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String message = " ";
-                Intent share = new Intent(Intent.ACTION_SEND);
-                share.setType("text/plain");
-                share.putExtra(Intent.EXTRA_TEXT, message);
-                startActivity(Intent.createChooser(share, "Carpool"));
-            }
-        });
-        addcarBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intentadd = new Intent(MainActivity.this,AddCarActivity.class);
-                startActivity(intentadd);
-            }
-        });
-
-
-/*
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intgo = new Intent(MainActivity.this, AddCarActivity.class);
-                startActivity(intgo);
-            }
-        }); */
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -208,7 +135,7 @@ public class MainActivity extends AppCompatActivity
             startActivity(browser);
 
         } else if (id == R.id.nav_share) {
-            String message = "Merveco ";
+            String message = " Carpool App ";
             Intent share = new Intent(Intent.ACTION_SEND);
             share.setType("text/plain");
             share.putExtra(Intent.EXTRA_TEXT, message);
@@ -217,7 +144,7 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_send) {
 
-            String message = " ";
+            String message = " Carpool App ";
             Intent share = new Intent(Intent.ACTION_SEND);
             share.setType("text/plain");
             share.putExtra(Intent.EXTRA_TEXT, message);
