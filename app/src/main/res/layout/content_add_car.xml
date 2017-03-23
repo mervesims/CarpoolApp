@@ -63,7 +63,6 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:inputType="text"
         android:hint="Enter Vehicle"
         android:textColorHint="@color/grey"
         android:ems="10"
@@ -71,6 +70,7 @@
         android:layout_toEndOf="@+id/brandlabel"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
+        android:inputType="text"
         android:maxLength="20"
         android:maxLines="4"/>
 
