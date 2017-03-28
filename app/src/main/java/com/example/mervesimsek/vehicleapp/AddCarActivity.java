@@ -53,6 +53,8 @@ public class AddCarActivity extends AppCompatActivity {
 
         //  final Bundle bundle = new Bundle();
 
+
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fabsave);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -103,7 +105,13 @@ public class AddCarActivity extends AppCompatActivity {
 //
 //                }
 
-                if ( brand.getText().toString().length() >= 1 && nickname.getText().length() >= 1 && modelyear.getText().length() >=1 ) {
+
+                Integer brandLength = brand.getText().toString().length();
+                Integer nicknameLength = nickname.getText().toString().length();
+                Integer modelyearLength = modelyear.getText().toString().length();
+                Integer modelyearint =Integer.parseInt(modelyear.getText().toString());
+
+                if ( brandLength >= 1 && nicknameLength >= 1  && (modelyearint > 1899 && modelyearint < 2018)) {
                     try{
                         saveRecord(brand.getText().toString(),
                                 model.getText().toString(),
@@ -125,19 +133,30 @@ public class AddCarActivity extends AppCompatActivity {
                 else
                 {
                     final Context context = view.getContext();
-                    Toast.makeText(context, "Empty spaces are available.", Toast.LENGTH_SHORT).show();
-                    if (brand.getText().length() == 0){
-                        brand.setError( "Brand is required!" ); }
-                    if (nickname.getText().length() == 0){
-                        nickname.setError("Nickname is required!"); }
-                    if (modelyear.getText().length() == 0){
-                        modelyear.setError("Model year is required!"); }
+
+                    Toast.makeText(context, "Check please.", Toast.LENGTH_SHORT).show();
+
+                    if (brandLength == 0 )
+                    {
+                        brand.setError( "Brand is required!" );
+                    }
+                    if (nicknameLength == 0)
+                    {
+                        nickname.setError("Nickname is required!");
+                    }
+                    if (modelyearint < 1899 || modelyearint > 2018)
+                    {
+                        modelyear.setError("Sayı 1900 ile 2018 arasında olmalıdır!");
+                    }
+                    }
+
+
                 }
 
 
 
 
-            }
+
         });
 
     }
@@ -207,6 +226,9 @@ public class AddCarActivity extends AppCompatActivity {
         }
         return super.dispatchTouchEvent(ev);
     }
+
+
+
 
 
 

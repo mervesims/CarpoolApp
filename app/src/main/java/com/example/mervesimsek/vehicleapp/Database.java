@@ -81,7 +81,7 @@ public class Database extends SQLiteOpenHelper {
         /** TODO:Databaseden id si belli olan row u çekmek için
         Bu methodda sadece tek row değerleri alınır.
         HashMap bir çift boyutlu arraydir.anahtar-değer ikililerini bir arada tutmak için tasarlanmıştır.
-        map.put("x","300"); mesala burda anahtar x değeri 300.*/
+        map.put("x","300"); mesela burda anahtar x değeri 300.*/
 
         HashMap<String,String> record = new HashMap<String,String>();
         String selectQuery = "SELECT * FROM " + TABLE_NAME+ " WHERE id="+id;

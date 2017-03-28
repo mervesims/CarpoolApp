@@ -9,19 +9,7 @@
         tools:context="com.example.mervesimsek.vehicleapp.AddCarActivity"
         tools:showIn="@layout/activity_add_car">
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fabsave"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="top|left"
-        app:srcCompat="@drawable/check"
-        app:layout_anchor="@+id/include"
-        app:layout_anchorGravity="bottom|right"
-        android:layout_marginLeft="@dimen/fab_margin"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="13dp"
-        android:layout_marginBottom="13dp" />
+
 
     <ScrollView
         android:layout_width="match_parent"
@@ -180,7 +168,7 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:inputType="date"
-        android:hint="Enter Type Year"
+        android:hint="Enter Model Year"
         android:textColorHint="@color/grey"
         android:ems="10"
         android:id="@+id/modelyearedit"
@@ -339,4 +327,11 @@
     </ScrollView>
 
 
+
+        <include layout="@layout/fabaction"
+            android:id="@+id/include2" />
+
+
+
 </RelativeLayout>
+
