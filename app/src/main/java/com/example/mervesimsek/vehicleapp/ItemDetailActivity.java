@@ -62,31 +62,38 @@ public class ItemDetailActivity extends AppCompatActivity {
                 brand =(EditText)findViewById(R.id.item_detail);
                 brand.setFocusable(true);
                 brand.setFocusableInTouchMode(true);
-                
+                brand.requestFocus(); //for cursor
+                brand.setFilters(new InputFilter[]{emojifilter});
 
                 model = (EditText)findViewById(R.id.item_detail2);
                 model.setFocusable(true);
                 model.setFocusableInTouchMode(true);
+                model.setFilters(new InputFilter[]{emojifilter});
 
                 type =(EditText)findViewById(R.id.item_detail3);
                 type.setFocusable(true);
                 type.setFocusableInTouchMode(true);
+                type.setFilters(new InputFilter[]{emojifilter});
 
                 modelyear = (EditText)findViewById(R.id.item_detail4);
                 modelyear.setFocusable(true);
                 modelyear.setFocusableInTouchMode(true);
+                modelyear.setFilters(new InputFilter[]{emojifilter});
 
                 color =(EditText)findViewById(R.id.item_detail5);
                 color.setFocusable(true);
                 color.setFocusableInTouchMode(true);
+                color.setFilters(new InputFilter[]{emojifilter});
 
                 plate = (EditText)findViewById(R.id.item_detail6);
                 plate.setFocusable(true);
                 plate.setFocusableInTouchMode(true);
+                plate.setFilters(new InputFilter[]{emojifilter});
 
                 nickname =(EditText)findViewById(R.id.item_detail7);
                 nickname.setFocusable(true);
                 nickname.setFocusableInTouchMode(true);
+                nickname.setFilters(new InputFilter[]{emojifilter});
                 }
         });
 
@@ -174,4 +181,17 @@ public class ItemDetailActivity extends AppCompatActivity {
         }
         return super.dispatchTouchEvent(ev);
     }
+
+    public static InputFilter emojifilter = new InputFilter() {
+        @Override
+        public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
+            for (int index = start; index < end; index++) {
+                int type = Character.getType(source.charAt(index));
+                if (type == Character.SURROGATE) {
+                    return "";
+                }
+            }
+            return null;
+        }
+    };
 }

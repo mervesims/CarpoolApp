@@ -40,19 +40,30 @@ public class AddCarActivity extends AppCompatActivity {
         });
 
 
-
         vehicle = new Database(this);
 
         brand = (EditText) findViewById(R.id.brandedit);
+        brand.setFilters(new InputFilter[]{emojifilter});
+
         model = (EditText) findViewById(R.id.modeledit);
+        model.setFilters(new InputFilter[]{emojifilter});
+
         type = (EditText) findViewById(R.id.typeedit);
+        type.setFilters(new InputFilter[]{emojifilter});
+
         modelyear = (EditText) findViewById(R.id.modelyearedit);
+        modelyear.setFilters(new InputFilter[]{emojifilter});
+
         color = (EditText) findViewById(R.id.coloredit);
+        color.setFilters(new InputFilter[]{emojifilter});
+
         plate = (EditText) findViewById(R.id.plateedit);
+        plate.setFilters(new InputFilter[]{emojifilter});
+
         nickname = (EditText) findViewById(R.id.nicknameedit);
+        nickname.setFilters(new InputFilter[]{emojifilter});
 
         //  final Bundle bundle = new Bundle();
-
 
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fabsave);
@@ -109,10 +120,11 @@ public class AddCarActivity extends AppCompatActivity {
                 Integer brandLength = brand.getText().toString().length();
                 Integer nicknameLength = nickname.getText().toString().length();
                 Integer modelyearLength = modelyear.getText().toString().length();
-                Integer modelyearint =Integer.parseInt(modelyear.getText().toString());
+                Integer modelyearint = Integer.parseInt(modelyear.getText().toString());
+                String brandcontent = brand.getText().toString().substring(0, 1);
 
-                if ( brandLength >= 1 && nicknameLength >= 1  && (modelyearint > 1899 && modelyearint < 2018)) {
-                    try{
+                if (brandLength >= 1 && nicknameLength >= 1 && (modelyearint > 1899 && modelyearint < 2018) && brandcontent != " ") {
+                    try {
                         saveRecord(brand.getText().toString(),
                                 model.getText().toString(),
                                 type.getText().toString(),
@@ -123,38 +135,33 @@ public class AddCarActivity extends AppCompatActivity {
                         );
                         Cursor cursor = getRecord();
                         showRecord(cursor);
-                    }
-                    finally {
+                    } finally {
                         vehicle.close();
                     }
                     Intent intent = new Intent(AddCarActivity.this, ItemListActivity.class);
                     startActivity(intent);
-                }
-                else
-                {
+                } else {
                     final Context context = view.getContext();
 
                     Toast.makeText(context, "Check please.", Toast.LENGTH_SHORT).show();
 
-                    if (brandLength == 0 )
-                    {
-                        brand.setError( "Brand is required!" );
+                    if (brandLength == 0) {
+                        brand.setError("Brand is required!");
                     }
-                    if (nicknameLength == 0)
-                    {
+                    if (nicknameLength == 0) {
                         nickname.setError("Nickname is required!");
                     }
-                    if (modelyearint < 1899 || modelyearint > 2018)
-                    {
-                        modelyear.setError("Sayı 1900 ile 2018 arasında olmalıdır!");
+                    if (modelyearint < 1899 || modelyearint > 2018) {
+                        modelyear.setError("The year should be between 1900 and 2018!");
                     }
+                    if (brandcontent.contains(" ")) {
+                        brand.setError("Boşluk koyamazsın");
                     }
-
 
                 }
 
 
-
+            }
 
 
         });
@@ -167,29 +174,27 @@ public class AddCarActivity extends AppCompatActivity {
         data.put("brand", brand);
         data.put("model", model);
         data.put("type", type);
-        data.put("modelyear",modelyear);
+        data.put("modelyear", modelyear);
         data.put("color", color);
         data.put("plate", plate);
         data.put("nickname", nickname);
-        db.insertOrThrow("vehicles",null,data);
+        db.insertOrThrow("vehicles", null, data);
     }
 
     private String[] SELECT = {"id,brand,model,type,modelyear,color,plate,nickname"};
 
 
-
-
-    private Cursor getRecord(){
+    private Cursor getRecord() {
         SQLiteDatabase db = vehicle.getReadableDatabase();
-        Cursor cursor = db.query("vehicles",SELECT,null,null,null,null,null,null);
+        Cursor cursor = db.query("vehicles", SELECT, null, null, null, null, null, null);
         startManagingCursor(cursor);
-        return(cursor);
+        return (cursor);
     }
 
-    private void showRecord(Cursor cursor){
-        StringBuilder builder = new StringBuilder("Vehicles: \n" );
+    private void showRecord(Cursor cursor) {
+        StringBuilder builder = new StringBuilder("Vehicles: \n");
 
-        while (cursor.moveToNext()){
+        while (cursor.moveToNext()) {
             long id = cursor.getLong(cursor.getColumnIndex("id"));
             String brand = cursor.getString(cursor.getColumnIndex("brand"));
             String model = cursor.getString(cursor.getColumnIndex("model"));
@@ -212,7 +217,7 @@ public class AddCarActivity extends AppCompatActivity {
 
     }
 
-// TODO : Ekranın başka bir yerine dokunarak klavye kapatma
+    // TODO : Ekranın başka bir yerine dokunarak klavye kapatma
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
         View view = getCurrentFocus();
@@ -222,10 +227,24 @@ public class AddCarActivity extends AppCompatActivity {
             float x = ev.getRawX() + view.getLeft() - scrcoords[0];
             float y = ev.getRawY() + view.getTop() - scrcoords[1];
             if (x < view.getLeft() || x > view.getRight() || y < view.getTop() || y > view.getBottom())
-                ((InputMethodManager)this.getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow((this.getWindow().getDecorView().getApplicationWindowToken()), 0);
+                ((InputMethodManager) this.getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow((this.getWindow().getDecorView().getApplicationWindowToken()), 0);
         }
         return super.dispatchTouchEvent(ev);
     }
+
+
+    public static InputFilter emojifilter = new InputFilter() {
+        @Override
+        public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
+            for (int index = start; index < end; index++) {
+                int type = Character.getType(source.charAt(index));
+                if (type == Character.SURROGATE) {
+                    return "";
+                }
+            }
+            return null;
+        }
+    };
 
 
 
