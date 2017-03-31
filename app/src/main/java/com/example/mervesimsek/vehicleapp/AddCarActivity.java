@@ -147,7 +147,7 @@ public class AddCarActivity extends AppCompatActivity {
                 Integer brandLength = brand.getText().toString().length();
                 Integer nicknameLength = nickname.getText().toString().length();
                 Integer modelyearLength = modelyear.getText().toString().length();
-                Integer modelyearint = Integer.parseInt(modelyear.getText().toString());
+            //    Integer modelyearint = Integer.parseInt(modelyear.getText().toString());
                 String brandcontent = brand.getText().toString();
                 String nicknamecontent = nickname.getText().toString();
 
@@ -173,8 +173,9 @@ public class AddCarActivity extends AppCompatActivity {
                 if (modelyearLength == 0) {
                     modelyear.setError("Model year is required!");
                     isValid = false;
+                    return;
                 }
-                if (modelyearint < 1899 || modelyearint > 2018) {
+                if (Integer.parseInt(modelyear.getText().toString()) < 1899 || Integer.parseInt(modelyear.getText().toString()) > 2018) {
                     modelyear.setError("The year should be between 1900 and 2018!");
                     isValid = false;
                 }
