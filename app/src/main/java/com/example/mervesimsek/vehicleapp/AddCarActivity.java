@@ -36,35 +36,59 @@ public class AddCarActivity extends AppCompatActivity {
         toolbar2.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onBackPressed(); // Hangi sayfadan gelindiyse oraya geri döner.
+                onBackPressed(); // Hangi sayfadan gelindiyse oraya geri
             }
         });
+
+
+             int maxLength = 4;
+             InputFilter[] fArray = new InputFilter[1];
+             fArray[0] = new InputFilter.LengthFilter(maxLength);
+
+
+             int maxOtherLength = 20;
+             InputFilter[] iArray = new InputFilter[1];
+             iArray[0] = new InputFilter.LengthFilter(maxOtherLength);
 
 
         vehicle = new Database(this);
 
         brand = (EditText) findViewById(R.id.brandedit);
         brand.setFilters(new InputFilter[]{emojifilter});
-       // brand.setFilters(new InputFilter[]{spacefilter});
+        brand.setFilters(iArray);
 
 
         model = (EditText) findViewById(R.id.modeledit);
         model.setFilters(new InputFilter[]{emojifilter});
+        model.setFilters(iArray);
 
         type = (EditText) findViewById(R.id.typeedit);
         type.setFilters(new InputFilter[]{emojifilter});
+        type.setFilters(iArray);
 
         modelyear = (EditText) findViewById(R.id.modelyearedit);
         modelyear.setFilters(new InputFilter[]{emojifilter});
+        modelyear.setFilters(fArray);
 
         color = (EditText) findViewById(R.id.coloredit);
         color.setFilters(new InputFilter[]{emojifilter});
+        color.setFilters(iArray);
 
         plate = (EditText) findViewById(R.id.plateedit);
         plate.setFilters(new InputFilter[]{emojifilter});
+        plate.setFilters(iArray);
 
         nickname = (EditText) findViewById(R.id.nicknameedit);
         nickname.setFilters(new InputFilter[]{emojifilter});
+        nickname.setFilters(iArray);
+
+
+
+
+
+
+
+
 
         //  final Bundle bundle = new Bundle();
 
@@ -124,10 +148,48 @@ public class AddCarActivity extends AppCompatActivity {
                 Integer nicknameLength = nickname.getText().toString().length();
                 Integer modelyearLength = modelyear.getText().toString().length();
                 Integer modelyearint = Integer.parseInt(modelyear.getText().toString());
-                String brandcontent = brand.getText().toString().substring(0,1);
-                String nicknamecontent = nickname.getText().toString().substring(0,1);
+                String brandcontent = brand.getText().toString();
+                String nicknamecontent = nickname.getText().toString();
 
-                if (brandLength >= 1 && nicknameLength >= 1 && modelyearLength >=1 && (modelyearint > 1899 && modelyearint < 2018)  ) {
+
+                /*
+                * if ( modelyearLength == 0 && modelyear.getText().toString() == "" && (modelyearint < 1899 || modelyearint > 2018) && brandcontent.contains(" ") && nicknamecontent.contains(" "))  {
+                    final Context context = view.getContext();
+
+                    Toast.makeText(context, "Check please.", Toast.LENGTH_SHORT).show();
+
+                        brand.setError("Brand is required!");
+                        nickname.setError("Nickname is required!");
+                        modelyear.setError("Model year is required!");
+                        modelyear.setError("The year should be between 1900 and 2018!");
+                        brand.setError("Do not use spaces.");
+                        nickname.setError("Do not use spaces.");
+
+                } else {
+                *
+                * */
+                boolean isValid = true;
+
+                if (modelyearLength == 0) {
+                    modelyear.setError("Model year is required!");
+                    isValid = false;
+                }
+                if (modelyearint < 1899 || modelyearint > 2018) {
+                    modelyear.setError("The year should be between 1900 and 2018!");
+                    isValid = false;
+                }
+                if (brandLength == 0 || brandcontent.substring(0,1).contains(" ")) {
+                    brand.setError("Brand is required!");
+                    isValid = false;
+                }
+                if (nicknameLength == 0 || nicknamecontent.substring(0,1).contains(" ")) {
+                    nickname.setError("Nickname is required!");
+                    isValid = false;
+                }
+
+
+                if (isValid)
+                {
                     try {
                         saveRecord(brand.getText().toString(),
                                 model.getText().toString(),
@@ -144,34 +206,7 @@ public class AddCarActivity extends AppCompatActivity {
                     }
                     Intent intent = new Intent(AddCarActivity.this, ItemListActivity.class);
                     startActivity(intent);
-                } else {
-                    final Context context = view.getContext();
-
-                    Toast.makeText(context, "Check please.", Toast.LENGTH_SHORT).show();
-
-                    if (brandLength == 0) {
-                        brand.setError("Brand is required!");
-                    }
-                    if (nicknameLength == 0) {
-                        nickname.setError("Nickname is required!");
-                    }
-                    if (modelyearLength == 0){
-                        modelyear.setError("Model year is required!");
-                    }
-                    if (modelyear.getText().toString() == "" && (modelyearint < 1899 || modelyearint > 2018)) {
-                        modelyear.setError("The year should be between 1900 and 2018!");
-                    }
-
-                   if (brandcontent.contains(" ")) {
-                        brand.setError("Do not use spaces.");
-                    }
-
-                    if (nicknamecontent.contains(" ")){
-                        nickname.setError("Do not use spaces.");
-                    }
-
                 }
-
 
             }
 
@@ -179,6 +214,7 @@ public class AddCarActivity extends AppCompatActivity {
         });
 
     }
+
 
     private void saveRecord(String brand, String model, String type, String modelyear, String color, String plate, String nickname) {
         SQLiteDatabase db = vehicle.getWritableDatabase();
