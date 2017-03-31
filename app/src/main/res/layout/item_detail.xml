@@ -109,7 +109,6 @@
 
     <EditText
         android:id="@+id/item_detail3"
-        style="?android:attr/textAppearanceLargePopupMenu"
         android:layout_width="match_parent"
         android:inputType="date"
         android:layout_height="wrap_content"
@@ -117,6 +116,7 @@
         android:padding="16dp"
         tools:context="com.example.mervesimsek.vehicleapp.ItemDetailFragment"
         android:layout_toEndOf="@+id/name3"
+        android:maxLength="4"
         />
 
 

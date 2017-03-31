@@ -47,8 +47,6 @@ public class ItemDetailActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
 
-
-
         vehicle = new Database(this);
 
 
@@ -59,41 +57,60 @@ public class ItemDetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+
+                int maxLength = 4;
+                InputFilter[] fArray = new InputFilter[1];
+                fArray[0] = new InputFilter.LengthFilter(maxLength);
+
+
+                int maxOtherLength = 20;
+                InputFilter[] iArray = new InputFilter[1];
+                iArray[0] = new InputFilter.LengthFilter(maxOtherLength);
+
+
+
                 brand =(EditText)findViewById(R.id.item_detail);
                 brand.setFocusable(true);
                 brand.setFocusableInTouchMode(true);
                 brand.requestFocus(); //for cursor
                 brand.setFilters(new InputFilter[]{emojifilter});
+                brand.setFilters(iArray);
 
                 model = (EditText)findViewById(R.id.item_detail2);
                 model.setFocusable(true);
                 model.setFocusableInTouchMode(true);
                 model.setFilters(new InputFilter[]{emojifilter});
+                model.setFilters(iArray);
 
-                type =(EditText)findViewById(R.id.item_detail3);
+                type =(EditText)findViewById(R.id.item_detail4);
                 type.setFocusable(true);
                 type.setFocusableInTouchMode(true);
                 type.setFilters(new InputFilter[]{emojifilter});
+                type.setFilters(iArray);
 
-                modelyear = (EditText)findViewById(R.id.item_detail4);
+                modelyear = (EditText)findViewById(R.id.item_detail3);
                 modelyear.setFocusable(true);
                 modelyear.setFocusableInTouchMode(true);
                 modelyear.setFilters(new InputFilter[]{emojifilter});
+                modelyear.setFilters(fArray);
 
                 color =(EditText)findViewById(R.id.item_detail5);
                 color.setFocusable(true);
                 color.setFocusableInTouchMode(true);
                 color.setFilters(new InputFilter[]{emojifilter});
+                color.setFilters(iArray);
 
                 plate = (EditText)findViewById(R.id.item_detail6);
                 plate.setFocusable(true);
                 plate.setFocusableInTouchMode(true);
                 plate.setFilters(new InputFilter[]{emojifilter});
+                plate.setFilters(iArray);
 
                 nickname =(EditText)findViewById(R.id.item_detail7);
                 nickname.setFocusable(true);
                 nickname.setFocusableInTouchMode(true);
                 nickname.setFilters(new InputFilter[]{emojifilter});
+                nickname.setFilters(iArray);
                 }
         });
 
@@ -102,7 +119,37 @@ public class ItemDetailActivity extends AppCompatActivity {
         fabeditsave.setOnClickListener(new View.OnClickListener() {
                                            @Override
                                            public void onClick(View v) {
-                                                       updateRecord(
+
+                                               Integer brandLength = brand.getText().toString().length();
+                                               Integer nicknameLength = nickname.getText().toString().length();
+                                               Integer modelyearLength = modelyear.getText().toString().length();
+                                               String brandcontent = brand.getText().toString();
+                                               String nicknamecontent = nickname.getText().toString();
+
+
+                                               boolean isValid = true;
+
+                                               if (modelyearLength == 0) {
+                                                   modelyear.setError("Model year is required!");
+                                                   return;
+                                               }
+                                               if (Integer.parseInt(modelyear.getText().toString()) < 1899 || Integer.parseInt(modelyear.getText().toString()) > 2018) {
+                                                   modelyear.setError("The year should be between 1900 and 2018!");
+                                                   isValid = false;
+                                               }
+                                               if (brandLength == 0 || brandcontent.substring(0,1).contains(" ")) {
+                                                   brand.setError("Brand is required!");
+                                                   isValid = false;
+                                               }
+                                               if (nicknameLength == 0 || nicknamecontent.substring(0,1).contains(" ")) {
+                                                   nickname.setError("Nickname is required!");
+                                                   isValid = false;
+                                               }
+
+
+                                               if (isValid)
+                                               {
+                                                   updateRecord(
                                                        ItemDetailFragment.vehicleid,
                                                        brand.getText().toString(),
                                                        model.getText().toString(),
@@ -118,8 +165,8 @@ public class ItemDetailActivity extends AppCompatActivity {
 
 
 
-                                       });
-
+                                       }
+        });
 
 
         // Show the Up button in the action bar.
