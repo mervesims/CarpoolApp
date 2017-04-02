@@ -151,7 +151,7 @@ public class ItemListActivity extends AppCompatActivity {
             holder.mContentView.setText(mValues.get(position).brand);
             holder.mModelYear.setText(mValues.get(position).modelyear);
             holder.mCircle.setText(mValues.get(position).nickname.substring(0, 1).toUpperCase());
-
+            ((GradientDrawable) holder.mCircle.getBackground()).setColor(mValues.get(position).nicknameColor);
             //TODO: detay acilan kisim. Butona basınca buradan detay ekranını acıyor.
             holder.mDetail.setOnClickListener(new Button.OnClickListener() {
                 @Override
@@ -216,6 +216,7 @@ public class ItemListActivity extends AppCompatActivity {
             public final TextView mCircle;
             public DummyContent.VehicleModel vehicleViewHolder;
 
+
             public ViewHolder(View view) {
                 super(view);
                 mView = view;
@@ -226,16 +227,12 @@ public class ItemListActivity extends AppCompatActivity {
                 mDetail = (Button) view.findViewById(R.id.option);
                 mNickname = (TextView) view.findViewById(R.id.nicknamelabel);
                 mCircle = (TextView) view.findViewById(R.id.circle);
-                setSettingsCircle();
-            }
-            // TODO : ItemListActivity içindeki circle Random renk ayarı
-            private void setSettingsCircle() {
+                // TODO : ItemListActivity içindeki circle Random renk ayarı
+                if (vehicleViewHolder != null)
+                {((GradientDrawable) mCircle.getBackground()).setColor(vehicleViewHolder.nicknameColor);}
 
-                Random random = new Random();
-                int color = Color.argb(255, random.nextInt(256), random.nextInt(256), random.nextInt(256));
-
-                ((GradientDrawable) mCircle.getBackground()).setColor(color);
             }
+
 
 
             @Override

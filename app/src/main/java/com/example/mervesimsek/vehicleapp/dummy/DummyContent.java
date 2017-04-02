@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 
 import com.example.mervesimsek.vehicleapp.Database;
 
@@ -12,6 +13,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 /**
  * Helper class for providing sample content for user interfaces created by
@@ -76,6 +78,8 @@ public class DummyContent {
                 vehicleModel.color = color;
                 vehicleModel.plate = plate;
                 vehicleModel.nickname = nickname;
+                Random random = new Random();
+                vehicleModel.nicknameColor =  Color.argb(255, random.nextInt(256), random.nextInt(256), random.nextInt(256));
                 vehicleModelList.add(vehicleModel);
         }
     }
@@ -119,5 +123,6 @@ public class DummyContent {
         public String color = "";
         public String plate = "";
         public String nickname = "";
+        public int nicknameColor = 0;
     }
 }
