@@ -148,6 +148,14 @@ public class Database extends SQLiteOpenHelper {
         db.update(TABLE_NAME, values, ID + " = ?",
                 new String[] { String.valueOf(id) });
     }
+    public Cursor searchRecord(Database vehicleDB,String filterParameter) {
+        String countQuery = "SELECT  * FROM " + TABLE_NAME + " WHERE " + this.NICKNAME + " LIKE '%" + filterParameter + "%'";
+        SQLiteDatabase db = vehicleDB.getReadableDatabase();
+        Cursor cursor = db.rawQuery(countQuery, null);
+
+
+        return cursor;
+    }
     public int getRowCount() {
         // TODO: Bu method bu uygulamada kullanılmıyor ama appsentence'ta lazım olacak.Tablodaki row sayısını geri döner.
         //TODO:Login uygulamasında da kullanılabilir.

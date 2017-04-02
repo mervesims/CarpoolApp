@@ -91,48 +91,7 @@
             android:textColor="@color/grey"
             />
 
-     <!--   <TextView
-        android:id="@+id/optionbin"
-        android:layout_width="16dp"
-        android:layout_height="18dp"
-        android:layout_marginLeft="197dp"
-        android:layout_marginTop="9dp"
-        android:background="@drawable/deleted"
-        android:paddingTop="6dp"
-        android:textStyle="bold"
-        android:tint="@color/grey"/>
 
-        <TextView
-            android:id="@+id/option"
-            android:layout_width="wrap_content"
-            android:layout_height="33dp"
-            android:layout_marginTop="5dp"
-
-            android:textSize="12sp"
-            android:text="DELETE"
-            android:paddingTop="6dp"
-            android:tint="@color/grey"/>
-
-
-        <TextView
-        android:id="@+id/optiondetitem"
-        android:layout_width="18dp"
-        android:layout_height="18dp"
-        android:layout_marginLeft="70dp"
-        android:layout_marginTop="9dp"
-        android:background="@drawable/information"
-        android:paddingTop="6dp"
-        android:textStyle="bold"
-        android:tint="@color/grey"/>
-    <TextView
-        android:id="@+id/optiondetail"
-        android:layout_width="wrap_content"
-        android:layout_height="33dp"
-        android:layout_marginTop="5dp"
-        android:textSize="12sp"
-        android:text="DETAIL"
-        android:paddingTop="6dp"
-        android:tint="@color/grey"/> -->
 </LinearLayout>
 
     <TextView

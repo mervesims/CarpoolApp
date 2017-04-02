@@ -17,7 +17,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.SearchView;
 import android.widget.TextView;
@@ -43,16 +42,15 @@ public class ItemListActivity extends AppCompatActivity {
      */
     private boolean mTwoPane;
 
-
-
+    SearchView searchView;
+    RecyclerView recyclerView;
+    Context currentContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item_list);
-
-
-
+        this.currentContext = this;
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -70,21 +68,21 @@ public class ItemListActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               Intent intent = new Intent(ItemListActivity.this,AddCarActivity.class);
+                Intent intent = new Intent(ItemListActivity.this, AddCarActivity.class);
                 startActivity(intent);
             }
         });
 
-        View recyclerView = findViewById(R.id.item_list);
-        assert recyclerView != null;
+        this.recyclerView = (RecyclerView) findViewById(R.id.item_list);
+        assert this.recyclerView != null;
 
 
         //TODO: veritabanı ile baglantı kuruldu ve select sorgusu calıstırıldı.
-        Cursor vehicleDataFromDB = DummyContent.setupVehicleDatabase(this);
+        Cursor vehicleDataFromDB = DummyContent.setupVehicleDatabase(this.currentContext);
 
         //TODO: olusturulan sorgu sonucuna gore Vehicle tipinde bir list olusturuldu.
         DummyContent.createVehicleList(vehicleDataFromDB);
-        setupRecyclerView((RecyclerView) recyclerView);
+        this.LoadDataSourceRecyclerView();
 
         if (findViewById(R.id.item_detail_container) != null) {
             mTwoPane = true;
@@ -97,39 +95,39 @@ public class ItemListActivity extends AppCompatActivity {
      */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
+
+        final MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_search, menu);
         MenuItem item = menu.findItem(R.id.menuSearch);
-        SearchView searchView = (SearchView) item.getActionView();
+        searchView = (SearchView) item.getActionView();
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
-            public boolean onQueryTextSubmit(String query) {
-                return false;
+            public boolean onQueryTextChange(String query) {
+                DummyContent.searchVehicleList(currentContext,query);
+                LoadDataSourceRecyclerView();
+                return true;
+
             }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-
-
+            public boolean onQueryTextSubmit(String query) {
                 return false;
             }
         });
         return super.onCreateOptionsMenu(menu);
     }
 
-
     private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
         recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(DummyContent.vehicleModelList));
 
+    }
+
+    public void LoadDataSourceRecyclerView() {
+        this.setupRecyclerView(this.recyclerView);
     }
 
     public class SimpleItemRecyclerViewAdapter
             extends RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder> {
 
         private final List<DummyContent.VehicleModel> mValues;
-
-
-
 
 
         public SimpleItemRecyclerViewAdapter(List<DummyContent.VehicleModel> items) {
@@ -152,7 +150,7 @@ public class ItemListActivity extends AppCompatActivity {
             holder.mIdView.setText(mValues.get(position).nickname);
             holder.mContentView.setText(mValues.get(position).brand);
             holder.mModelYear.setText(mValues.get(position).modelyear);
-            holder.mCircle.setText(mValues.get(position).nickname.substring(0,1).toUpperCase());
+            holder.mCircle.setText(mValues.get(position).nickname.substring(0, 1).toUpperCase());
 
             //TODO: detay acilan kisim. Butona basınca buradan detay ekranını acıyor.
             holder.mDetail.setOnClickListener(new Button.OnClickListener() {
@@ -189,17 +187,15 @@ public class ItemListActivity extends AppCompatActivity {
             });
 
             holder.mDelete.setOnClickListener(new Button.OnClickListener() {
-                                                  @Override
-                                                  public void onClick(View v) {
-                                                      final Context mContext = v.getContext();
-                                                      DummyContent.deleteRow(holder.vehicleViewHolder.id,mContext);
-                                                      mValues.remove(position);
-                                                      notifyDataSetChanged();
-                                                      Toast.makeText(mContext, "Deleted", Toast.LENGTH_LONG).show();
-                                                  }
-                                              });
-
-
+                @Override
+                public void onClick(View v) {
+                    final Context mContext = v.getContext();
+                    DummyContent.deleteRow(holder.vehicleViewHolder.id, mContext);
+                    mValues.remove(position);
+                    notifyDataSetChanged();
+                    Toast.makeText(mContext, "Deleted", Toast.LENGTH_LONG).show();
+                }
+            });
 
 
         }
@@ -225,24 +221,21 @@ public class ItemListActivity extends AppCompatActivity {
                 mView = view;
                 mIdView = (TextView) view.findViewById(R.id.id);
                 mContentView = (TextView) view.findViewById(R.id.content);
-                mDelete =(Button)view.findViewById(R.id.optiondetail);
-                mModelYear = (TextView)view.findViewById(R.id.modelyearcontent);
-                mDetail = (Button)view.findViewById(R.id.option);
-                mNickname = (TextView)view.findViewById(R.id.nicknamelabel);
-                mCircle = (TextView)view.findViewById(R.id.circle);
+                mDelete = (Button) view.findViewById(R.id.optiondetail);
+                mModelYear = (TextView) view.findViewById(R.id.modelyearcontent);
+                mDetail = (Button) view.findViewById(R.id.option);
+                mNickname = (TextView) view.findViewById(R.id.nicknamelabel);
+                mCircle = (TextView) view.findViewById(R.id.circle);
                 setSettingsCircle();
             }
             // TODO : ItemListActivity içindeki circle Random renk ayarı
-            private void setSettingsCircle () {
+            private void setSettingsCircle() {
 
-            Random random = new Random();
-            int color = Color.argb(255, random.nextInt(256), random.nextInt(256), random.nextInt(256));
+                Random random = new Random();
+                int color = Color.argb(255, random.nextInt(256), random.nextInt(256), random.nextInt(256));
 
-                ((GradientDrawable)mCircle.getBackground()).setColor(color);
-        }
-
-
-
+                ((GradientDrawable) mCircle.getBackground()).setColor(color);
+            }
 
 
             @Override

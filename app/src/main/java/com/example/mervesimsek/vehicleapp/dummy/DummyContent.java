@@ -44,24 +44,17 @@ public class DummyContent {
         Database vehicle = new Database(currentContext);
         SQLiteDatabase db = vehicle.getReadableDatabase();
         Cursor cursor = db.query("vehicles",SELECT,null,null,null,null,null,null);
-
-       // vehicle.close();
-
-        //startManagingCursor(cursor);
         return(cursor);
     }
     public DummyContent() {
     }
 
-    private static void addItem(DummyItem brand) {
-        ITEMS.add(brand);
-        ITEM_MAP.put(brand.id, brand);
+    public static void searchVehicleList(Context currentContext,String filterParameter) {
+        Database vehicleDB = new Database(currentContext);
+        Cursor filterVehicleCursor = vehicleDB.searchRecord(vehicleDB,filterParameter);
+        DummyContent.createVehicleList(filterVehicleCursor);
     }
 
-    private static DummyItem createDummyItem(String index) {
-      //  return new DummyItem(String.valueOf(cursor), "Item " , makeDetails(cursor));
-        return new DummyItem("1" + index,  "Merve" + index, "Simsek" + index);
-    }
     public static void createVehicleList(Cursor cursor) {
         vehicleModelList.clear();
             while (cursor.moveToNext()) {
