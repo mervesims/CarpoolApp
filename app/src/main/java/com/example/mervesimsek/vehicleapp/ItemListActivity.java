@@ -1,13 +1,15 @@
 package com.example.mervesimsek.vehicleapp;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.support.design.widget.FloatingActionButton;
@@ -15,16 +17,20 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.example.mervesimsek.vehicleapp.dummy.DummyContent;
 
+import java.io.IOException;
 import java.util.List;
-import java.util.Random;
+
 
 /**
  * An activity representing a list of Items. This activity
@@ -190,13 +196,26 @@ public class ItemListActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     final Context mContext = v.getContext();
-                    DummyContent.deleteRow(holder.vehicleViewHolder.id, mContext);
-                    mValues.remove(position);
-                    notifyDataSetChanged();
-                    Toast.makeText(mContext, "Deleted", Toast.LENGTH_LONG).show();
+
+                    AlertDialog.Builder builder = new AlertDialog.Builder(ItemListActivity.this);
+                    builder
+                            .setTitle("Delete record")
+                            .setMessage("Are you sure?")
+                            .setIcon(R.drawable.alert)
+                            .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    DummyContent.deleteRow(holder.vehicleViewHolder.id, mContext);
+                                       mValues.remove(position);
+                                       notifyDataSetChanged();
+                                    Toast.makeText(ItemListActivity.this, "Deleted",
+                                            Toast.LENGTH_SHORT).show();
+                                }
+                            })
+                            .setNegativeButton("No", null)
+                            .show();
+
                 }
             });
-
 
         }
 
@@ -235,6 +254,7 @@ public class ItemListActivity extends AppCompatActivity {
 
 
 
+
             @Override
             public String toString() {
                 return super.toString() + " '" + mContentView.getText() + "'";
@@ -242,6 +262,20 @@ public class ItemListActivity extends AppCompatActivity {
         }
     }
 
+    // TODO : Ekranın başka bir yerine dokunarak klavye kapatma
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        View view = getCurrentFocus();
+        if (view != null && (ev.getAction() == MotionEvent.ACTION_UP || ev.getAction() == MotionEvent.ACTION_MOVE) && view instanceof EditText && !view.getClass().getName().startsWith("android.webkit.")) {
+            int scrcoords[] = new int[2];
+            view.getLocationOnScreen(scrcoords);
+            float x = ev.getRawX() + view.getLeft() - scrcoords[0];
+            float y = ev.getRawY() + view.getTop() - scrcoords[1];
+            if (x < view.getLeft() || x > view.getRight() || y < view.getTop() || y > view.getBottom())
+                ((InputMethodManager)this.getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow((this.getWindow().getDecorView().getApplicationWindowToken()), 0);
+        }
+        return super.dispatchTouchEvent(ev);
+    }
 
 }
 
