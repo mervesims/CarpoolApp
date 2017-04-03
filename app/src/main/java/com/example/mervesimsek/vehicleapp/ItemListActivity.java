@@ -196,7 +196,7 @@ public class ItemListActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     final Context mContext = v.getContext();
-
+                //TODO: Are you sure? Alert Dialog.
                     AlertDialog.Builder builder = new AlertDialog.Builder(ItemListActivity.this);
                     builder
                             .setTitle("Delete record")
