@@ -14,6 +14,7 @@ import android.text.InputFilter;
 import android.text.Spanned;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -94,80 +95,20 @@ public class AddCarActivity extends AppCompatActivity {
 
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fabsave);
+        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                // TODO : İlk harfin boşluk olamama durumu
-
-//                if (brand.getText().toString().contains("") && nickname.getText().toString().contains("") && modelyear.getText().toString().contains("")) {
-//                    if (brand.getText().toString().matches(" ")) {
-//                        brand.setError("No Spaces Allowed");
-//                    }
-//                    if (modelyear.getText().toString().matches(" ")) {
-//                        modelyear.setError("No Spaces Allowed");
-//                    }
-//                    if (nickname.getText().toString().matches(" ")) {
-//                        nickname.setError("No Spaces Allowed");
-//                    }
-//                }
-//                if (brand.getText().toString().substring(0,1) != " " && nickname.getText().toString().substring(0,1) != " " && modelyear.getText().toString().substring(0,1) != " ") {
-//                    try {
-//                        saveRecord(brand.getText().toString(),
-//                                model.getText().toString(),
-//                                type.getText().toString(),
-//                                modelyear.getText().toString(),
-//                                color.getText().toString(),
-//                                plate.getText().toString(),
-//                                nickname.getText().toString()
-//                        );
-//                        Cursor cursor = getRecord();
-//                        showRecord(cursor);
-//                    } finally {
-//                        vehicle.close();
-//                    }
-//                    Intent intent = new Intent(AddCarActivity.this, ItemListActivity.class);
-//                    startActivity(intent);
-//                } else {
-//                    final Context context = view.getContext();
-//                    Toast.makeText(context, "Empty spaces are available.", Toast.LENGTH_SHORT).show();
-//                    if (brand.getText().toString().substring(0,1) == " " ) {
-//                        brand.setError("Brand is required!");
-//                    }
-//                    if (nickname.getText().toString().substring(0,1) == " " ) {
-//                        nickname.setError("Nickname is required!");
-//                    }
-//                    if (modelyear.getText().toString().substring(0,1) == " " ) {
-//                        modelyear.setError("Model year is required!");
-//                    }
-//
-//                }
 
 
                 Integer brandLength = brand.getText().toString().length();
                 Integer nicknameLength = nickname.getText().toString().length();
                 Integer modelyearLength = modelyear.getText().toString().length();
-            //    Integer modelyearint = Integer.parseInt(modelyear.getText().toString());
                 String brandcontent = brand.getText().toString();
                 String nicknamecontent = nickname.getText().toString();
 
 
-                /*
-                * if ( modelyearLength == 0 && modelyear.getText().toString() == "" && (modelyearint < 1899 || modelyearint > 2018) && brandcontent.contains(" ") && nicknamecontent.contains(" "))  {
-                    final Context context = view.getContext();
 
-                    Toast.makeText(context, "Check please.", Toast.LENGTH_SHORT).show();
-
-                        brand.setError("Brand is required!");
-                        nickname.setError("Nickname is required!");
-                        modelyear.setError("Model year is required!");
-                        modelyear.setError("The year should be between 1900 and 2018!");
-                        brand.setError("Do not use spaces.");
-                        nickname.setError("Do not use spaces.");
-
-                } else {
-                *
-                * */
                 boolean isValid = true;
 
                 if (modelyearLength == 0) {
