@@ -22,15 +22,6 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <!--   <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="top|left"
-        android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@drawable/plusbutton"
-        app:layout_anchor="@+id/include"
-        app:layout_anchorGravity="bottom|right" /> -->
 
     <RelativeLayout
         android:background="@color/background"
