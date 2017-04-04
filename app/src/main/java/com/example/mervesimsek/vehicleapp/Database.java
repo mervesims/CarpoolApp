@@ -11,14 +11,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
- * Created by mnmlondon2 on 28/02/2017.
+ * Created by Merve Simsek on 28/02/2017.
  */
 
-public class Database extends SQLiteOpenHelper {
-
+public class Database extends SQLiteOpenHelper
+{
     private static final String DATABASE = "vehicle";
     private static final int VERSION = 1;
-
     private static final String TABLE_NAME = "vehicles";
     private static String BRAND_NAME = "brand";
     private static String ID = "id";
@@ -32,8 +31,6 @@ public class Database extends SQLiteOpenHelper {
     public Database(Context context) {
         super(context, DATABASE, null, VERSION);
     }
-
-
 
     @Override
     public void onCreate(SQLiteDatabase db) {
@@ -55,14 +52,16 @@ public class Database extends SQLiteOpenHelper {
 
     }
 
-
-    public void deleteRecord(SQLiteDatabase db,String id) { //TODO:id si belli olan row u silmek için
+    //TODO:id si belli olan row u silmek için
+    public void deleteRecord(SQLiteDatabase db,String id)
+    {
         db.delete(TABLE_NAME, ID + " = ?",new String[]{String.valueOf(id)});
         db.close();
     }
 
-    public void insertRecord(String brand_name, String model_name, String model_year, String type,String color_name, String plate, String nickname) {
-        //TODO:insertRecord methodu Database veri eklemek için
+    //TODO:insertRecord methodu Database veri eklemek için
+    public void insertRecord(String brand_name, String model_name, String model_year, String type,String color_name, String plate, String nickname)
+    {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(BRAND_NAME, brand_name);
@@ -74,23 +73,25 @@ public class Database extends SQLiteOpenHelper {
         values.put(NICKNAME, nickname);
 
         db.insert(TABLE_NAME, null, values);
-        db.close(); //TODO : // Database Bağlantısını kapattık*/
+        db.close(); //Database Bağlantısını kapattık
     }
 
-    public HashMap<String, String> detailRecord(int id){
-        /** TODO:Databaseden id si belli olan row u çekmek için
-        Bu methodda sadece tek row değerleri alınır.
-        HashMap bir çift boyutlu arraydir.anahtar-değer ikililerini bir arada tutmak için tasarlanmıştır.
-        map.put("x","300"); mesela burda anahtar x değeri 300.*/
-
+    /** TODO:Databaseden id si belli olan row u çekmek için
+     TODO:Bu methodda sadece tek row değerleri alınır.
+     TODO:HashMap bir çift boyutlu arraydir.anahtar-değer ikililerini bir arada tutmak için tasarlanmıştır.
+     TODO:map.put("x","300"); mesela burda anahtar x değeri 300.
+     */
+    public HashMap<String, String> detailRecord(int id)
+    {
         HashMap<String,String> record = new HashMap<String,String>();
         String selectQuery = "SELECT * FROM " + TABLE_NAME+ " WHERE id="+id;
 
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
-        // Move to first row
+
         cursor.moveToFirst();
-        if(cursor.getCount() > 0){
+        if(cursor.getCount() > 0)
+        {
             record.put(BRAND_NAME, cursor.getString(1));
             record.put(MODEL_NAME, cursor.getString(2));
             record.put(MODEL_YEAR, cursor.getString(3));
@@ -101,39 +102,42 @@ public class Database extends SQLiteOpenHelper {
         }
         cursor.close();
         db.close();
-        // return record
+
         return record;
     }
-    public ArrayList<HashMap<String, String>> records(){
-
-        /** TODO :Bu methodda ise tablodaki tüm değerleri alıyoruz
-        ** ArrayList adı üstünde Array lerin listelendiği bir Array.Burda hashmapleri listeleyeceğiz
-        ** Herbir satırı değer ve value ile hashmap a atıyoruz. Her bir satır 1 tane hashmap arrayı demek.
-        ** olusturdugumuz tüm hashmapleri ArrayList e atıp geri dönüyoruz(return). **/
-
+    /** TODO :Bu methodda ise tablodaki tüm değerleri alıyoruz
+     ** TODO: Burda hashmapleri listeleyeceğiz
+     ** TODO: Herbir satırı değer ve value ile hashmap a atıyoruz. Her bir satır 1 tane hashmap arrayı demek.
+     ** TODO: olusturdugumuz tüm hashmapleri ArrayList e atıp geri dönüyoruz
+     * **/
+    public ArrayList<HashMap<String, String>> records()
+    {
         SQLiteDatabase db = this.getReadableDatabase();
         String selectQuery = "SELECT * FROM " + TABLE_NAME;
         Cursor cursor = db.rawQuery(selectQuery, null);
         ArrayList<HashMap<String, String>> recordlist = new ArrayList<HashMap<String, String>>();
 
-
-        if (cursor.moveToFirst()) {
+        if (cursor.moveToFirst())
+        {
             do {
                 HashMap<String, String> map = new HashMap<String, String>();
                 for(int i=0; i<cursor.getColumnCount();i++)
-                {
-                    map.put(cursor.getColumnName(i), cursor.getString(i));
-                }
-
+                    {
+                        map.put(cursor.getColumnName(i), cursor.getString(i));
+                    }
                 recordlist.add(map);
-            } while (cursor.moveToNext());
+                }
+            while (cursor.moveToNext());
         }
         db.close();
         return recordlist;
     }
-    public void updateRecord(String brand_name, String model_name, String model_year, String type,String color_name, String plate, String nickname,int id) {
+
+    // TODO: Bu methodda ise var olan veriyi güncelliyoruz
+    public void updateRecord(String brand_name, String model_name, String model_year, String type,String color_name, String plate, String nickname,int id)
+    {
         SQLiteDatabase db = this.getWritableDatabase();
-        // TODO: Bu methodda ise var olan veriyi güncelliyoruz(update)
+
         ContentValues values = new ContentValues();
         values.put(ID, id);
         values.put(BRAND_NAME, brand_name);
@@ -144,21 +148,23 @@ public class Database extends SQLiteOpenHelper {
         values.put(PLATE, plate);
         values.put(NICKNAME, nickname);
 
-        // updating row
         db.update(TABLE_NAME, values, ID + " = ?",
                 new String[] { String.valueOf(id) });
     }
-    public Cursor searchRecord(Database vehicleDB,String filterParameter) {
+    //TODO: List ekranında kelime arama sql kodu
+    public Cursor searchRecord(Database vehicleDB,String filterParameter)
+    {
         String countQuery = "SELECT  * FROM " + TABLE_NAME + " WHERE " + this.NICKNAME + " LIKE '%" + filterParameter + "%'";
         SQLiteDatabase db = vehicleDB.getReadableDatabase();
         Cursor cursor = db.rawQuery(countQuery, null);
 
-
         return cursor;
     }
-    public int getRowCount() {
-        // TODO: Bu method bu uygulamada kullanılmıyor ama appsentence'ta lazım olacak.Tablodaki row sayısını geri döner.
-        //TODO:Login uygulamasında da kullanılabilir.
+
+    // TODO: Bu method bu uygulamada kullanılmıyor ama appsentence'ta lazım olacak.Tablodaki row sayısını geri döner.
+    //TODO:Login uygulamasında da kullanılabilir.
+    public int getRowCount()
+    {
         String countQuery = "SELECT  * FROM " + TABLE_NAME;
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(countQuery, null);
@@ -167,12 +173,13 @@ public class Database extends SQLiteOpenHelper {
         cursor.close();
         return rowCount;
     }
-    public void resetTables(){
-        // TODO: Tüm verileri siler. tabloyu resetler.
+    // TODO: Tüm verileri siler. tabloyu resetler.
+    public void resetTables()
+    {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_NAME, null, null);
         db.close();
-}
+    }
 
 }
 
