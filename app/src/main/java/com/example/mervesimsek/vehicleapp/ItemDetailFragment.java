@@ -20,15 +20,13 @@ import static com.example.mervesimsek.vehicleapp.R.id.container;
  * in two-pane mode (on tablets) or a {@link ItemDetailActivity}
  * on handsets.
  */
-public class ItemDetailFragment extends Fragment {
+public class ItemDetailFragment extends Fragment
+{
     /**
      * The fragment argument representing the item ID that this fragment
      * represents.
      */
     public static final String ARG_ITEM_ID = "item_id";
-
-
-
     /**
      * The dummy content this fragment is presenting.
      */
@@ -38,47 +36,46 @@ public class ItemDetailFragment extends Fragment {
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
      */
-    public ItemDetailFragment() {
-    }
+    public ItemDetailFragment() {}
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
 
         //TODO: burası list ekranından gonderilen model yada veri yapısını alıp ekrandaki textview üzerine bastıgımız kısımdır.
-        if (getArguments().containsKey("UniqueObjectName")) {
-
-
+        if (getArguments().containsKey("UniqueObjectName"))
+        {
             DummyContent.VehicleModel vehicleDetailModel = new DummyContent.VehicleModel();
             vehicleDetailModel = (DummyContent.VehicleModel) getArguments().getSerializable("UniqueObjectName");
             this.vehicleModel = vehicleDetailModel;
 
-
             Activity activity = this.getActivity();
             CollapsingToolbarLayout appBarLayout = (CollapsingToolbarLayout) activity.findViewById(R.id.toolbar_layout);
-            if (appBarLayout != null) {
+            if (appBarLayout != null)
+            {
                 appBarLayout.setTitle(vehicleModel.nickname);
             }
         }
     }
-    public void SetTextEdit (String valueText, Integer editTextXmlid, View rootView) {
 
+    public void SetTextEdit (String valueText, Integer editTextXmlid, View rootView)
+    {
         EditText editTextdetail = ((EditText) rootView.findViewById(editTextXmlid));
         editTextdetail.setText(valueText);
         editTextdetail.setFocusableInTouchMode(false);
         editTextdetail.setFocusable(false);
-       // editTextdetail.setTextColor(R.color.black_semi_transparent);
     }
 
     public static String vehicleid = "-1";
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
 
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+    {
         View rootView = inflater.inflate(R.layout.item_detail, container, false);
 
-        // Show the dummy content as text in a TextView.
-        if (vehicleModel != null) {
+        if (vehicleModel != null)
+        {
             //TODO: burası da detail ekranında textview içine set edilen baska bir yer.
             vehicleid = vehicleModel.id;
 
@@ -89,10 +86,7 @@ public class ItemDetailFragment extends Fragment {
            SetTextEdit(vehicleModel.color,R.id.item_detail5,rootView);
            SetTextEdit(vehicleModel.plate,R.id.item_detail6,rootView);
            SetTextEdit(vehicleModel.nickname,R.id.item_detail7,rootView);
-
         }
-
-
         return rootView;
     }
 }
