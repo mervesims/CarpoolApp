@@ -8,13 +8,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
 /**
- * Created by mnmlondon2 on 27/02/2017.
+ * Created by Merve Simsek on 27/02/2017.
  */
 
-public class SplashScreen extends AppCompatActivity{
+public class SplashScreen extends AppCompatActivity
+{
     final Context context =this;
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splashscreen);
 
@@ -22,21 +24,21 @@ public class SplashScreen extends AppCompatActivity{
         Typeface font = Typeface.createFromAsset(context.getAssets(),"fonts/gist.ttf");
         logosplash.setTypeface(font);
 
-
-        Thread thread = new Thread(){
+        Thread thread = new Thread()
+        {
             @Override
-            public void run() {
-                try {
+            public void run()
+            {
+                try
+                {
                     sleep(3000);
                     Intent intent = new Intent(getApplicationContext(),MainActivity.class);
                     startActivity(intent);
                     finish();
 
-                } catch (Exception e) {
-
                 }
+                catch (Exception e) {}
             }
-
         };
         thread.start();
     }
