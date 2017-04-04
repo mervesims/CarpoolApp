@@ -19,45 +19,45 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class AddCarActivity extends AppCompatActivity {
+public class AddCarActivity extends AppCompatActivity
+{
     EditText brand, model, type, modelyear, color, plate, nickname;
     private Database vehicle;
 
-
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_car);
+
         Toolbar toolbar2 = (Toolbar) findViewById(R.id.toolbar2);
         setSupportActionBar(toolbar2);
 
-        //previous işlemi buradan yapılmaktadır.
+        //TODO: Previous işlemi buradan yapılmaktadır.
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         toolbar2.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onBackPressed(); // Hangi sayfadan gelindiyse oraya geri
+                onBackPressed(); // Hangi sayfadan gelindiyse oraya geri döner
             }
         });
-
-
+            //TODO: Bir edittext'e girilebilecek maximum harf sayısı
              int maxLength = 4;
              InputFilter[] fArray = new InputFilter[1];
              fArray[0] = new InputFilter.LengthFilter(maxLength);
-
 
              int maxOtherLength = 20;
              InputFilter[] iArray = new InputFilter[1];
              iArray[0] = new InputFilter.LengthFilter(maxOtherLength);
 
-
+        //TODO:Edittextlerin oluşturulduğu yer
         vehicle = new Database(this);
 
         brand = (EditText) findViewById(R.id.brandedit);
         brand.setFilters(new InputFilter[]{emojifilter});
         brand.setFilters(iArray);
-
 
         model = (EditText) findViewById(R.id.modeledit);
         model.setFilters(new InputFilter[]{emojifilter});
@@ -83,48 +83,39 @@ public class AddCarActivity extends AppCompatActivity {
         nickname.setFilters(new InputFilter[]{emojifilter});
         nickname.setFilters(iArray);
 
-
-
-
-
-
-
-
-
-        //  final Bundle bundle = new Bundle();
-
-
+        //TODO: Save butonu kontrolleri
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fabsave);
-        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING);
+        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING); // Butonun klavyeyle beraber yükselmemesi için.
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-
-
+            public void onClick(View view)
+            {
                 Integer brandLength = brand.getText().toString().length();
                 Integer nicknameLength = nickname.getText().toString().length();
                 Integer modelyearLength = modelyear.getText().toString().length();
                 String brandcontent = brand.getText().toString();
                 String nicknamecontent = nickname.getText().toString();
 
-
-
                 boolean isValid = true;
 
-                if (modelyearLength == 0) {
+                if (modelyearLength == 0)
+                {
                     modelyear.setError("Model year is required!");
                     isValid = false;
                     return;
                 }
-                if (Integer.parseInt(modelyear.getText().toString()) < 1899 || Integer.parseInt(modelyear.getText().toString()) > 2018) {
+                if (Integer.parseInt(modelyear.getText().toString()) < 1899 || Integer.parseInt(modelyear.getText().toString()) > 2018)
+                {
                     modelyear.setError("The year should be between 1900 and 2018!");
                     isValid = false;
                 }
-                if (brandLength == 0 || brandcontent.substring(0,1).contains(" ")) {
+                if (brandLength == 0 || brandcontent.substring(0,1).contains(" "))
+                {
                     brand.setError("Brand is required!");
                     isValid = false;
                 }
-                if (nicknameLength == 0 || nicknamecontent.substring(0,1).contains(" ")) {
+                if (nicknameLength == 0 || nicknamecontent.substring(0,1).contains(" "))
+                {
                     nickname.setError("Nickname is required!");
                     isValid = false;
                 }
@@ -143,22 +134,22 @@ public class AddCarActivity extends AppCompatActivity {
                         );
                         Cursor cursor = getRecord();
                         showRecord(cursor);
-                    } finally {
+                         }
+                    finally
+                        {
                         vehicle.close();
-                    }
+                        }
                     Intent intent = new Intent(AddCarActivity.this, ItemListActivity.class);
                     startActivity(intent);
                 }
-
             }
-
-
         });
 
     }
 
-
-    private void saveRecord(String brand, String model, String type, String modelyear, String color, String plate, String nickname) {
+    //TODO: Kayıt methodu
+    private void saveRecord(String brand, String model, String type, String modelyear, String color, String plate, String nickname)
+    {
         SQLiteDatabase db = vehicle.getWritableDatabase();
         ContentValues data = new ContentValues();
         data.put("brand", brand);
@@ -171,20 +162,24 @@ public class AddCarActivity extends AppCompatActivity {
         db.insertOrThrow("vehicles", null, data);
     }
 
+    //TODO: Tüm veriyi çekmeyi sağlayan select işlemi
     private String[] SELECT = {"id,brand,model,type,modelyear,color,plate,nickname"};
 
-
-    private Cursor getRecord() {
+    private Cursor getRecord()
+    {
         SQLiteDatabase db = vehicle.getReadableDatabase();
         Cursor cursor = db.query("vehicles", SELECT, null, null, null, null, null, null);
         startManagingCursor(cursor);
         return (cursor);
     }
 
-    private void showRecord(Cursor cursor) {
+    //TODO:Veriyi ekranda görüntüleme işlemi
+    private void showRecord(Cursor cursor)
+    {
         StringBuilder builder = new StringBuilder("Vehicles: \n");
 
-        while (cursor.moveToNext()) {
+        while (cursor.moveToNext())
+        {
             long id = cursor.getLong(cursor.getColumnIndex("id"));
             String brand = cursor.getString(cursor.getColumnIndex("brand"));
             String model = cursor.getString(cursor.getColumnIndex("model"));
@@ -193,7 +188,6 @@ public class AddCarActivity extends AppCompatActivity {
             String color = cursor.getString(cursor.getColumnIndex("color"));
             String plate = cursor.getString(cursor.getColumnIndex("plate"));
             String nickname = cursor.getString(cursor.getColumnIndex("nickname"));
-
 
             builder.append(id).append("\n" + "Brand Name : ");
             builder.append(brand).append("\n" + "Model Name : ");
@@ -212,7 +206,11 @@ public class AddCarActivity extends AppCompatActivity {
     public boolean dispatchTouchEvent(MotionEvent ev)
     {
         View view = getCurrentFocus();
-        if (view != null && (ev.getAction() == MotionEvent.ACTION_UP || ev.getAction() == MotionEvent.ACTION_MOVE) && view instanceof EditText && !view.getClass().getName().startsWith("android.webkit.")) {
+        if (view != null &&
+                (ev.getAction() == MotionEvent.ACTION_UP || ev.getAction() == MotionEvent.ACTION_MOVE) &&
+                view instanceof EditText &&
+                !view.getClass().getName().startsWith("android.webkit."))
+        {
             int scrcoords[] = new int[2];
             view.getLocationOnScreen(scrcoords);
             float x = ev.getRawX() + view.getLeft() - scrcoords[0];
@@ -224,25 +222,22 @@ public class AddCarActivity extends AppCompatActivity {
     }
 
 
-    public static InputFilter emojifilter = new InputFilter() {
+    public static InputFilter emojifilter = new InputFilter()
+    {
         @Override
-        public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
-            for (int index = start; index < end; index++) {
+        public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend)
+        {
+            for (int index = start; index < end; index++)
+            {
                 int type = Character.getType(source.charAt(index));
-                if (type == Character.SURROGATE) {
+                if (type == Character.SURROGATE)
+                {
                     return "";
                 }
             }
             return null;
         }
     };
-
-
-
-
-
-
-
 }
 
 
