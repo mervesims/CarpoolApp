@@ -27,47 +27,40 @@ import com.example.mervesimsek.vehicleapp.dummy.DummyContent;
  * item details are presented side-by-side with a list of items
  * in a {@link ItemListActivity}.
  */
-public class ItemDetailActivity extends AppCompatActivity {
-
-    private EditText editText;
+public class ItemDetailActivity extends AppCompatActivity
+{
     EditText brand, model, type, modelyear, color, plate, nickname;
     private Database vehicle;
 
-    public void updateRecord(String id, String brand, String model, String type, String modelyear, String color, String plate, String nickname) {
+    public void updateRecord(String id, String brand, String model, String type, String modelyear, String color, String plate, String nickname)
+    {
         vehicle.updateRecord(brand,model,modelyear,type,color,plate,nickname, Integer.parseInt(id));
-
     }
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item_detail);
-
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.detail_toolbar);
         setSupportActionBar(toolbar);
 
-
         vehicle = new Database(this);
 
-
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fabedit);
-        fab.setOnClickListener(new View.OnClickListener() {
-
-
+        fab.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View view) {
-
-
+            public void onClick(View view)
+            {
                 int maxLength = 4;
                 InputFilter[] fArray = new InputFilter[1];
                 fArray[0] = new InputFilter.LengthFilter(maxLength);
 
-
                 int maxOtherLength = 20;
                 InputFilter[] iArray = new InputFilter[1];
                 iArray[0] = new InputFilter.LengthFilter(maxOtherLength);
-
-
 
                 brand =(EditText)findViewById(R.id.item_detail);
                 brand.setFocusable(true);
@@ -111,44 +104,47 @@ public class ItemDetailActivity extends AppCompatActivity {
                 nickname.setFocusableInTouchMode(true);
                 nickname.setFilters(new InputFilter[]{emojifilter});
                 nickname.setFilters(iArray);
-                }
+            }
         });
 
-
         FloatingActionButton fabeditsave = (FloatingActionButton)findViewById(R.id.fabeditsave);
-        fabeditsave.setOnClickListener(new View.OnClickListener() {
+        fabeditsave.setOnClickListener(new View.OnClickListener()
+        {
                                            @Override
-                                           public void onClick(View v) {
-
+                                           public void onClick(View v)
+                                           {
                                                Integer brandLength = brand.getText().toString().length();
                                                Integer nicknameLength = nickname.getText().toString().length();
                                                Integer modelyearLength = modelyear.getText().toString().length();
                                                String brandcontent = brand.getText().toString();
                                                String nicknamecontent = nickname.getText().toString();
 
-
                                                boolean isValid = true;
 
-                                               if (modelyearLength == 0) {
+                                               if (modelyearLength == 0)
+                                               {
                                                    modelyear.setError("Model year is required!");
                                                    return;
                                                }
-                                               if (Integer.parseInt(modelyear.getText().toString()) < 1899 || Integer.parseInt(modelyear.getText().toString()) > 2018) {
+                                               if (Integer.parseInt(modelyear.getText().toString()) < 1899 || Integer.parseInt(modelyear.getText().toString()) > 2018)
+                                               {
                                                    modelyear.setError("The year should be between 1900 and 2018!");
                                                    isValid = false;
                                                }
-                                               if (brandLength == 0 || brandcontent.substring(0,1).contains(" ")) {
+                                               if (brandLength == 0 || brandcontent.substring(0,1).contains(" "))
+                                               {
                                                    brand.setError("Brand is required!");
                                                    isValid = false;
                                                }
-                                               if (nicknameLength == 0 || nicknamecontent.substring(0,1).contains(" ")) {
+                                               if (nicknameLength == 0 || nicknamecontent.substring(0,1).contains(" "))
+                                               {
                                                    nickname.setError("Nickname is required!");
                                                    isValid = false;
                                                }
 
-
                                                if (isValid)
                                                {
+                                                   // TODO: Parametreleri methoda bagliyoruz.
                                                    updateRecord(
                                                        ItemDetailFragment.vehicleid,
                                                        brand.getText().toString(),
@@ -158,20 +154,20 @@ public class ItemDetailActivity extends AppCompatActivity {
                                                        color.getText().toString(),
                                                        plate.getText().toString(),
                                                        nickname.getText().toString());
-                                            // TODO: Parametreleri methoda bagliyoruz.
-                           Intent in = new Intent(ItemDetailActivity.this,ItemListActivity.class);
-                                               startActivity(in);
+
+                                                   Intent in = new Intent(ItemDetailActivity.this,ItemListActivity.class);
+                                                   startActivity(in);
+                                               }
+
+
+
                                            }
-
-
-
-                                       }
         });
-
 
         // Show the Up button in the action bar.
         ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
+        if (actionBar != null)
+        {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
 
@@ -184,15 +180,13 @@ public class ItemDetailActivity extends AppCompatActivity {
         //
         // http://developer.android.com/guide/components/fragments.html
         //
-        if (savedInstanceState == null) {
+        if (savedInstanceState == null)
+        {
             // Create the detail fragment and add it to the activity
             // using a fragment transaction.
-
-
             //TODO: diger ekrandan gonderilen modeli ya da veri yapısını buradan okuyoruz.
             Bundle vehicleBundle = new Bundle();
             vehicleBundle = getIntent().getExtras();
-
 
             ItemDetailFragment fragment = new ItemDetailFragment();
             fragment.setArguments(vehicleBundle);
@@ -203,38 +197,47 @@ public class ItemDetailActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
         int id = item.getItemId();
-        if (id == android.R.id.home) {
+        if (id == android.R.id.home)
+        {
             navigateUpTo(new Intent(this, ItemListActivity.class));
             return true;
-
         }
         return super.onOptionsItemSelected(item);
-
     }
 
     // TODO : Ekranın başka bir yerine dokunarak klavye kapatma
     @Override
-    public boolean dispatchTouchEvent(MotionEvent ev) {
+    public boolean dispatchTouchEvent(MotionEvent ev)
+    {
         View view = getCurrentFocus();
-        if (view != null && (ev.getAction() == MotionEvent.ACTION_UP || ev.getAction() == MotionEvent.ACTION_MOVE) && view instanceof EditText && !view.getClass().getName().startsWith("android.webkit.")) {
+        if (view != null &&
+                (ev.getAction() == MotionEvent.ACTION_UP || ev.getAction() == MotionEvent.ACTION_MOVE) &&
+                view instanceof EditText &&
+                !view.getClass().getName().startsWith("android.webkit."))
+        {
             int scrcoords[] = new int[2];
             view.getLocationOnScreen(scrcoords);
             float x = ev.getRawX() + view.getLeft() - scrcoords[0];
             float y = ev.getRawY() + view.getTop() - scrcoords[1];
             if (x < view.getLeft() || x > view.getRight() || y < view.getTop() || y > view.getBottom())
-                ((InputMethodManager)this.getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow((this.getWindow().getDecorView().getApplicationWindowToken()), 0);
+                ((InputMethodManager) this.getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow((this.getWindow().getDecorView().getApplicationWindowToken()), 0);
         }
         return super.dispatchTouchEvent(ev);
     }
 
-    public static InputFilter emojifilter = new InputFilter() {
+    public static InputFilter emojifilter = new InputFilter()
+    {
         @Override
-        public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
-            for (int index = start; index < end; index++) {
+        public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend)
+        {
+            for (int index = start; index < end; index++)
+            {
                 int type = Character.getType(source.charAt(index));
-                if (type == Character.SURROGATE) {
+                if (type == Character.SURROGATE)
+                {
                     return "";
                 }
             }
