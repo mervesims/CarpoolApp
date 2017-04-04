@@ -1,4 +1,4 @@
-package com.example.mervesimsek.vehicleapp;
+package com.example.mervesimsek.vehicleapp.controller;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -17,12 +16,14 @@ import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
-import android.widget.Toast;
 
-public class AddCarActivity extends AppCompatActivity
+import com.example.mervesimsek.vehicleapp.dal.DatabaseService;
+import com.example.mervesimsek.vehicleapp.R;
+
+public class VehicleAddController extends AppCompatActivity
 {
     EditText brand, model, type, modelyear, color, plate, nickname;
-    private Database vehicle;
+    private DatabaseService vehicle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -43,17 +44,17 @@ public class AddCarActivity extends AppCompatActivity
                 onBackPressed(); // Hangi sayfadan gelindiyse oraya geri döner
             }
         });
-            //TODO: Bir edittext'e girilebilecek maximum harf sayısı
-             int maxLength = 4;
-             InputFilter[] fArray = new InputFilter[1];
-             fArray[0] = new InputFilter.LengthFilter(maxLength);
+        //TODO: Bir edittext'e girilebilecek maximum harf sayısı
+        int maxLength = 4;
+        InputFilter[] fArray = new InputFilter[1];
+        fArray[0] = new InputFilter.LengthFilter(maxLength);
 
-             int maxOtherLength = 20;
-             InputFilter[] iArray = new InputFilter[1];
-             iArray[0] = new InputFilter.LengthFilter(maxOtherLength);
+        int maxOtherLength = 20;
+        InputFilter[] iArray = new InputFilter[1];
+        iArray[0] = new InputFilter.LengthFilter(maxOtherLength);
 
         //TODO:Edittextlerin oluşturulduğu yer
-        vehicle = new Database(this);
+        vehicle = new DatabaseService(this);
 
         brand = (EditText) findViewById(R.id.brandedit);
         brand.setFilters(new InputFilter[]{emojifilter});
@@ -134,12 +135,12 @@ public class AddCarActivity extends AppCompatActivity
                         );
                         Cursor cursor = getRecord();
                         showRecord(cursor);
-                         }
+                    }
                     finally
-                        {
+                    {
                         vehicle.close();
-                        }
-                    Intent intent = new Intent(AddCarActivity.this, ItemListActivity.class);
+                    }
+                    Intent intent = new Intent(VehicleAddController.this, VehicleListController.class);
                     startActivity(intent);
                 }
             }

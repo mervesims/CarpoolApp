@@ -1,4 +1,4 @@
-package com.example.mervesimsek.vehicleapp;
+package com.example.mervesimsek.vehicleapp.controller;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -26,7 +26,10 @@ import android.widget.EditText;
 import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.example.mervesimsek.vehicleapp.dummy.DummyContent;
+
+import com.example.mervesimsek.vehicleapp.dal.VehicleDAL;
+import com.example.mervesimsek.vehicleapp.model.VehicleModel;
+import com.example.mervesimsek.vehicleapp.R;
 
 import java.util.List;
 
@@ -35,11 +38,11 @@ import java.util.List;
  * An activity representing a list of Items. This activity
  * has different presentations for handset and tablet-size devices. On
  * handsets, the activity presents a list of items, which when touched,
- * lead to a {@link ItemDetailActivity} representing
+ * lead to a {@link VehicleListController} representing
  * item details. On tablets, the activity presents the list of items and
  * item details side-by-side using two vertical panes.
  */
-public class ItemListActivity extends AppCompatActivity
+public class VehicleListController extends AppCompatActivity
 {
     /**
      * Whether or not the activity is in two-pane mode, i.e. running on a tablet
@@ -79,7 +82,7 @@ public class ItemListActivity extends AppCompatActivity
             @Override
             public void onClick(View view)
             {
-                Intent intent = new Intent(ItemListActivity.this, AddCarActivity.class);
+                Intent intent = new Intent(VehicleListController.this, VehicleAddController.class);
                 startActivity(intent);
             }
         });
@@ -88,10 +91,10 @@ public class ItemListActivity extends AppCompatActivity
         assert this.recyclerView != null;
 
         //TODO: veritabanı ile baglantı kuruldu ve select sorgusu calıstırıldı.
-        Cursor vehicleDataFromDB = DummyContent.setupVehicleDatabase(this.currentContext);
+        Cursor vehicleDataFromDB = VehicleDAL.setupVehicleDatabase(this.currentContext);
 
         //TODO: olusturulan sorgu sonucuna gore Vehicle tipinde bir list olusturuldu.
-        DummyContent.createVehicleList(vehicleDataFromDB);
+        VehicleDAL.createVehicleList(vehicleDataFromDB);
         this.LoadDataSourceRecyclerView();
 
         if (findViewById(R.id.item_detail_container) != null)
@@ -116,7 +119,7 @@ public class ItemListActivity extends AppCompatActivity
             @Override
             public boolean onQueryTextChange(String query)
             {
-                DummyContent.searchVehicleList(currentContext,query);
+                VehicleDAL.searchVehicleList(currentContext,query);
                 LoadDataSourceRecyclerView();
 
                 return true;
@@ -130,7 +133,7 @@ public class ItemListActivity extends AppCompatActivity
 
     private void setupRecyclerView(@NonNull RecyclerView recyclerView)
     {
-        recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(DummyContent.vehicleModelList));
+        recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(VehicleModel.vehicleModelList));
     }
 
     public void LoadDataSourceRecyclerView()
@@ -141,9 +144,9 @@ public class ItemListActivity extends AppCompatActivity
     public class SimpleItemRecyclerViewAdapter
             extends RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder>
     {
-        private final List<DummyContent.VehicleModel> mValues;
+        private final List<VehicleModel> mValues;
 
-        public SimpleItemRecyclerViewAdapter(List<DummyContent.VehicleModel> items)
+        public SimpleItemRecyclerViewAdapter(List<VehicleModel> items)
         {
             mValues = items;
         }
@@ -173,8 +176,8 @@ public class ItemListActivity extends AppCompatActivity
                     if (mTwoPane)
                     {
                         Bundle arguments = new Bundle();
-                        arguments.putString(ItemDetailFragment.ARG_ITEM_ID, holder.vehicleViewHolder.brand);
-                        ItemDetailFragment fragment = new ItemDetailFragment();
+                        arguments.putString(VehicleDetailFragmentController.ARG_ITEM_ID, holder.vehicleViewHolder.brand);
+                        VehicleDetailFragmentController fragment = new VehicleDetailFragmentController();
                         fragment.setArguments(arguments);
                         getSupportFragmentManager().beginTransaction()
                                 .replace(R.id.item_detail_container, fragment)
@@ -183,7 +186,7 @@ public class ItemListActivity extends AppCompatActivity
                     else
                     {
                         Context context = v.getContext();
-                        Intent intent = new Intent(context, ItemDetailActivity.class);
+                        Intent intent = new Intent(context, VehicleDetailActivityController.class);
 
                         // burada cagirilan ekrana parametre geciriyor. Bir model yaptık ve modeli diger ekranda kullanacagız demektir bu. list ve detail gibi dusunebiliriz.
                         //diger ekrana veri gondermek icin ekranlar arasi iletisimde java bundle yapisini kullandigi icin bunu tanimliyoruz.
@@ -207,8 +210,8 @@ public class ItemListActivity extends AppCompatActivity
                 public void onClick(View v)
                 {
                     final Context mContext = v.getContext();
-                //TODO: Are you sure? Alert Dialog.
-                    AlertDialog.Builder builder = new AlertDialog.Builder(ItemListActivity.this);
+                    //TODO: Are you sure? Alert Dialog.
+                    AlertDialog.Builder builder = new AlertDialog.Builder(VehicleListController.this);
                     builder.setTitle("Delete record")
                             .setMessage("Are you sure?")
                             .setIcon(R.drawable.alert)
@@ -216,11 +219,11 @@ public class ItemListActivity extends AppCompatActivity
                             {
                                 public void onClick(DialogInterface dialog, int which)
                                 {
-                                    DummyContent.deleteRow(holder.vehicleViewHolder.id, mContext);
-                                       mValues.remove(position);
-                                       notifyDataSetChanged();
+                                    VehicleDAL.deleteRow(holder.vehicleViewHolder.id, mContext);
+                                    mValues.remove(position);
+                                    notifyDataSetChanged();
 
-                                    Toast.makeText(ItemListActivity.this, "Deleted",
+                                    Toast.makeText(VehicleListController.this, "Deleted",
                                             Toast.LENGTH_SHORT).show();
                                 }
                             })
@@ -245,7 +248,7 @@ public class ItemListActivity extends AppCompatActivity
             public final Button mDetail;
             public final TextView mNickname;
             public final TextView mCircle;
-            public DummyContent.VehicleModel vehicleViewHolder;
+            public VehicleModel vehicleViewHolder;
 
 
             public ViewHolder(View view)
@@ -259,7 +262,7 @@ public class ItemListActivity extends AppCompatActivity
                 mDetail = (Button) view.findViewById(R.id.option);
                 mNickname = (TextView) view.findViewById(R.id.nicknamelabel);
                 mCircle = (TextView) view.findViewById(R.id.circle);
-                // TODO : ItemListActivity içindeki circle Random renk ayarı
+                // TODO : VehicleListController içindeki circle Random renk ayarı
                 if (vehicleViewHolder != null)
                 {((GradientDrawable) mCircle.getBackground()).setColor(vehicleViewHolder.nicknameColor);}
             }

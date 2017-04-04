@@ -1,19 +1,12 @@
-package com.example.mervesimsek.vehicleapp;
-
-
-
-import com.getbase.floatingactionbutton.FloatingActionButton;
-
+package com.example.mervesimsek.vehicleapp.controller;
 
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
-
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.OvalShape;
 import android.net.Uri;
 import android.os.Bundle;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -22,7 +15,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
+
+import com.example.mervesimsek.vehicleapp.R;
+import com.getbase.floatingactionbutton.FloatingActionButton;
+
+
 
 /**
  * Kullanıcının splash screendn sonra karşısına çıkacak ilk ekrandır.
@@ -30,7 +29,7 @@ import android.widget.TextView;
  */
 
 
-public class MainActivity extends AppCompatActivity
+public class MainController extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener
 {
     final Context context = this;
@@ -48,27 +47,27 @@ public class MainActivity extends AppCompatActivity
         Typeface font = Typeface.createFromAsset(context.getAssets(), "fonts/gist.ttf");
         logo.setTypeface(font);
 
-        //TODO :Sirali floating action button yaratma.
+        //Sirali floating action button yaratma.
         ShapeDrawable drawable = new ShapeDrawable(new OvalShape());
         drawable.getPaint().setColor(getResources().getColor(R.color.buttonpressed2));
-            final FloatingActionButton actionA = (FloatingActionButton) findViewById(R.id.action_a);
-            actionA.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent intcars = new Intent(MainActivity.this, ItemListActivity.class);
-                    startActivity(intcars);
-                }
-            });
-            final FloatingActionButton actionB = (FloatingActionButton) findViewById(R.id.action_b);
-            actionB.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent intgo = new Intent(MainActivity.this, AddCarActivity.class);
-                    startActivity(intgo);
-                }
-            });
+        final FloatingActionButton actionA = (FloatingActionButton) findViewById(R.id.action_a);
+        actionA.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intcars = new Intent(MainController.this, VehicleListController.class);
+                startActivity(intcars);
+            }
+        });
+        final FloatingActionButton actionB = (FloatingActionButton) findViewById(R.id.action_b);
+        actionB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intgo = new Intent(MainController.this, VehicleAddController.class);
+                startActivity(intgo);
+            }
+        });
 
-        //TODO : Ekranın herhangi bir yerine dokunulduğunda drawer kapatma
+        //Ekranın herhangi bir yerine dokunulduğunda drawer kapatma
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
@@ -79,7 +78,7 @@ public class MainActivity extends AppCompatActivity
 
     }
 
-    //TODO : Navigation Drawer Kapatma
+    //Navigation Drawer Kapatma
     @Override
     public void onBackPressed()
     {
@@ -100,7 +99,7 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-    //TODO : Setting menüsü yaratma
+    //Setting menüsü yaratma
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {
@@ -113,7 +112,7 @@ public class MainActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
-    //TODO: Navigation menüye tıklandığında yapılacak işlemler ve içerik
+    //Navigation menüye tıklandığında yapılacak işlemler ve içerik
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item)
@@ -122,17 +121,17 @@ public class MainActivity extends AppCompatActivity
 
         if(id == R.id.nav_main)
         {
-            Intent intentmain = new Intent(MainActivity.this, MainActivity.class);
+            Intent intentmain = new Intent(MainController.this, MainController.class);
             startActivity(intentmain);
         }
         else if (id == R.id.nav_car)
         {
-            Intent intentitem = new Intent(MainActivity.this, ItemListActivity.class);
+            Intent intentitem = new Intent(MainController.this, VehicleListController.class);
             startActivity(intentitem);
         }
         else if (id == R.id.nav_add)
         {
-            Intent intentadd = new Intent(MainActivity.this,AddCarActivity.class);
+            Intent intentadd = new Intent(MainController.this,VehicleAddController.class);
             startActivity(intentadd);
         }
         else if (id == R.id.nav_aboutappsims)

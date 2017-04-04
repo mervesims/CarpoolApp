@@ -1,41 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.mervesimsek.vehicleapp">
-
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.example.mervesimsek.vehicleapp">
     <application
         android:allowBackup="true"
         android:icon="@drawable/carpoollogo"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".SplashScreen">
+        <activity android:name=".controller.SplashController">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
-            android:name=".MainActivity"
+            android:name=".controller.MainController"
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".AddCarActivity"
+            android:name=".controller.VehicleAddController"
             android:label="@string/title_activity_add_car"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ItemListActivity"
+            android:name=".controller.VehicleListController"
             android:label="@string/title_item_list"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
-            android:name=".ItemDetailActivity"
+            android:name=".controller.VehicleDetailActivityController"
             android:label="@string/title_item_detail"
             android:parentActivityName=".ItemListActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.mervesimsek.vehicleapp.ItemListActivity" />
+                android:value=".controller.VehicleListController" />
         </activity>
     </application>
+
 
 </manifest>

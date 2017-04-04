@@ -1,4 +1,4 @@
-package com.example.mervesimsek.vehicleapp;
+package com.example.mervesimsek.vehicleapp.controller;
 
 import android.content.Context;
 import android.content.Intent;
@@ -6,12 +6,13 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
+import com.example.mervesimsek.vehicleapp.R;
 
 /**
  * Created by Merve Simsek on 27/02/2017.
  */
 
-public class SplashScreen extends AppCompatActivity
+public class SplashController extends AppCompatActivity
 {
     final Context context =this;
     @Override
@@ -32,12 +33,14 @@ public class SplashScreen extends AppCompatActivity
                 try
                 {
                     sleep(3000);
-                    Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                    Intent intent = new Intent(getApplicationContext(),MainController.class);
                     startActivity(intent);
                     finish();
 
                 }
-                catch (Exception e) {}
+                catch (Exception e) {
+                    String akingundogdu = "";
+                }
             }
         };
         thread.start();
