@@ -1,49 +1,36 @@
 package com.example.mervesimsek.vehicleapp.controller;
 
 import android.content.ContentValues;
-import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.text.InputFilter;
 import android.text.Spanned;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
+import com.example.mervesimsek.vehicleapp.common.BaseController;
+import com.example.mervesimsek.vehicleapp.common.ConstraintStrings;
 import com.example.mervesimsek.vehicleapp.dal.DatabaseService;
 import com.example.mervesimsek.vehicleapp.R;
 
-public class VehicleAddController extends AppCompatActivity
+public class VehicleAddController extends BaseController
 {
     EditText brand, model, type, modelyear, color, plate, nickname;
+
+
     private DatabaseService vehicle;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_car);
+    protected void customOnCreate(@Nullable Bundle savedInstanceState, int layoutResID, int toolbarResID) {
+        super.customOnCreate(savedInstanceState, R.layout.activity_add_car, R.id.toolbar2);
 
-        Toolbar toolbar2 = (Toolbar) findViewById(R.id.toolbar2);
-        setSupportActionBar(toolbar2);
 
-        //TODO: Previous işlemi buradan yapılmaktadır.
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        toolbar2.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed(); // Hangi sayfadan gelindiyse oraya geri döner
-            }
-        });
         //TODO: Bir edittext'e girilebilecek maximum harf sayısı
         int maxLength = 4;
         InputFilter[] fArray = new InputFilter[1];
@@ -84,7 +71,8 @@ public class VehicleAddController extends AppCompatActivity
         nickname.setFilters(new InputFilter[]{emojifilter});
         nickname.setFilters(iArray);
 
-        //TODO: Save butonu kontrolleri
+
+        // Save butonu kontrolleri
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fabsave);
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING); // Butonun klavyeyle beraber yükselmemesi için.
         fab.setOnClickListener(new View.OnClickListener() {
@@ -145,8 +133,9 @@ public class VehicleAddController extends AppCompatActivity
                 }
             }
         });
-
     }
+
+
 
     //TODO: Kayıt methodu
     private void saveRecord(String brand, String model, String type, String modelyear, String color, String plate, String nickname)
@@ -202,25 +191,8 @@ public class VehicleAddController extends AppCompatActivity
 
     }
 
-    // TODO : Ekranın başka bir yerine dokunarak klavye kapatma
-    @Override
-    public boolean dispatchTouchEvent(MotionEvent ev)
-    {
-        View view = getCurrentFocus();
-        if (view != null &&
-                (ev.getAction() == MotionEvent.ACTION_UP || ev.getAction() == MotionEvent.ACTION_MOVE) &&
-                view instanceof EditText &&
-                !view.getClass().getName().startsWith("android.webkit."))
-        {
-            int scrcoords[] = new int[2];
-            view.getLocationOnScreen(scrcoords);
-            float x = ev.getRawX() + view.getLeft() - scrcoords[0];
-            float y = ev.getRawY() + view.getTop() - scrcoords[1];
-            if (x < view.getLeft() || x > view.getRight() || y < view.getTop() || y > view.getBottom())
-                ((InputMethodManager) this.getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow((this.getWindow().getDecorView().getApplicationWindowToken()), 0);
-        }
-        return super.dispatchTouchEvent(ev);
-    }
+
+
 
 
     public static InputFilter emojifilter = new InputFilter()
@@ -239,6 +211,7 @@ public class VehicleAddController extends AppCompatActivity
             return null;
         }
     };
+
 }
 
 

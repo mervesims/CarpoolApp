@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 import com.example.mervesimsek.vehicleapp.R;
+import com.example.mervesimsek.vehicleapp.common.BaseController;
 
 /**
  * Created by Merve Simsek on 27/02/2017.
@@ -14,7 +15,7 @@ import com.example.mervesimsek.vehicleapp.R;
 
 public class SplashController extends AppCompatActivity
 {
-    final Context context =this;
+    final Context context = this;
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
@@ -39,7 +40,7 @@ public class SplashController extends AppCompatActivity
 
                 }
                 catch (Exception e) {
-                    String akingundogdu = "";
+                    String a = "";
                 }
             }
         };

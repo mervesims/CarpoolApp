@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     xmlns:fab="http://schemas.android.com/apk/res-auto"
     android:fitsSystemWindows="true"
-    tools:context="com.example.mervesimsek.vehicleapp.MainActivity">
+    tools:context="com.example.mervesimsek.vehicleapp.controller.MainController">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"

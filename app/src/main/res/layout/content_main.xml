@@ -30,7 +30,7 @@
 
 
     <TextView
-        android:text="Carpool"
+        android:text="@string/app_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/logo"
@@ -40,7 +40,7 @@
         android:layout_centerHorizontal="true" />
 
     <TextView
-        android:text="   Do you want to know where your vehicle is from where you are at anytime?"
+        android:text="@string/maincontent2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/explain2"
@@ -50,7 +50,7 @@
         android:gravity="center"/>
 
     <TextView
-        android:text="   Carpool is designed to make your vehicle tracking easier."
+        android:text="@string/maincontent1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/explain"

@@ -10,4 +10,36 @@
     <string name="title_activity_add_car">Add New Car</string>
     <string name="title_item_list">Car List</string>
     <string name="title_item_detail">Car Detail</string>
+
+
+    <string name="brandname">Brand Of Vehicle   </string>
+    <string name="brandhint">Enter Vehicle</string>
+    <string name="modelname">Model Of Vehicle</string>
+    <string name="modelhint">Enter Model</string>
+    <string name="typename">Type Of Vehicle</string>
+    <string name="typehint">Enter Type</string>
+    <string name="modelyear">Model Year</string>
+    <string name="modelyearhint">Enter Model Year</string>
+    <string name="colorname">Color Of Vehicle</string>
+    <string name="colorhint">Enter Color</string>
+    <string name="platename">Plate Of Vehicle</string>
+    <string name="platehint">Enter Plate</string>
+    <string name="nickname">Nickname</string>
+    <string name="nicknamehint">Enter Nickname</string>
+
+    <string name="branddetailname">Brand Name</string>
+    <string name="modeldetailname">Model Name</string>
+    <string name="typedetailname">Type Name</string>
+    <string name="colordetailname">Color Name</string>
+    <string name="platedetailname">Plate Name</string>>
+    <string name="nicknamedetail">Nickname</string>
+
+    <string name="maincontent1">Carpool is designed to make your vehicle tracking easier.</string>
+    <string name="maincontent2">Do you want to know where your vehicle is from where you are at anytime?</string>
+
+    <string name="itemdelete">DELETE</string>
+    <string name="itemdetail">DETAIL</string>
+    <string name="cardcontentbrandname">Brand Name : </string>
+    <string name="cardcontentmodelyear">Model Year : </string>
+
 </resources>

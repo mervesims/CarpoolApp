@@ -7,6 +7,7 @@ import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.OvalShape;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -19,6 +20,8 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.mervesimsek.vehicleapp.R;
+import com.example.mervesimsek.vehicleapp.common.BaseController;
+import com.example.mervesimsek.vehicleapp.common.ConstraintStrings;
 import com.getbase.floatingactionbutton.FloatingActionButton;
 
 
@@ -29,19 +32,14 @@ import com.getbase.floatingactionbutton.FloatingActionButton;
  */
 
 
-public class MainController extends AppCompatActivity
+public class MainController extends BaseController
         implements NavigationView.OnNavigationItemSelectedListener
 {
     final Context context = this;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+    protected void customOnCreate(@Nullable Bundle savedInstanceState, int layoutResID, int toolbarResID) {
+        super.customOnCreate(savedInstanceState, R.layout.activity_main,R.id.toolbar);
 
         TextView logo = (TextView) findViewById(R.id.logo);
         Typeface font = Typeface.createFromAsset(context.getAssets(), "fonts/gist.ttf");
@@ -136,24 +134,24 @@ public class MainController extends AppCompatActivity
         }
         else if (id == R.id.nav_aboutappsims)
         {
-            Intent browser = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.appsims.com"));
+            Intent browser = new Intent(Intent.ACTION_VIEW, Uri.parse(ConstraintStrings.AppSimsWebSiteURL));
             startActivity(browser);
         }
         else if (id == R.id.nav_share)
         {
-            String message = " Carpool App ";
+            String message = ConstraintStrings.ShareMessage;
             Intent share = new Intent(Intent.ACTION_SEND);
             share.setType("text/plain");
             share.putExtra(Intent.EXTRA_TEXT, message);
-            startActivity(Intent.createChooser(share, "Carpool"));
+            startActivity(Intent.createChooser(share, ConstraintStrings.AppName));
         }
         else if (id == R.id.nav_send)
         {
-            String message = " Carpool App ";
+            String message = ConstraintStrings.ShareMessage;
             Intent share = new Intent(Intent.ACTION_SEND);
             share.setType("text/plain");
             share.putExtra(Intent.EXTRA_TEXT, message);
-            startActivity(Intent.createChooser(share, "Carpool"));
+            startActivity(Intent.createChooser(share, ConstraintStrings.AppName));
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

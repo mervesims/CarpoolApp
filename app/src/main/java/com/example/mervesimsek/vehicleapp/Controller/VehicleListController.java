@@ -7,6 +7,7 @@ import android.database.Cursor;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
@@ -27,6 +28,9 @@ import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.mervesimsek.vehicleapp.common.BaseController;
+import com.example.mervesimsek.vehicleapp.common.ConstraintStrings;
+import com.example.mervesimsek.vehicleapp.dal.DatabaseService;
 import com.example.mervesimsek.vehicleapp.dal.VehicleDAL;
 import com.example.mervesimsek.vehicleapp.model.VehicleModel;
 import com.example.mervesimsek.vehicleapp.R;
@@ -42,7 +46,7 @@ import java.util.List;
  * item details. On tablets, the activity presents the list of items and
  * item details side-by-side using two vertical panes.
  */
-public class VehicleListController extends AppCompatActivity
+public class VehicleListController extends BaseController
 {
     /**
      * Whether or not the activity is in two-pane mode, i.e. running on a tablet
@@ -52,28 +56,12 @@ public class VehicleListController extends AppCompatActivity
 
     SearchView searchView;
     RecyclerView recyclerView;
-    Context currentContext;
+
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_item_list);
-        this.currentContext = this;
+    protected void customOnCreate(@Nullable Bundle savedInstanceState, int layoutResID, int toolbarResID) {
+        super.customOnCreate(savedInstanceState, R.layout.activity_item_list, R.id.toolbar);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
-            }
-        });
-        toolbar.setTitle(getTitle());
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fabnew);
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING);
@@ -90,11 +78,11 @@ public class VehicleListController extends AppCompatActivity
         this.recyclerView = (RecyclerView) findViewById(R.id.item_list);
         assert this.recyclerView != null;
 
-        //TODO: veritabanı ile baglantı kuruldu ve select sorgusu calıstırıldı.
+        //veritabanı ile baglantı kuruldu ve select sorgusu calıstırıldı.
         Cursor vehicleDataFromDB = VehicleDAL.setupVehicleDatabase(this.currentContext);
 
-        //TODO: olusturulan sorgu sonucuna gore Vehicle tipinde bir list olusturuldu.
-        VehicleDAL.createVehicleList(vehicleDataFromDB);
+        // olusturulan sorgu sonucuna gore Vehicle tipinde bir list olusturuldu.
+        DatabaseService.vehicleList(vehicleDataFromDB);
         this.LoadDataSourceRecyclerView();
 
         if (findViewById(R.id.item_detail_container) != null)
@@ -105,7 +93,7 @@ public class VehicleListController extends AppCompatActivity
 
 
     /**
-     * TODO: Search işlemleri
+     * Search işlemleri
      */
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
@@ -121,7 +109,6 @@ public class VehicleListController extends AppCompatActivity
             {
                 VehicleDAL.searchVehicleList(currentContext,query);
                 LoadDataSourceRecyclerView();
-
                 return true;
             }
             public boolean onQueryTextSubmit(String query) {
@@ -133,7 +120,7 @@ public class VehicleListController extends AppCompatActivity
 
     private void setupRecyclerView(@NonNull RecyclerView recyclerView)
     {
-        recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(VehicleModel.vehicleModelList));
+        recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(VehicleDAL.vehicleModelList));
     }
 
     public void LoadDataSourceRecyclerView()
@@ -141,8 +128,7 @@ public class VehicleListController extends AppCompatActivity
         this.setupRecyclerView(this.recyclerView);
     }
 
-    public class SimpleItemRecyclerViewAdapter
-            extends RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder>
+    public class SimpleItemRecyclerViewAdapter extends RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder>
     {
         private final List<VehicleModel> mValues;
 
@@ -162,11 +148,11 @@ public class VehicleListController extends AppCompatActivity
         public void onBindViewHolder(final ViewHolder holder, final int position)
         {
             holder.vehicleViewHolder = mValues.get(position);
-            holder.mIdView.setText(mValues.get(position).nickname);
-            holder.mContentView.setText(mValues.get(position).brand);
-            holder.mModelYear.setText(mValues.get(position).modelyear);
-            holder.mCircle.setText(mValues.get(position).nickname.substring(0, 1).toUpperCase());
-            ((GradientDrawable) holder.mCircle.getBackground()).setColor(mValues.get(position).nicknameColor);
+            holder.mIdView.setText(mValues.get(position).Nickname);
+            holder.mContentView.setText(mValues.get(position).Brand);
+            holder.mModelYear.setText(mValues.get(position).ModelYear);
+            holder.mCircle.setText(mValues.get(position).Nickname.substring(0, 1).toUpperCase());
+            ((GradientDrawable) holder.mCircle.getBackground()).setColor(mValues.get(position).NicknameColor);
             //TODO: detay acilan kisim. Butona basınca buradan detay ekranını acıyor.
             holder.mDetail.setOnClickListener(new Button.OnClickListener()
             {
@@ -176,7 +162,7 @@ public class VehicleListController extends AppCompatActivity
                     if (mTwoPane)
                     {
                         Bundle arguments = new Bundle();
-                        arguments.putString(VehicleDetailFragmentController.ARG_ITEM_ID, holder.vehicleViewHolder.brand);
+                        arguments.putString(VehicleDetailFragmentController.ARG_ITEM_ID, holder.vehicleViewHolder.Brand);
                         VehicleDetailFragmentController fragment = new VehicleDetailFragmentController();
                         fragment.setArguments(arguments);
                         getSupportFragmentManager().beginTransaction()
@@ -188,7 +174,7 @@ public class VehicleListController extends AppCompatActivity
                         Context context = v.getContext();
                         Intent intent = new Intent(context, VehicleDetailActivityController.class);
 
-                        // burada cagirilan ekrana parametre geciriyor. Bir model yaptık ve modeli diger ekranda kullanacagız demektir bu. list ve detail gibi dusunebiliriz.
+                        // burada cagirilan ekrana parametre geciriyor. Bir Model yaptık ve modeli diger ekranda kullanacagız demektir bu. list ve detail gibi dusunebiliriz.
                         //diger ekrana veri gondermek icin ekranlar arasi iletisimde java bundle yapisini kullandigi icin bunu tanimliyoruz.
                         Bundle vehicleBundle = new Bundle();
 
@@ -210,24 +196,23 @@ public class VehicleListController extends AppCompatActivity
                 public void onClick(View v)
                 {
                     final Context mContext = v.getContext();
-                    //TODO: Are you sure? Alert Dialog.
+                    //Are you sure? Alert Dialog.
                     AlertDialog.Builder builder = new AlertDialog.Builder(VehicleListController.this);
-                    builder.setTitle("Delete record")
-                            .setMessage("Are you sure?")
+                    builder.setTitle(ConstraintStrings.DeleteTitle)
+                            .setMessage(ConstraintStrings.DeleteQuestion)
                             .setIcon(R.drawable.alert)
-                            .setPositiveButton("Yes", new DialogInterface.OnClickListener()
+                            .setPositiveButton(ConstraintStrings.Yes, new DialogInterface.OnClickListener()
                             {
                                 public void onClick(DialogInterface dialog, int which)
                                 {
-                                    VehicleDAL.deleteRow(holder.vehicleViewHolder.id, mContext);
+                                    VehicleDAL.deleteRow(holder.vehicleViewHolder.Id, mContext);
                                     mValues.remove(position);
                                     notifyDataSetChanged();
 
-                                    Toast.makeText(VehicleListController.this, "Deleted",
-                                            Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(VehicleListController.this, ConstraintStrings.DeletedError, Toast.LENGTH_SHORT).show();
                                 }
                             })
-                            .setNegativeButton("No", null)
+                            .setNegativeButton(ConstraintStrings.No, null)
                             .show();
                 }
             });
@@ -264,7 +249,7 @@ public class VehicleListController extends AppCompatActivity
                 mCircle = (TextView) view.findViewById(R.id.circle);
                 // TODO : VehicleListController içindeki circle Random renk ayarı
                 if (vehicleViewHolder != null)
-                {((GradientDrawable) mCircle.getBackground()).setColor(vehicleViewHolder.nicknameColor);}
+                {((GradientDrawable) mCircle.getBackground()).setColor(vehicleViewHolder.NicknameColor);}
             }
 
             @Override
@@ -274,26 +259,5 @@ public class VehicleListController extends AppCompatActivity
             }
         }
     }
-
-    // TODO : Ekranın başka bir yerine dokunarak klavye kapatma
-    @Override
-    public boolean dispatchTouchEvent(MotionEvent ev)
-    {
-        View view = getCurrentFocus();
-        if (view != null &&
-                (ev.getAction() == MotionEvent.ACTION_UP || ev.getAction() == MotionEvent.ACTION_MOVE) &&
-                view instanceof EditText &&
-                !view.getClass().getName().startsWith("android.webkit."))
-        {
-            int scrcoords[] = new int[2];
-            view.getLocationOnScreen(scrcoords);
-            float x = ev.getRawX() + view.getLeft() - scrcoords[0];
-            float y = ev.getRawY() + view.getTop() - scrcoords[1];
-            if (x < view.getLeft() || x > view.getRight() || y < view.getTop() || y > view.getBottom())
-                ((InputMethodManager) this.getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow((this.getWindow().getDecorView().getApplicationWindowToken()), 0);
-        }
-        return super.dispatchTouchEvent(ev);
-    }
-
 }
 

@@ -6,7 +6,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        tools:context="com.example.mervesimsek.vehicleapp.AddCarActivity"
+        tools:context="com.example.mervesimsek.vehicleapp.controller.VehicleAddController"
         tools:showIn="@layout/activity_add_car">
 
 
@@ -26,7 +26,7 @@
 
     <TextView
         android:layout_marginTop="20dp"
-        android:text="Brand Of Vehicle          "
+        android:text="@string/brandname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/brandlabel"
@@ -51,21 +51,21 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:hint="Enter Vehicle"
+        android:hint="@string/brandhint"
         android:textColorHint="@color/grey"
         android:ems="10"
         android:id="@+id/brandedit"
-        android:layout_toEndOf="@+id/brandlabel"
+        android:layout_toEndOf="@+id/blab"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:inputType="text"
         android:maxLength="20"
-        android:maxLines="4"/>
+        android:maxLines="4" />
 
 
     <TextView
         android:layout_marginTop="70dp"
-        android:text="Model Of Vehicle"
+        android:text="@string/modelname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/modellabel"
@@ -83,7 +83,7 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:inputType="text"
-        android:hint="Enter Model"
+        android:hint="@string/modelhint"
         android:maxLength="20"
         android:maxLines="4"
         android:textColorHint="@color/grey"
@@ -109,7 +109,7 @@
 
     <TextView
         android:layout_marginTop="120dp"
-        android:text="Type Of Vehicle"
+        android:text="@string/typename"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/typelabel"
@@ -125,7 +125,7 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:inputType="text"
-        android:hint="Enter Type"
+        android:hint="@string/typehint"
         android:textColorHint="@color/grey"
         android:ems="10"
         android:id="@+id/typeedit"
@@ -150,7 +150,7 @@
 
         <TextView
         android:layout_marginTop="170dp"
-        android:text="Model Year"
+        android:text="@string/modelyear"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/modelyearlabel"
@@ -168,7 +168,7 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:inputType="date"
-        android:hint="Enter Model Year"
+        android:hint="@string/modelyearhint"
         android:textColorHint="@color/grey"
         android:ems="10"
         android:id="@+id/modelyearedit"
@@ -193,7 +193,7 @@
 
         <TextView
         android:layout_marginTop="220dp"
-        android:text="Color of Vehicle"
+        android:text="@string/colorname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/colorlabel"
@@ -213,7 +213,7 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:inputType="text"
-        android:hint="Enter Color"
+        android:hint="@string/colorhint"
         android:textColorHint="@color/grey"
         android:ems="10"
         android:id="@+id/coloredit"
@@ -239,7 +239,7 @@
 
         <TextView
         android:layout_marginTop="270dp"
-        android:text="Plate of Vehicle"
+        android:text="@string/platename"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/platelabel"
@@ -257,7 +257,7 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:inputType="text"
-        android:hint="Enter Plate"
+        android:hint="@string/platehint"
         android:textColorHint="@color/grey"
         android:ems="10"
         android:id="@+id/plateedit"
@@ -282,7 +282,7 @@
 
         <TextView
         android:layout_marginTop="320dp"
-        android:text="Nickname"
+        android:text="@string/nickname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/nicknamelabel"
@@ -300,7 +300,7 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:inputType="text"
-        android:hint="Enter Nickname"
+        android:hint="@string/nicknamehint"
         android:textColorHint="@color/grey"
         android:ems="10"
 

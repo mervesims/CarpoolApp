@@ -72,7 +72,7 @@
             android:paddingLeft="50dp"
             android:paddingRight="50dp"
             android:drawableLeft="@drawable/information"
-            android:text="DETAIL"
+            android:text="@string/itemdetail"
             android:textColor="@color/grey"
             android:textCursorDrawable="@drawable/information" />
 
@@ -87,7 +87,7 @@
             android:paddingRight="50dp"
             android:drawableLeft="@drawable/deleted"
             android:layout_weight="0.5"
-            android:text="DELETE"
+            android:text="@string/itemdelete"
             android:textColor="@color/grey"
             />
 
@@ -96,7 +96,7 @@
 
     <TextView
         android:id="@+id/contentname"
-        android:text="Brand Name : "
+        android:text="@string/cardcontentbrandname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/grey"
@@ -115,7 +115,7 @@
 
     <TextView
         android:id="@+id/modelyearcontentname"
-        android:text="Model Year : "
+        android:text="@string/cardcontentmodelyear"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/grey"
