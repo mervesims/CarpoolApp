@@ -2,6 +2,8 @@ package com.example.mervesimsek.vehicleapp.common;
 
 import android.app.Activity;
 import android.content.Context;
+import android.database.Cursor;
+import android.graphics.Color;
 import android.text.InputFilter;
 import android.text.Spanned;
 import android.view.MotionEvent;
@@ -9,11 +11,13 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
+import java.util.Random;
+
 /**
  * Created by mnmlondon2 on 13/04/2017.
  */
 
-public class UiHelper {
+public class CommonUtils {
 
     public static void dispatchTouchEvent(MotionEvent ev,Activity _this) {
         View view = _this.getCurrentFocus();
@@ -50,10 +54,17 @@ public class UiHelper {
         }
     };
 
-    public static void AkinDisableEmojiCharacters(EditText _this) {
+    public static void DisableEmojiCharacters(EditText _this) {
             _this.setFilters(new InputFilter[]{ emojifilter });
     }
 
+    public static String getValueFromCursor(Cursor cursor, String columnName) {
+        return cursor.getString(cursor.getColumnIndex(columnName));
+    }
+    public static int getRandomColor() {
+        Random random = new Random();
+        return Color.argb(255, random.nextInt(256), random.nextInt(256), random.nextInt(256));
+    }
 
 }
 

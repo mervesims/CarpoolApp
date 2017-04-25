@@ -7,9 +7,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.EditText;
-
-import com.example.mervesimsek.vehicleapp.R;
 
 /**
  * Created by mnmlondon2 on 13/04/2017.
@@ -50,7 +47,7 @@ public class BaseController extends AppCompatActivity {
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev)
     {
-        UiHelper.dispatchTouchEvent(ev, this);
+        CommonUtils.dispatchTouchEvent(ev, this);
         return super.dispatchTouchEvent(ev);
     }
 

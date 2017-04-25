@@ -21,7 +21,9 @@ import android.widget.TextView;
 
 import com.example.mervesimsek.vehicleapp.R;
 import com.example.mervesimsek.vehicleapp.common.BaseController;
+import com.example.mervesimsek.vehicleapp.common.CommonObjectManager;
 import com.example.mervesimsek.vehicleapp.common.ConstraintStrings;
+import com.example.mervesimsek.vehicleapp.dal.DatabaseConnectionService;
 import com.getbase.floatingactionbutton.FloatingActionButton;
 
 
@@ -41,6 +43,8 @@ public class MainController extends BaseController
     protected void customOnCreate(@Nullable Bundle savedInstanceState, int layoutResID, int toolbarResID) {
         super.customOnCreate(savedInstanceState, R.layout.activity_main,R.id.toolbar);
 
+
+
         TextView logo = (TextView) findViewById(R.id.logo);
         Typeface font = Typeface.createFromAsset(context.getAssets(), "fonts/gist.ttf");
         logo.setTypeface(font);
@@ -52,6 +56,7 @@ public class MainController extends BaseController
         actionA.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                CommonObjectManager.IsUpdateMode = true;
                 Intent intcars = new Intent(MainController.this, VehicleListController.class);
                 startActivity(intcars);
             }
@@ -60,6 +65,7 @@ public class MainController extends BaseController
         actionB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                CommonObjectManager.IsUpdateMode = false;
                 Intent intgo = new Intent(MainController.this, VehicleAddController.class);
                 startActivity(intgo);
             }
@@ -74,6 +80,10 @@ public class MainController extends BaseController
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+
+        // create database instance, because it should be used only 1 instance
+        DatabaseConnectionService dcs = new DatabaseConnectionService();
+        dcs.SetupDatabase(context);
     }
 
     //Navigation Drawer Kapatma
@@ -129,6 +139,7 @@ public class MainController extends BaseController
         }
         else if (id == R.id.nav_add)
         {
+            CommonObjectManager.IsUpdateMode = false;
             Intent intentadd = new Intent(MainController.this,VehicleAddController.class);
             startActivity(intentadd);
         }

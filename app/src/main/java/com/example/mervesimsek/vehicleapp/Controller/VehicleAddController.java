@@ -14,9 +14,9 @@ import android.view.WindowManager;
 import android.widget.EditText;
 
 import com.example.mervesimsek.vehicleapp.common.BaseController;
-import com.example.mervesimsek.vehicleapp.common.ConstraintStrings;
 import com.example.mervesimsek.vehicleapp.dal.DatabaseService;
 import com.example.mervesimsek.vehicleapp.R;
+import com.example.mervesimsek.vehicleapp.dal.VehicleDAL;
 
 public class VehicleAddController extends BaseController
 {
@@ -40,10 +40,8 @@ public class VehicleAddController extends BaseController
         InputFilter[] iArray = new InputFilter[1];
         iArray[0] = new InputFilter.LengthFilter(maxOtherLength);
 
-        //TODO:Edittextlerin oluşturulduğu yer
-        vehicle = new DatabaseService(this);
-
         brand = (EditText) findViewById(R.id.brandedit);
+
         brand.setFilters(new InputFilter[]{emojifilter});
         brand.setFilters(iArray);
 
@@ -121,12 +119,10 @@ public class VehicleAddController extends BaseController
                                 plate.getText().toString(),
                                 nickname.getText().toString()
                         );
-                        Cursor cursor = getRecord();
-                        showRecord(cursor);
                     }
                     finally
                     {
-                        vehicle.close();
+
                     }
                     Intent intent = new Intent(VehicleAddController.this, VehicleListController.class);
                     startActivity(intent);
@@ -138,61 +134,19 @@ public class VehicleAddController extends BaseController
 
 
     //TODO: Kayıt methodu
-    private void saveRecord(String brand, String model, String type, String modelyear, String color, String plate, String nickname)
-    {
-        SQLiteDatabase db = vehicle.getWritableDatabase();
+    private void saveRecord(String brand, String model, String type, String modelyear, String color, String plate, String nickname) {
+        /*SQLiteDatabase db = vehicle.getWritableDatabase();
         ContentValues data = new ContentValues();
-        data.put("brand", brand);
-        data.put("model", model);
-        data.put("type", type);
-        data.put("modelyear", modelyear);
+        data.put("txtBrand", brand);
+        data.put("txtModelName", model);
+        data.put("txtTypeName", type);
+        data.put("txtModelYear", modelyear);
         data.put("color", color);
-        data.put("plate", plate);
-        data.put("nickname", nickname);
+        data.put("txtPlate", plate);
+        data.put("txtNickName", nickname);
         db.insertOrThrow("vehicles", null, data);
+        */
     }
-
-    //TODO: Tüm veriyi çekmeyi sağlayan select işlemi
-    private String[] SELECT = {"id,brand,model,type,modelyear,color,plate,nickname"};
-
-    private Cursor getRecord()
-    {
-        SQLiteDatabase db = vehicle.getReadableDatabase();
-        Cursor cursor = db.query("vehicles", SELECT, null, null, null, null, null, null);
-        startManagingCursor(cursor);
-        return (cursor);
-    }
-
-    //TODO:Veriyi ekranda görüntüleme işlemi
-    private void showRecord(Cursor cursor)
-    {
-        StringBuilder builder = new StringBuilder("Vehicles: \n");
-
-        while (cursor.moveToNext())
-        {
-            long id = cursor.getLong(cursor.getColumnIndex("id"));
-            String brand = cursor.getString(cursor.getColumnIndex("brand"));
-            String model = cursor.getString(cursor.getColumnIndex("model"));
-            String type = cursor.getString(cursor.getColumnIndex("type"));
-            String modelyear = cursor.getString(cursor.getColumnIndex("modelyear"));
-            String color = cursor.getString(cursor.getColumnIndex("color"));
-            String plate = cursor.getString(cursor.getColumnIndex("plate"));
-            String nickname = cursor.getString(cursor.getColumnIndex("nickname"));
-
-            builder.append(id).append("\n" + "Brand Name : ");
-            builder.append(brand).append("\n" + "Model Name : ");
-            builder.append(model).append("\n" + "Type Name : ");
-            builder.append(type).append("\n" + "Model Year : ");
-            builder.append(modelyear).append("\n" + "Color : ");
-            builder.append(color).append("\n" + "Plate Name : ");
-            builder.append(plate).append("\n" + "Nickname : ");
-            builder.append(nickname).append("\n \n");
-        }
-
-    }
-
-
-
 
 
     public static InputFilter emojifilter = new InputFilter()
@@ -213,5 +167,3 @@ public class VehicleAddController extends BaseController
     };
 
 }
-
-

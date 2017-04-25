@@ -34,7 +34,7 @@ public class SplashController extends AppCompatActivity
                 try
                 {
                     sleep(3000);
-                    Intent intent = new Intent(getApplicationContext(),MainController.class);
+                    Intent intent = new Intent(getApplicationContext(), MainController.class);
                     startActivity(intent);
                     finish();
 

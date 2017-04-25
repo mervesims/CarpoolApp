@@ -29,6 +29,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.mervesimsek.vehicleapp.common.BaseController;
+import com.example.mervesimsek.vehicleapp.common.CommonObjectManager;
 import com.example.mervesimsek.vehicleapp.common.ConstraintStrings;
 import com.example.mervesimsek.vehicleapp.dal.DatabaseService;
 import com.example.mervesimsek.vehicleapp.dal.VehicleDAL;
@@ -70,20 +71,15 @@ public class VehicleListController extends BaseController
             @Override
             public void onClick(View view)
             {
-                Intent intent = new Intent(VehicleListController.this, VehicleAddController.class);
-                startActivity(intent);
+                showAddActivityScreen();
             }
         });
 
         this.recyclerView = (RecyclerView) findViewById(R.id.item_list);
         assert this.recyclerView != null;
 
-        //veritabanı ile baglantı kuruldu ve select sorgusu calıstırıldı.
-        Cursor vehicleDataFromDB = VehicleDAL.setupVehicleDatabase(this.currentContext);
-
-        // olusturulan sorgu sonucuna gore Vehicle tipinde bir list olusturuldu.
-        DatabaseService.vehicleList(vehicleDataFromDB);
-        this.LoadDataSourceRecyclerView();
+        List<VehicleModel> dataList = VehicleDAL.getInstance().GetVehicleList();
+        this.LoadDataSourceRecyclerView(dataList);
 
         if (findViewById(R.id.item_detail_container) != null)
         {
@@ -91,7 +87,10 @@ public class VehicleListController extends BaseController
         }
     }
 
-
+    private void showAddActivityScreen() {
+        Intent intent = new Intent(VehicleListController.this, VehicleAddController.class);
+        startActivity(intent);
+    }
     /**
      * Search işlemleri
      */
@@ -105,10 +104,10 @@ public class VehicleListController extends BaseController
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener()
         {
             @Override
-            public boolean onQueryTextChange(String query)
+            public boolean onQueryTextChange(String searchValue)
             {
-                VehicleDAL.searchVehicleList(currentContext,query);
-                LoadDataSourceRecyclerView();
+                List<VehicleModel> dataListByFilter = VehicleDAL.getInstance().GetVehicleListBy(searchValue);
+                LoadDataSourceRecyclerView(dataListByFilter);
                 return true;
             }
             public boolean onQueryTextSubmit(String query) {
@@ -118,14 +117,14 @@ public class VehicleListController extends BaseController
         return super.onCreateOptionsMenu(menu);
     }
 
-    private void setupRecyclerView(@NonNull RecyclerView recyclerView)
+    private void setupRecyclerView(@NonNull RecyclerView recyclerView, List<VehicleModel> dataList)
     {
-        recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(VehicleDAL.vehicleModelList));
+        recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(dataList));
     }
 
-    public void LoadDataSourceRecyclerView()
+    public void LoadDataSourceRecyclerView(List<VehicleModel> dataList)
     {
-        this.setupRecyclerView(this.recyclerView);
+        this.setupRecyclerView(this.recyclerView, dataList);
     }
 
     public class SimpleItemRecyclerViewAdapter extends RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder>
@@ -144,12 +143,16 @@ public class VehicleListController extends BaseController
             return new ViewHolder(view);
         }
 
+        private void showVehicleDetailActivityController(Context context) {
+            Intent intent = new Intent(context, VehicleDetailActivityController.class);
+            context.startActivity(intent);
+        }
         @Override
         public void onBindViewHolder(final ViewHolder holder, final int position)
         {
             holder.vehicleViewHolder = mValues.get(position);
             holder.mIdView.setText(mValues.get(position).Nickname);
-            holder.mContentView.setText(mValues.get(position).Brand);
+            holder.mContentView.setText(mValues.get(position).BrandName);
             holder.mModelYear.setText(mValues.get(position).ModelYear);
             holder.mCircle.setText(mValues.get(position).Nickname.substring(0, 1).toUpperCase());
             ((GradientDrawable) holder.mCircle.getBackground()).setColor(mValues.get(position).NicknameColor);
@@ -161,31 +164,22 @@ public class VehicleListController extends BaseController
                 {
                     if (mTwoPane)
                     {
+
                         Bundle arguments = new Bundle();
-                        arguments.putString(VehicleDetailFragmentController.ARG_ITEM_ID, holder.vehicleViewHolder.Brand);
+                        /*arguments.putString(VehicleDetailFragmentController.ARG_ITEM_ID, holder.vehicleViewHolder.BrandName);
                         VehicleDetailFragmentController fragment = new VehicleDetailFragmentController();
                         fragment.setArguments(arguments);
                         getSupportFragmentManager().beginTransaction()
                                 .replace(R.id.item_detail_container, fragment)
                                 .commit();
+                        */
                     }
                     else
                     {
-                        Context context = v.getContext();
-                        Intent intent = new Intent(context, VehicleDetailActivityController.class);
 
-                        // burada cagirilan ekrana parametre geciriyor. Bir Model yaptık ve modeli diger ekranda kullanacagız demektir bu. list ve detail gibi dusunebiliriz.
-                        //diger ekrana veri gondermek icin ekranlar arasi iletisimde java bundle yapisini kullandigi icin bunu tanimliyoruz.
-                        Bundle vehicleBundle = new Bundle();
-
-                        //  Elimizdeki var olan modeli diger ekranda kullabilmek icin bunu diger ekrana gondermeye ihtiyacimiz var.
-                        //  Bu yuzden elimizdeki modeli Serializable yaparak string json haline cevirip PUT kelimesi ile bundle icerisine atiyoruz.
-                        vehicleBundle.putSerializable("UniqueObjectName", holder.vehicleViewHolder);
-
-                        //serialize ettigimiz modelimizi acacagimiz detay ekraninin icerisine koyuyoruz. Sebebi ise detay ekraninin icerisinden buna ulasabilmek.
-                        intent.putExtras(vehicleBundle);
-
-                        context.startActivity(intent);
+                        CommonObjectManager.IsUpdateMode = true;
+                        CommonObjectManager.VehicleListSelectedRowModel = holder.vehicleViewHolder;
+                        showVehicleDetailActivityController(currentContext);
                     }
                 }
             });
@@ -205,7 +199,8 @@ public class VehicleListController extends BaseController
                             {
                                 public void onClick(DialogInterface dialog, int which)
                                 {
-                                    VehicleDAL.deleteRow(holder.vehicleViewHolder.Id, mContext);
+
+                                    VehicleDAL.getInstance().DeleteVehicle(holder.vehicleViewHolder.Id);
                                     mValues.remove(position);
                                     notifyDataSetChanged();
 
