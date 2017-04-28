@@ -48,9 +48,12 @@ class VehicleDetailFragmentController extends Fragment
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
+
         super.onCreate(savedInstanceState);
 
     }
+
+
     private void setToolbarTitle(String title) {
         Activity activity = this.getActivity();
         CollapsingToolbarLayout appBarLayout = (CollapsingToolbarLayout) activity.findViewById(R.id.toolbar_layout);
@@ -62,9 +65,58 @@ class VehicleDetailFragmentController extends Fragment
     public void SetTextEdit (String valueText, Integer editTextXmlid, View rootView)
     {
         EditText editTextdetail = ((EditText) rootView.findViewById(editTextXmlid));
-        editTextdetail.setText(valueText);
-        editTextdetail.setFocusableInTouchMode(false);
-        editTextdetail.setFocusable(false);
+
+        editTextdetail.setFocusable(!CommonObjectManager.IsUpdateMode);
+        editTextdetail.setFocusableInTouchMode(!CommonObjectManager.IsUpdateMode);
+
+        if (CommonObjectManager.IsUpdateMode)
+            editTextdetail.setText(valueText);
+    }
+    private void disableUIControlsBy (boolean enable){
+        int maxLength = 4;
+        InputFilter[] fArray = new InputFilter[1];
+        fArray[0] = new InputFilter.LengthFilter(maxLength);
+
+        int maxOtherLength = 20;
+        InputFilter[] iArray = new InputFilter[1];
+        iArray[0] = new InputFilter.LengthFilter(maxOtherLength);
+
+        txtBrand.setFocusable(enable);
+        txtBrand.setFocusableInTouchMode(enable);
+        txtBrand.requestFocus(); //for cursor
+        txtBrand.setFilters(new InputFilter[]{emojifilter});
+        txtBrand.setFilters(iArray);
+
+        txtModelName.setFocusable(enable);
+        txtModelName.setFocusableInTouchMode(enable);
+        txtModelName.setFilters(new InputFilter[]{emojifilter});
+        txtModelName.setFilters(iArray);
+
+        txtTypeName.setFocusable(enable);
+        txtTypeName.setFocusableInTouchMode(enable);
+        txtTypeName.setFilters(new InputFilter[]{emojifilter});
+        txtTypeName.setFilters(iArray);
+
+        txtModelYear.setFocusable(enable);
+        txtModelYear.setFocusableInTouchMode(enable);
+        txtModelYear.setFilters(new InputFilter[]{emojifilter});
+        txtModelYear.setFilters(fArray);
+
+        txtColor.setFocusable(enable);
+        txtColor.setFocusableInTouchMode(enable);
+        txtColor.setFilters(new InputFilter[]{emojifilter});
+        txtColor.setFilters(iArray);
+
+        txtPlate.setFocusable(enable);
+        txtPlate.setFocusableInTouchMode(enable);
+        txtPlate.setFilters(new InputFilter[]{emojifilter});
+        txtPlate.setFilters(iArray);
+
+        txtNickName.setFocusable(enable);
+        txtNickName.setFocusableInTouchMode(enable);
+        txtNickName.setFilters(new InputFilter[]{emojifilter});
+        txtNickName.setFilters(iArray);
+
     }
     private void setupView() {
 
@@ -86,14 +138,23 @@ class VehicleDetailFragmentController extends Fragment
             VehicleModel _model = CommonObjectManager.VehicleListSelectedRowModel;
             this.setToolbarTitle(_model.Nickname);
 
+            txtBrand = (EditText)rootView.findViewById(R.id.txt_brand_name);
+            txtModelName = (EditText)rootView.findViewById(R.id.txt_model_name);
+            txtTypeName =(EditText)rootView.findViewById(R.id.txt_type_name);
+            txtModelYear = (EditText)rootView.findViewById(R.id.txt_modelyear);
+            txtColor =(EditText)rootView.findViewById(R.id.txt_color_name);
+            txtPlate = (EditText)rootView.findViewById(R.id.txt_plate_name);
+            txtNickName =(EditText)rootView.findViewById(R.id.txt_nickname);
+
             // TODO: 23/04/2017 buradaki item_detail gibi yazan xmllerin ismi dogru verilmeli. orn : txtbrandName gibi
-            SetTextEdit(_model.BrandName, R.id.item_detail,rootView);
-            SetTextEdit(_model.ModelName, R.id.item_detail2,rootView);
-            SetTextEdit(_model.ModelYear, R.id.item_detail3,rootView);
-            SetTextEdit(_model.TypeName, R.id.item_detail4,rootView);
-            SetTextEdit(_model.Color, R.id.item_detail5,rootView);
-            SetTextEdit(_model.Plate, R.id.item_detail6,rootView);
-            SetTextEdit(_model.Nickname, R.id.item_detail7,rootView);
+            SetTextEdit(_model.BrandName, R.id.txt_brand_name,rootView);
+            SetTextEdit(_model.ModelName, R.id.txt_model_name,rootView);
+            SetTextEdit(_model.ModelYear, R.id.txt_modelyear,rootView);
+            SetTextEdit(_model.TypeName, R.id.txt_type_name,rootView);
+            SetTextEdit(_model.Color, R.id.txt_color_name,rootView);
+            SetTextEdit(_model.Plate, R.id.txt_plate_name,rootView);
+            SetTextEdit(_model.Nickname, R.id.txt_nickname,rootView);
+
         }
         return rootView;
     }
@@ -166,87 +227,22 @@ class VehicleDetailFragmentController extends Fragment
             vehicleModel.Plate = txtPlate.getText().toString();
             vehicleModel.Nickname = txtNickName.getText().toString();
 
-            VehicleDAL.getInstance().UpdateVehicle(vehicleModel);
+            if (CommonObjectManager.IsUpdateMode){
+            VehicleDAL.getInstance().UpdateVehicle(vehicleModel);}
+            else{
+            VehicleDAL.getInstance().InsertVehicle(vehicleModel);}
+
 
             /*Intent in = new Intent(this.getClass(),VehicleListController.class);
             startActivity(in);*/
         }
     }
+
+
     public void btnEditOnclick() {
-        int maxLength = 4;
-        InputFilter[] fArray = new InputFilter[1];
-        fArray[0] = new InputFilter.LengthFilter(maxLength);
-
-        int maxOtherLength = 20;
-        InputFilter[] iArray = new InputFilter[1];
-        iArray[0] = new InputFilter.LengthFilter(maxOtherLength);
-
-        txtBrand = (EditText)getView().findViewById(R.id.item_detail);
-        txtBrand.setFocusable(true);
-        txtBrand.setFocusableInTouchMode(true);
-        txtBrand.requestFocus(); //for cursor
-        txtBrand.setFilters(new InputFilter[]{emojifilter});
-        txtBrand.setFilters(iArray);
-
-        txtModelName = (EditText)getView().findViewById(R.id.item_detail2);
-        txtModelName.setFocusable(true);
-        txtModelName.setFocusableInTouchMode(true);
-        txtModelName.setFilters(new InputFilter[]{emojifilter});
-        txtModelName.setFilters(iArray);
-
-        txtTypeName =(EditText)getView().findViewById(R.id.item_detail4);
-        txtTypeName.setFocusable(true);
-        txtTypeName.setFocusableInTouchMode(true);
-        txtTypeName.setFilters(new InputFilter[]{emojifilter});
-        txtTypeName.setFilters(iArray);
-
-        txtModelYear = (EditText)getView().findViewById(R.id.item_detail3);
-        txtModelYear.setFocusable(true);
-        txtModelYear.setFocusableInTouchMode(true);
-        txtModelYear.setFilters(new InputFilter[]{emojifilter});
-        txtModelYear.setFilters(fArray);
-
-        txtColor =(EditText)getView().findViewById(R.id.item_detail5);
-        txtColor.setFocusable(true);
-        txtColor.setFocusableInTouchMode(true);
-        txtColor.setFilters(new InputFilter[]{emojifilter});
-        txtColor.setFilters(iArray);
-
-        txtPlate = (EditText)getView().findViewById(R.id.item_detail6);
-        txtPlate.setFocusable(true);
-        txtPlate.setFocusableInTouchMode(true);
-        txtPlate.setFilters(new InputFilter[]{emojifilter});
-        txtPlate.setFilters(iArray);
-
-        txtNickName =(EditText)getView().findViewById(R.id.item_detail7);
-        txtNickName.setFocusable(true);
-        txtNickName.setFocusableInTouchMode(true);
-        txtNickName.setFilters(new InputFilter[]{emojifilter});
-        txtNickName.setFilters(iArray);
-
-
-//                txtBrand = (CustomEditText) findViewById(R.id.item_detail);
-//                txtBrand.requestFocus(); //for cursor
-//                txtBrand.SetMaxLength(20);
-//
-//                txtModelName = (CustomEditText)findViewById(R.id.item_detail2);
-//                txtModelName.SetMaxLength(20);
-//
-//                txtTypeName =(CustomEditText)findViewById(R.id.item_detail4);
-//                txtTypeName.SetMaxLength(20);
-//
-//                txtModelYear = (CustomEditText)findViewById(R.id.item_detail3);
-//                txtModelYear.SetMaxLength(4);
-//
-//                txtColor =(CustomEditText)findViewById(R.id.item_detail5);
-//                txtColor.SetMaxLength(20);
-//
-//                txtPlate = (CustomEditText)findViewById(R.id.item_detail6);
-//                txtPlate.SetMaxLength(20);
-//
-//                txtNickName =(CustomEditText)findViewById(R.id.item_detail7);
-//                txtNickName.SetMaxLength(20);
+      disableUIControlsBy(true);
     }
+
     public void btnSaveClick() {
         updateVehicle();
     }

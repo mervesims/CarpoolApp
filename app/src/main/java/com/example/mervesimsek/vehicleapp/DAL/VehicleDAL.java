@@ -40,11 +40,11 @@ public class VehicleDAL {
     public VehicleModel GetVehicle(String id) {
         return mapping(service.GETDetailById(id));
     }
-    public void InsertVehicle() {
-
+    public void InsertVehicle(VehicleModel model) {
+        service.POST(model.GetModelSerialize(true));
     }
     public void UpdateVehicle(VehicleModel model) {
-        service.PUT(model.GetModelSerialize(), model.Id);
+        service.PUT(model.GetModelSerialize(false), model.Id);
     }
     public void DeleteVehicle(String id) {
         service.DELETE(id);

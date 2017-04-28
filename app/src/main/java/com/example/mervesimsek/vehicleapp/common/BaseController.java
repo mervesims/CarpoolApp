@@ -34,7 +34,6 @@ public class BaseController extends AppCompatActivity {
         });
         toolbar.setTitle(getTitle());
 
-
     }
 
     @Override
@@ -50,14 +49,5 @@ public class BaseController extends AppCompatActivity {
         CommonUtils.dispatchTouchEvent(ev, this);
         return super.dispatchTouchEvent(ev);
     }
-
-//    protected CustomEditText getTextObject(Integer viewId) {
-//        EditText _editText = (EditText) findViewById(viewId);
-//        CustomEditText _customEditText = new CustomEditText(_editText.getContext());
-//        _customEditText = (CustomEditText) _editText;
-//        return _customEditText;
-//    }
-
-
 
 }

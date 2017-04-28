@@ -34,7 +34,7 @@
         android:layout_alignParentStart="true"/>
 
     <EditText
-        android:id="@+id/item_detail"
+        android:id="@+id/txt_brand_name"
         style="?android:attr/textAppearanceLargePopupMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -71,7 +71,7 @@
         android:textSize="@dimen/activity_horizontal_margin"/>
 
     <EditText
-        android:id="@+id/item_detail2"
+        android:id="@+id/txt_model_name"
         style="?android:attr/textAppearanceLargePopupMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -108,7 +108,7 @@
         android:textSize="@dimen/activity_horizontal_margin"/>
 
     <EditText
-        android:id="@+id/item_detail3"
+        android:id="@+id/txt_modelyear"
         android:layout_width="match_parent"
         android:inputType="date"
         android:layout_height="wrap_content"
@@ -147,7 +147,7 @@
         android:textSize="@dimen/activity_horizontal_margin"/>
 
     <EditText
-        android:id="@+id/item_detail4"
+        android:id="@+id/txt_type_name"
         style="?android:attr/textAppearanceLargePopupMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -184,7 +184,7 @@
         android:layout_marginLeft="100dp"
         android:textSize="@dimen/activity_horizontal_margin"/>
     <EditText
-        android:id="@+id/item_detail5"
+        android:id="@+id/txt_color_name"
         style="?android:attr/textAppearanceLargePopupMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -220,7 +220,7 @@
         android:textSize="@dimen/activity_horizontal_margin"/>
 
     <EditText
-        android:id="@+id/item_detail6"
+        android:id="@+id/txt_plate_name"
         style="?android:attr/textAppearanceLargePopupMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -257,7 +257,7 @@
         android:textSize="@dimen/activity_horizontal_margin"/>
 
     <EditText
-        android:id="@+id/item_detail7"
+        android:id="@+id/txt_nickname"
         style="?android:attr/textAppearanceLargePopupMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

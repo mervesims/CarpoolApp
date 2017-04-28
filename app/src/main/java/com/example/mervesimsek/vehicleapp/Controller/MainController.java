@@ -52,8 +52,8 @@ public class MainController extends BaseController
         //Sirali floating action button yaratma.
         ShapeDrawable drawable = new ShapeDrawable(new OvalShape());
         drawable.getPaint().setColor(getResources().getColor(R.color.buttonpressed2));
-        final FloatingActionButton actionA = (FloatingActionButton) findViewById(R.id.action_a);
-        actionA.setOnClickListener(new View.OnClickListener() {
+        final FloatingActionButton actionMyCars = (FloatingActionButton) findViewById(R.id.action_a);
+        actionMyCars.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 CommonObjectManager.IsUpdateMode = true;
@@ -61,12 +61,12 @@ public class MainController extends BaseController
                 startActivity(intcars);
             }
         });
-        final FloatingActionButton actionB = (FloatingActionButton) findViewById(R.id.action_b);
-        actionB.setOnClickListener(new View.OnClickListener() {
+        final FloatingActionButton actionAddNewCar = (FloatingActionButton) findViewById(R.id.action_b);
+        actionAddNewCar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 CommonObjectManager.IsUpdateMode = false;
-                Intent intgo = new Intent(MainController.this, VehicleAddController.class);
+                Intent intgo = new Intent(MainController.this, VehicleDetailActivityController.class);
                 startActivity(intgo);
             }
         });
@@ -134,13 +134,14 @@ public class MainController extends BaseController
         }
         else if (id == R.id.nav_car)
         {
+            CommonObjectManager.IsUpdateMode = true;
             Intent intentitem = new Intent(MainController.this, VehicleListController.class);
             startActivity(intentitem);
         }
         else if (id == R.id.nav_add)
         {
             CommonObjectManager.IsUpdateMode = false;
-            Intent intentadd = new Intent(MainController.this,VehicleAddController.class);
+            Intent intentadd = new Intent(MainController.this,VehicleDetailActivityController.class);
             startActivity(intentadd);
         }
         else if (id == R.id.nav_aboutappsims)

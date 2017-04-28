@@ -18,8 +18,7 @@ import com.example.mervesimsek.vehicleapp.dal.DatabaseService;
 import com.example.mervesimsek.vehicleapp.R;
 import com.example.mervesimsek.vehicleapp.dal.VehicleDAL;
 
-public class VehicleAddController extends BaseController
-{
+public class VehicleAddController extends BaseController {
     EditText brand, model, type, modelyear, color, plate, nickname;
 
 
@@ -27,10 +26,15 @@ public class VehicleAddController extends BaseController
 
     @Override
     protected void customOnCreate(@Nullable Bundle savedInstanceState, int layoutResID, int toolbarResID) {
-        super.customOnCreate(savedInstanceState, R.layout.activity_add_car, R.id.toolbar2);
+        super.customOnCreate(savedInstanceState, R.layout.activity_item_detail, R.id.detail_toolbar);
 
 
 
+
+
+
+
+/*
         //TODO: Bir edittext'e girilebilecek maximum harf sayısı
         int maxLength = 4;
         InputFilter[] fArray = new InputFilter[1];
@@ -135,7 +139,7 @@ public class VehicleAddController extends BaseController
 
     //TODO: Kayıt methodu
     private void saveRecord(String brand, String model, String type, String modelyear, String color, String plate, String nickname) {
-        /*SQLiteDatabase db = vehicle.getWritableDatabase();
+        *//*SQLiteDatabase db = vehicle.getWritableDatabase();
         ContentValues data = new ContentValues();
         data.put("txtBrand", brand);
         data.put("txtModelName", model);
@@ -145,7 +149,7 @@ public class VehicleAddController extends BaseController
         data.put("txtPlate", plate);
         data.put("txtNickName", nickname);
         db.insertOrThrow("vehicles", null, data);
-        */
+        *//*
     }
 
 
@@ -164,6 +168,7 @@ public class VehicleAddController extends BaseController
             }
             return null;
         }
-    };
+    };*/
 
+    }
 }

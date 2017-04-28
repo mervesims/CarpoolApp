@@ -88,7 +88,8 @@ public class VehicleListController extends BaseController
     }
 
     private void showAddActivityScreen() {
-        Intent intent = new Intent(VehicleListController.this, VehicleAddController.class);
+        CommonObjectManager.IsUpdateMode = false;
+        Intent intent = new Intent(VehicleListController.this, VehicleDetailActivityController.class);
         startActivity(intent);
     }
     /**
@@ -144,8 +145,10 @@ public class VehicleListController extends BaseController
         }
 
         private void showVehicleDetailActivityController(Context context) {
+            CommonObjectManager.IsUpdateMode = true;
             Intent intent = new Intent(context, VehicleDetailActivityController.class);
             context.startActivity(intent);
+
         }
         @Override
         public void onBindViewHolder(final ViewHolder holder, final int position)
@@ -164,7 +167,6 @@ public class VehicleListController extends BaseController
                 {
                     if (mTwoPane)
                     {
-
                         Bundle arguments = new Bundle();
                         /*arguments.putString(VehicleDetailFragmentController.ARG_ITEM_ID, holder.vehicleViewHolder.BrandName);
                         VehicleDetailFragmentController fragment = new VehicleDetailFragmentController();

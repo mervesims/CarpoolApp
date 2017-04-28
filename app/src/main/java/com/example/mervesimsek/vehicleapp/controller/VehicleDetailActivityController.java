@@ -58,11 +58,7 @@ import com.example.mervesimsek.vehicleapp.common.CommonObjectManager;
                     .add(R.id.item_detail_container, fragment)
                     .commit();
         }
-/*
-        if (CommonObjectManager.IsUpdateMode) {
-            fab.setEnabled(false);
 
-        }*/
             FloatingActionButton fab = (FloatingActionButton)findViewById(R.id.fabedit);
             fab.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -75,6 +71,14 @@ import com.example.mervesimsek.vehicleapp.common.CommonObjectManager;
                 }
             });
 
+        if (CommonObjectManager.IsUpdateMode==false)
+        {
+            fab.hide();
+        }
+        else
+        {
+            fab.show();
+        }
 
         FloatingActionButton fabeditsave = (FloatingActionButton)findViewById(R.id.fabeditsave);
         fabeditsave.setOnClickListener(new View.OnClickListener()
@@ -86,6 +90,8 @@ import com.example.mervesimsek.vehicleapp.common.CommonObjectManager;
                 if (vehicleDetailFragment.isVisible()) {
                     ((VehicleDetailFragmentController)vehicleDetailFragment).btnSaveClick();
                 }
+
+
             }
         });
     }
@@ -103,82 +109,4 @@ import com.example.mervesimsek.vehicleapp.common.CommonObjectManager;
 
 
 }
-class CustomEditText extends EditText {
 
-    public CustomEditText(Context context) {
-        super(context);
-        this.setupView();
-    }
-
-    public CustomEditText(Context context, AttributeSet attrs) {
-        super(context, attrs);
-    }
-
-    public CustomEditText(Context context, AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
-    }
-
-    public CustomEditText(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        super(context, attrs, defStyleAttr, defStyleRes);
-    }
-
-    //    public CustomEditText(Context context) {
-//        super(context);
-//        this.setupView();
-//    }
-    private void setupView() {
-        this.disableEmojiCharacters();
-        this.setupFocusable();
-    }
-
-    public void SetMaxLength(int length) {
-        int maxLength = length;
-        InputFilter[] iArray = new InputFilter[1];
-        iArray[0] = new InputFilter.LengthFilter(maxLength);
-        this.setFilters(iArray);
-    }
-    public void SetMinLength() {
-
-    }
-
-
-    private void disableEmojiCharacters() {
-        this.setFilters(new InputFilter[]{ emojifilter });
-    }
-
-    private void setupFocusable() {
-        this.setFocusable(true);
-        this.setFocusableInTouchMode(true);
-    }
-
-    public String getValue(){
-        return this.getText().toString();
-    }
-
-    public void Content(){  //aslında böyle bişey yapmak istedim ama vehicle addcontroller veya başka bi yerde kullanamadım bunu.
-        String thiscontent = this.getText().toString();
-    }
-    public Integer Length(){
-        return this.getValue().length();
-    }
-
-
-    private InputFilter emojifilter = new InputFilter()
-    {
-        @Override
-        public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend)
-        {
-            for (int index = start; index < end; index++)
-            {
-                int type = Character.getType(source.charAt(index));
-                if (type == Character.SURROGATE)
-                {
-                    return "";
-                }
-            }
-            return null;
-        }
-    };
-
-
-}
