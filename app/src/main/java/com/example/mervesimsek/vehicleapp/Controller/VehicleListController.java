@@ -78,13 +78,22 @@ public class VehicleListController extends BaseController
         this.recyclerView = (RecyclerView) findViewById(R.id.item_list);
         assert this.recyclerView != null;
 
-        List<VehicleModel> dataList = VehicleDAL.getInstance().GetVehicleList();
-        this.LoadDataSourceRecyclerView(dataList);
 
         if (findViewById(R.id.item_detail_container) != null)
         {
             mTwoPane = true;
         }
+    }
+
+    public void getData (){
+        List<VehicleModel> dataList = VehicleDAL.getInstance().GetVehicleList();
+        this.LoadDataSourceRecyclerView(dataList);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+       this.getData();
     }
 
     private void showAddActivityScreen() {

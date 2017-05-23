@@ -24,8 +24,7 @@ import com.example.mervesimsek.vehicleapp.common.CommonObjectManager;
  * item details are presented side-by-side with a list of items
  * in a {@link VehicleListController}.
  */
- class VehicleDetailActivityController extends BaseController {
-
+class VehicleDetailActivityController extends BaseController {
 
 
     @Override
@@ -33,11 +32,9 @@ import com.example.mervesimsek.vehicleapp.common.CommonObjectManager;
         super.customOnCreate(savedInstanceState, R.layout.activity_item_detail, R.id.detail_toolbar);
 
 
-
         // Show the Up button in the action bar.vehicleModel
         ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null)
-        {
+        if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
 
@@ -51,54 +48,48 @@ import com.example.mervesimsek.vehicleapp.common.CommonObjectManager;
         // http://developer.android.com/guide/components/fragments.html
         //
 
-        if (savedInstanceState == null)
-        {
+        if (savedInstanceState == null) {
             VehicleDetailFragmentController fragment = new VehicleDetailFragmentController();
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.item_detail_container, fragment)
                     .commit();
         }
 
-            FloatingActionButton fab = (FloatingActionButton)findViewById(R.id.fabedit);
-            fab.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fabedit);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-                    Fragment vehicleDetailFragment = getSupportFragmentManager().findFragmentById(R.id.item_detail_container);
-                    if (vehicleDetailFragment.isVisible()) {
-                        ((VehicleDetailFragmentController)vehicleDetailFragment).btnEditOnclick();
-                    }
+                Fragment vehicleDetailFragment = getSupportFragmentManager().findFragmentById(R.id.item_detail_container);
+                if (vehicleDetailFragment.isVisible()) {
+                    ((VehicleDetailFragmentController) vehicleDetailFragment).btnEditOnclick();
                 }
-            });
+            }
+        });
 
-        if (CommonObjectManager.IsUpdateMode==false)
-        {
+        if (!CommonObjectManager.IsUpdateMode) {
             fab.hide();
-        }
-        else
-        {
+        } else {
             fab.show();
         }
 
-        FloatingActionButton fabeditsave = (FloatingActionButton)findViewById(R.id.fabeditsave);
-        fabeditsave.setOnClickListener(new View.OnClickListener()
-        {
+        FloatingActionButton fabeditsave = (FloatingActionButton) findViewById(R.id.fabeditsave);
+        fabeditsave.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
                 Fragment vehicleDetailFragment = getSupportFragmentManager().findFragmentById(R.id.item_detail_container);
                 if (vehicleDetailFragment.isVisible()) {
-                    ((VehicleDetailFragmentController)vehicleDetailFragment).btnSaveClick();
+                    ((VehicleDetailFragmentController) vehicleDetailFragment).btnSaveClick();
                 }
             }
         });
     }
 
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if (id == android.R.id.home)
-        {
+        if (id == android.R.id.home) {
             navigateUpTo(new Intent(this, VehicleListController.class));
             return true;
         }

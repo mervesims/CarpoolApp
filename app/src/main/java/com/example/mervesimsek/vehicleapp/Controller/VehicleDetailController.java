@@ -1,27 +1,24 @@
 package com.example.mervesimsek.vehicleapp.controller;
 
 
-        import android.app.Activity;
-        import android.content.Intent;
-        import android.database.sqlite.SQLiteOpenHelper;
-        import android.os.Bundle;
-        import android.support.annotation.Nullable;
-        import android.support.design.widget.CollapsingToolbarLayout;
-        import android.support.design.widget.FloatingActionButton;
-        import android.support.v4.app.Fragment;
-        import android.support.v4.app.FragmentManager;
-        import android.text.InputFilter;
-        import android.text.Spanned;
-        import android.view.LayoutInflater;
-        import android.view.View;
-        import android.view.ViewGroup;
-        import android.widget.EditText;
+import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.v4.app.Fragment;
+import android.text.InputFilter;
+import android.text.Spanned;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.EditText;
 
-        import com.example.mervesimsek.vehicleapp.common.CommonObjectManager;
-        import com.example.mervesimsek.vehicleapp.common.ConstraintStrings;
-        import com.example.mervesimsek.vehicleapp.dal.VehicleDAL;
-        import com.example.mervesimsek.vehicleapp.model.VehicleModel;
-        import com.example.mervesimsek.vehicleapp.R;
+import com.example.mervesimsek.vehicleapp.common.CommonObjectManager;
+import com.example.mervesimsek.vehicleapp.common.ConstraintStrings;
+import com.example.mervesimsek.vehicleapp.dal.VehicleDAL;
+import com.example.mervesimsek.vehicleapp.model.VehicleModel;
+import com.example.mervesimsek.vehicleapp.R;
 
 
 /**
@@ -30,8 +27,8 @@ package com.example.mervesimsek.vehicleapp.controller;
  * in two-pane mode (on tablets) or a {@link VehicleDetailFragmentController}
  * on handsets.
  */
-class VehicleDetailFragmentController extends Fragment
-{
+
+class VehicleDetailFragmentController extends Fragment {
     EditText txtModelName;
     EditText txtModelYear;
     EditText txtTypeName;
@@ -39,15 +36,16 @@ class VehicleDetailFragmentController extends Fragment
     EditText txtPlate;
     EditText txtNickName;
     EditText txtBrand;
+
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
      */
-    public VehicleDetailFragmentController() {}
+    public VehicleDetailFragmentController() {
+    }
 
     @Override
-    public void onCreate(Bundle savedInstanceState)
-    {
+    public void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
 
@@ -57,13 +55,12 @@ class VehicleDetailFragmentController extends Fragment
     private void setToolbarTitle(String title) {
         Activity activity = this.getActivity();
         CollapsingToolbarLayout appBarLayout = (CollapsingToolbarLayout) activity.findViewById(R.id.toolbar_layout);
-        if (appBarLayout != null)
-        {
+        if (appBarLayout != null) {
             appBarLayout.setTitle(title);
         }
     }
-    public void SetTextEdit (String valueText, Integer editTextXmlid, View rootView)
-    {
+
+    public void SetTextEdit(String valueText, Integer editTextXmlid, View rootView) {
         EditText editTextdetail = ((EditText) rootView.findViewById(editTextXmlid));
 
         editTextdetail.setFocusable(!CommonObjectManager.IsUpdateMode);
@@ -72,7 +69,8 @@ class VehicleDetailFragmentController extends Fragment
         if (CommonObjectManager.IsUpdateMode)
             editTextdetail.setText(valueText);
     }
-    private void disableUIControlsBy (boolean enable){
+
+    private void disableUIControlsBy(boolean enable) {
         int maxLength = 4;
         InputFilter[] fArray = new InputFilter[1];
         fArray[0] = new InputFilter.LengthFilter(maxLength);
@@ -118,40 +116,39 @@ class VehicleDetailFragmentController extends Fragment
         txtNickName.setFilters(iArray);
 
     }
+
     private void setupView() {
         String asdasd = "";
     }
+
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
-    {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View rootView = inflater.inflate(R.layout.item_detail, container, false);
 
-        if (CommonObjectManager.VehicleListSelectedRowModel!= null)
-        {
+        if (CommonObjectManager.VehicleListSelectedRowModel != null) {
             VehicleModel _model = CommonObjectManager.VehicleListSelectedRowModel;
             if (CommonObjectManager.IsUpdateMode) {
                 this.setToolbarTitle(_model.Nickname);
-            }
-            else{
-                this.setToolbarTitle("Car Detail");
+            } else {
+                this.setToolbarTitle("Add New Car");
             }
 
-            txtBrand = (EditText)rootView.findViewById(R.id.txt_brand_name);
-            txtModelName = (EditText)rootView.findViewById(R.id.txt_model_name);
-            txtTypeName =(EditText)rootView.findViewById(R.id.txt_type_name);
-            txtModelYear = (EditText)rootView.findViewById(R.id.txt_modelyear);
-            txtColor =(EditText)rootView.findViewById(R.id.txt_color_name);
-            txtPlate = (EditText)rootView.findViewById(R.id.txt_plate_name);
-            txtNickName =(EditText)rootView.findViewById(R.id.txt_nickname);
+            txtBrand = (EditText) rootView.findViewById(R.id.txt_brand_name);
+            txtModelName = (EditText) rootView.findViewById(R.id.txt_model_name);
+            txtTypeName = (EditText) rootView.findViewById(R.id.txt_type_name);
+            txtModelYear = (EditText) rootView.findViewById(R.id.txt_modelyear);
+            txtColor = (EditText) rootView.findViewById(R.id.txt_color_name);
+            txtPlate = (EditText) rootView.findViewById(R.id.txt_plate_name);
+            txtNickName = (EditText) rootView.findViewById(R.id.txt_nickname);
 
-            SetTextEdit(_model.BrandName, R.id.txt_brand_name,rootView);
-            SetTextEdit(_model.ModelName, R.id.txt_model_name,rootView);
-            SetTextEdit(_model.ModelYear, R.id.txt_modelyear,rootView);
-            SetTextEdit(_model.TypeName, R.id.txt_type_name,rootView);
-            SetTextEdit(_model.Color, R.id.txt_color_name,rootView);
-            SetTextEdit(_model.Plate, R.id.txt_plate_name,rootView);
-            SetTextEdit(_model.Nickname, R.id.txt_nickname,rootView);
+            SetTextEdit(_model.BrandName, R.id.txt_brand_name, rootView);
+            SetTextEdit(_model.ModelName, R.id.txt_model_name, rootView);
+            SetTextEdit(_model.ModelYear, R.id.txt_modelyear, rootView);
+            SetTextEdit(_model.TypeName, R.id.txt_type_name, rootView);
+            SetTextEdit(_model.Color, R.id.txt_color_name, rootView);
+            SetTextEdit(_model.Plate, R.id.txt_plate_name, rootView);
+            SetTextEdit(_model.Nickname, R.id.txt_nickname, rootView);
 
         }
         return rootView;
@@ -162,16 +159,12 @@ class VehicleDetailFragmentController extends Fragment
         super.onViewCreated(view, savedInstanceState);
     }
 
-    private InputFilter emojifilter = new InputFilter()
-    {
+    private InputFilter emojifilter = new InputFilter() {
         @Override
-        public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend)
-        {
-            for (int index = start; index < end; index++)
-            {
+        public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
+            for (int index = start; index < end; index++) {
                 int type = Character.getType(source.charAt(index));
-                if (type == Character.SURROGATE)
-                {
+                if (type == Character.SURROGATE) {
                     return "";
                 }
             }
@@ -180,41 +173,38 @@ class VehicleDetailFragmentController extends Fragment
     };
 
     private boolean checkValidations() {
-        // FIXME: 23/04/2017 : textlere getText gibi yaptıgın seyleri extension method gibi yapmayı dene
         boolean isValid = true;
+
         Integer brandLength = txtBrand.getText().toString().length();
         Integer nicknameLength = txtNickName.getText().toString().length();
         Integer modelyearLength = txtModelYear.getText().toString().length();
         String brandcontent = txtBrand.getText().toString();
         String nicknamecontent = txtNickName.getText().toString();
 
-        if (modelyearLength == 0)
-        {
+        if (modelyearLength == 0) {
             txtModelYear.setError(ConstraintStrings.ModelYearBlankError);
+            isValid = false;
         }
 
-        if (Integer.parseInt(txtModelYear.getText().toString()) < 1899 || Integer.parseInt(txtModelYear.getText().toString()) > 2018)
-        {
+        else if (Integer.parseInt(txtModelYear.getText().toString()) < 1899 || Integer.parseInt(txtModelYear.getText().toString()) > 2018) {
             txtModelYear.setError(ConstraintStrings.ModelYearDateError);
             isValid = false;
         }
 
-        if (brandLength == 0 || brandcontent.substring(0,1).contains(" "))
-        {
+        if (brandLength == 0 || brandcontent.substring(0, 1).contains(" ")) {
             txtBrand.setError(ConstraintStrings.BrandBlankError);
             isValid = false;
         }
 
-        if (nicknameLength == 0 || nicknamecontent.substring(0,1).contains(" "))
-        {
+        if (nicknameLength == 0 || nicknamecontent.substring(0, 1).contains(" ")) {
             txtNickName.setError(ConstraintStrings.NicknameBlankError);
             isValid = false;
         }
         return isValid;
     }
+
     private void updateVehicle() {
-        if (this.checkValidations())
-        {
+        if (this.checkValidations()) {
             VehicleModel vehicleModel = new VehicleModel();
             vehicleModel.Id = CommonObjectManager.VehicleListSelectedRowModel.Id;
             vehicleModel.BrandName = txtBrand.getText().toString();
@@ -225,23 +215,24 @@ class VehicleDetailFragmentController extends Fragment
             vehicleModel.Plate = txtPlate.getText().toString();
             vehicleModel.Nickname = txtNickName.getText().toString();
 
-            if (CommonObjectManager.IsUpdateMode){
-            VehicleDAL.getInstance().UpdateVehicle(vehicleModel);
-               }
-            else{
-            VehicleDAL.getInstance().InsertVehicle(vehicleModel);
-                this.setToolbarTitle("Car Detail");
-                }
+            if (CommonObjectManager.IsUpdateMode) {
+                VehicleDAL.getInstance().UpdateVehicle(vehicleModel);
+            } else {
+                VehicleDAL.getInstance().InsertVehicle(vehicleModel);
+            }
         }
     }
 
 
     public void btnEditOnclick() {
-      disableUIControlsBy(true);
+        disableUIControlsBy(true);
     }
 
     public void btnSaveClick() {
         updateVehicle();
+        if (this.checkValidations()) {
+            this.getActivity().onBackPressed();
+        }
 
     }
 }
