@@ -119,13 +119,7 @@ class VehicleDetailFragmentController extends Fragment
 
     }
     private void setupView() {
-
         String asdasd = "";
-
-
-
-        //AKIN    : buradaki floating butonunu fragment icerisine koymalısın biri ayrı digeri ayri olmamalı
-
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -136,7 +130,12 @@ class VehicleDetailFragmentController extends Fragment
         if (CommonObjectManager.VehicleListSelectedRowModel!= null)
         {
             VehicleModel _model = CommonObjectManager.VehicleListSelectedRowModel;
-            this.setToolbarTitle(_model.Nickname);
+            if (CommonObjectManager.IsUpdateMode) {
+                this.setToolbarTitle(_model.Nickname);
+            }
+            else{
+                this.setToolbarTitle("Car Detail");
+            }
 
             txtBrand = (EditText)rootView.findViewById(R.id.txt_brand_name);
             txtModelName = (EditText)rootView.findViewById(R.id.txt_model_name);
@@ -146,7 +145,6 @@ class VehicleDetailFragmentController extends Fragment
             txtPlate = (EditText)rootView.findViewById(R.id.txt_plate_name);
             txtNickName =(EditText)rootView.findViewById(R.id.txt_nickname);
 
-            // TODO: 23/04/2017 buradaki item_detail gibi yazan xmllerin ismi dogru verilmeli. orn : txtbrandName gibi
             SetTextEdit(_model.BrandName, R.id.txt_brand_name,rootView);
             SetTextEdit(_model.ModelName, R.id.txt_model_name,rootView);
             SetTextEdit(_model.ModelYear, R.id.txt_modelyear,rootView);
@@ -228,13 +226,12 @@ class VehicleDetailFragmentController extends Fragment
             vehicleModel.Nickname = txtNickName.getText().toString();
 
             if (CommonObjectManager.IsUpdateMode){
-            VehicleDAL.getInstance().UpdateVehicle(vehicleModel);}
+            VehicleDAL.getInstance().UpdateVehicle(vehicleModel);
+               }
             else{
-            VehicleDAL.getInstance().InsertVehicle(vehicleModel);}
-
-
-            /*Intent in = new Intent(this.getClass(),VehicleListController.class);
-            startActivity(in);*/
+            VehicleDAL.getInstance().InsertVehicle(vehicleModel);
+                this.setToolbarTitle("Car Detail");
+                }
         }
     }
 
@@ -245,5 +242,6 @@ class VehicleDetailFragmentController extends Fragment
 
     public void btnSaveClick() {
         updateVehicle();
+
     }
 }

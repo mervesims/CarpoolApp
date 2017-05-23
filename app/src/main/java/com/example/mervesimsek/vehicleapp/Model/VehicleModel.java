@@ -54,6 +54,7 @@ public class VehicleModel {
         parametersAndValues.put(vehicleTableModel.Columns.ModelYear, this.ModelYear);
         parametersAndValues.put(vehicleTableModel.Columns.TypeName, this.TypeName);
         parametersAndValues.put(vehicleTableModel.Columns.Color, this.Color);
+        parametersAndValues.put(vehicleTableModel.Columns.Plate, this.Plate);
         parametersAndValues.put(vehicleTableModel.Columns.NickName, this.Nickname);
 
         return parametersAndValues;

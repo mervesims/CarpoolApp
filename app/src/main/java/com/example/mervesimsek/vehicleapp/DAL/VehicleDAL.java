@@ -74,6 +74,7 @@ public class VehicleDAL {
             vehicleModel.Nickname       = CommonUtils.getValueFromCursor(cursor, vehicleTableModel.Columns.NickName);
             vehicleModel.NicknameColor  = CommonUtils.getRandomColor();
 
+
             return vehicleModel;
         }
         catch (Exception ex) {

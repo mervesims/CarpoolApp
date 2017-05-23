@@ -90,8 +90,6 @@ import com.example.mervesimsek.vehicleapp.common.CommonObjectManager;
                 if (vehicleDetailFragment.isVisible()) {
                     ((VehicleDetailFragmentController)vehicleDetailFragment).btnSaveClick();
                 }
-
-
             }
         });
     }
