@@ -20,6 +20,10 @@ import com.example.mervesimsek.vehicleapp.dal.VehicleDAL;
 import com.example.mervesimsek.vehicleapp.model.VehicleModel;
 import com.example.mervesimsek.vehicleapp.R;
 
+import static com.example.mervesimsek.vehicleapp.common.CommonObjectManager.OperationStatus.detail;
+import static com.example.mervesimsek.vehicleapp.common.CommonObjectManager.OperationStatus.insert;
+import static com.example.mervesimsek.vehicleapp.common.CommonObjectManager.OperationStatus.update;
+
 
 /**
  * A fragment representing a single Item detail screen.
@@ -63,10 +67,10 @@ class VehicleDetailFragmentController extends Fragment {
     public void SetTextEdit(String valueText, Integer editTextXmlid, View rootView) {
         EditText editTextdetail = ((EditText) rootView.findViewById(editTextXmlid));
 
-        editTextdetail.setFocusable(!CommonObjectManager.IsUpdateMode);
-        editTextdetail.setFocusableInTouchMode(!CommonObjectManager.IsUpdateMode);
+        editTextdetail.setFocusable(CommonObjectManager.Status == insert);
+        editTextdetail.setFocusableInTouchMode(CommonObjectManager.Status == insert);
 
-        if (CommonObjectManager.IsUpdateMode)
+        if (CommonObjectManager.Status == update)
             editTextdetail.setText(valueText);
     }
 
@@ -128,7 +132,7 @@ class VehicleDetailFragmentController extends Fragment {
 
         if (CommonObjectManager.VehicleListSelectedRowModel != null) {
             VehicleModel _model = CommonObjectManager.VehicleListSelectedRowModel;
-            if (CommonObjectManager.IsUpdateMode) {
+            if (CommonObjectManager.Status == update) {
                 this.setToolbarTitle(_model.Nickname);
             } else {
                 this.setToolbarTitle("Add New Car");
@@ -151,6 +155,7 @@ class VehicleDetailFragmentController extends Fragment {
             SetTextEdit(_model.Nickname, R.id.txt_nickname, rootView);
 
         }
+        CommonObjectManager.Status = detail;
         return rootView;
     }
 
@@ -215,16 +220,18 @@ class VehicleDetailFragmentController extends Fragment {
             vehicleModel.Plate = txtPlate.getText().toString();
             vehicleModel.Nickname = txtNickName.getText().toString();
 
-            if (CommonObjectManager.IsUpdateMode) {
+            if (CommonObjectManager.Status == update) {
                 VehicleDAL.getInstance().UpdateVehicle(vehicleModel);
-            } else {
+            } else if (CommonObjectManager.Status == insert) {
                 VehicleDAL.getInstance().InsertVehicle(vehicleModel);
             }
+            
+
         }
     }
 
-
     public void btnEditOnclick() {
+        CommonObjectManager.Status = update;
         disableUIControlsBy(true);
     }
 

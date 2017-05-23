@@ -18,6 +18,8 @@ import com.example.mervesimsek.vehicleapp.R;
 import com.example.mervesimsek.vehicleapp.common.BaseController;
 import com.example.mervesimsek.vehicleapp.common.CommonObjectManager;
 
+import static com.example.mervesimsek.vehicleapp.common.CommonObjectManager.OperationStatus.insert;
+
 /**
  * An activity representing a single Item detail screen. This
  * activity is only used narrow width devices. On tablet-size devices,
@@ -67,7 +69,7 @@ class VehicleDetailActivityController extends BaseController {
             }
         });
 
-        if (!CommonObjectManager.IsUpdateMode) {
+        if (CommonObjectManager.Status == insert) {
             fab.hide();
         } else {
             fab.show();

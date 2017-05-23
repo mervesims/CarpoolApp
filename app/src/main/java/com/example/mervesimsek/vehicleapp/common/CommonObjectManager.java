@@ -8,5 +8,13 @@ import com.example.mervesimsek.vehicleapp.model.VehicleModel;
 
 public class CommonObjectManager {
     public static VehicleModel VehicleListSelectedRowModel = new VehicleModel();
-    public static boolean IsUpdateMode = false;
+    public static OperationStatus Status = OperationStatus.detail;
+    public enum OperationStatus {
+        update,
+        insert,
+        detail
+
+    }
 }
+
+

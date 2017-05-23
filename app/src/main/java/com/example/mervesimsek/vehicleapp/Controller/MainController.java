@@ -26,6 +26,8 @@ import com.example.mervesimsek.vehicleapp.common.ConstraintStrings;
 import com.example.mervesimsek.vehicleapp.dal.DatabaseConnectionService;
 import com.getbase.floatingactionbutton.FloatingActionButton;
 
+import static com.example.mervesimsek.vehicleapp.common.CommonObjectManager.OperationStatus.insert;
+import static com.example.mervesimsek.vehicleapp.common.CommonObjectManager.OperationStatus.update;
 
 
 /**
@@ -49,14 +51,13 @@ public class MainController extends BaseController
         Typeface font = Typeface.createFromAsset(context.getAssets(), "fonts/gist.ttf");
         logo.setTypeface(font);
 
-        //Sirali floating action button yaratma.
         ShapeDrawable drawable = new ShapeDrawable(new OvalShape());
         drawable.getPaint().setColor(getResources().getColor(R.color.buttonpressed2));
         final FloatingActionButton actionMyCars = (FloatingActionButton) findViewById(R.id.action_a);
         actionMyCars.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                CommonObjectManager.IsUpdateMode = true;
+                CommonObjectManager.Status = update;
                 Intent intcars = new Intent(MainController.this, VehicleListController.class);
                 startActivity(intcars);
             }
@@ -65,13 +66,12 @@ public class MainController extends BaseController
         actionAddNewCar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                CommonObjectManager.IsUpdateMode = false;
+                CommonObjectManager.Status = insert;
                 Intent intgo = new Intent(MainController.this, VehicleDetailActivityController.class);
                 startActivity(intgo);
             }
         });
 
-        //Ekranın herhangi bir yerine dokunulduğunda drawer kapatma
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
@@ -134,13 +134,13 @@ public class MainController extends BaseController
         }
         else if (id == R.id.nav_car)
         {
-            CommonObjectManager.IsUpdateMode = true;
+            CommonObjectManager.Status = update;
             Intent intentitem = new Intent(MainController.this, VehicleListController.class);
             startActivity(intentitem);
         }
         else if (id == R.id.nav_add)
         {
-            CommonObjectManager.IsUpdateMode = false;
+            CommonObjectManager.Status = insert;
             Intent intentadd = new Intent(MainController.this,VehicleDetailActivityController.class);
             startActivity(intentadd);
         }

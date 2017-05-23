@@ -38,6 +38,10 @@ import com.example.mervesimsek.vehicleapp.R;
 
 import java.util.List;
 
+import static com.example.mervesimsek.vehicleapp.common.CommonObjectManager.OperationStatus.detail;
+import static com.example.mervesimsek.vehicleapp.common.CommonObjectManager.OperationStatus.insert;
+import static com.example.mervesimsek.vehicleapp.common.CommonObjectManager.OperationStatus.update;
+
 
 /**
  * An activity representing a list of Items. This activity
@@ -47,8 +51,7 @@ import java.util.List;
  * item details. On tablets, the activity presents the list of items and
  * item details side-by-side using two vertical panes.
  */
-public class VehicleListController extends BaseController
-{
+public class VehicleListController extends BaseController {
     /**
      * Whether or not the activity is in two-pane mode, i.e. running on a tablet
      * device.
@@ -66,11 +69,9 @@ public class VehicleListController extends BaseController
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fabnew);
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING);
-        fab.setOnClickListener(new View.OnClickListener()
-        {
+        fab.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view)
-            {
+            public void onClick(View view) {
                 showAddActivityScreen();
             }
         });
@@ -79,13 +80,12 @@ public class VehicleListController extends BaseController
         assert this.recyclerView != null;
 
 
-        if (findViewById(R.id.item_detail_container) != null)
-        {
+        if (findViewById(R.id.item_detail_container) != null) {
             mTwoPane = true;
         }
     }
 
-    public void getData (){
+    public void getData() {
         List<VehicleModel> dataList = VehicleDAL.getInstance().GetVehicleList();
         this.LoadDataSourceRecyclerView(dataList);
     }
@@ -93,33 +93,34 @@ public class VehicleListController extends BaseController
     @Override
     protected void onResume() {
         super.onResume();
-       this.getData();
+        if (CommonObjectManager.Status != detail) {
+            this.getData();
+        }
     }
 
     private void showAddActivityScreen() {
-        CommonObjectManager.IsUpdateMode = false;
+        CommonObjectManager.Status = insert;
         Intent intent = new Intent(VehicleListController.this, VehicleDetailActivityController.class);
         startActivity(intent);
     }
+
     /**
      * Search işlemleri
      */
     @Override
-    public boolean onCreateOptionsMenu(Menu menu)
-    {
+    public boolean onCreateOptionsMenu(Menu menu) {
         final MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_search, menu);
         MenuItem item = menu.findItem(R.id.menuSearch);
         searchView = (SearchView) item.getActionView();
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener()
-        {
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
-            public boolean onQueryTextChange(String searchValue)
-            {
+            public boolean onQueryTextChange(String searchValue) {
                 List<VehicleModel> dataListByFilter = VehicleDAL.getInstance().GetVehicleListBy(searchValue);
                 LoadDataSourceRecyclerView(dataListByFilter);
                 return true;
             }
+
             public boolean onQueryTextSubmit(String query) {
                 return false;
             }
@@ -127,41 +128,36 @@ public class VehicleListController extends BaseController
         return super.onCreateOptionsMenu(menu);
     }
 
-    private void setupRecyclerView(@NonNull RecyclerView recyclerView, List<VehicleModel> dataList)
-    {
+    private void setupRecyclerView(@NonNull RecyclerView recyclerView, List<VehicleModel> dataList) {
         recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(dataList));
     }
 
-    public void LoadDataSourceRecyclerView(List<VehicleModel> dataList)
-    {
+    public void LoadDataSourceRecyclerView(List<VehicleModel> dataList) {
         this.setupRecyclerView(this.recyclerView, dataList);
     }
 
-    public class SimpleItemRecyclerViewAdapter extends RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder>
-    {
+    public class SimpleItemRecyclerViewAdapter extends RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder> {
         private final List<VehicleModel> mValues;
 
-        public SimpleItemRecyclerViewAdapter(List<VehicleModel> items)
-        {
+        public SimpleItemRecyclerViewAdapter(List<VehicleModel> items) {
             mValues = items;
         }
 
         @Override
-        public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType)
-        {
+        public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_list_content, parent, false);
             return new ViewHolder(view);
         }
 
         private void showVehicleDetailActivityController(Context context) {
-            CommonObjectManager.IsUpdateMode = true;
+             CommonObjectManager.Status = update;
             Intent intent = new Intent(context, VehicleDetailActivityController.class);
             context.startActivity(intent);
 
         }
+
         @Override
-        public void onBindViewHolder(final ViewHolder holder, final int position)
-        {
+        public void onBindViewHolder(final ViewHolder holder, final int position) {
             holder.vehicleViewHolder = mValues.get(position);
             holder.mIdView.setText(mValues.get(position).Nickname);
             holder.mContentView.setText(mValues.get(position).BrandName);
@@ -169,48 +165,26 @@ public class VehicleListController extends BaseController
             holder.mCircle.setText(mValues.get(position).Nickname.substring(0, 1).toUpperCase());
             ((GradientDrawable) holder.mCircle.getBackground()).setColor(mValues.get(position).NicknameColor);
             //TODO: detay acilan kisim. Butona basınca buradan detay ekranını acıyor.
-            holder.mDetail.setOnClickListener(new Button.OnClickListener()
-            {
+            holder.mDetail.setOnClickListener(new Button.OnClickListener() {
                 @Override
-                public void onClick(View v)
-                {
-                    if (mTwoPane)
-                    {
-                        Bundle arguments = new Bundle();
-                        /*arguments.putString(VehicleDetailFragmentController.ARG_ITEM_ID, holder.vehicleViewHolder.BrandName);
-                        VehicleDetailFragmentController fragment = new VehicleDetailFragmentController();
-                        fragment.setArguments(arguments);
-                        getSupportFragmentManager().beginTransaction()
-                                .replace(R.id.item_detail_container, fragment)
-                                .commit();
-                        */
-                    }
-                    else
-                    {
-
-                        CommonObjectManager.IsUpdateMode = true;
-                        CommonObjectManager.VehicleListSelectedRowModel = holder.vehicleViewHolder;
-                        showVehicleDetailActivityController(currentContext);
-                    }
+                public void onClick(View v) {
+                    CommonObjectManager.Status = detail;
+                    CommonObjectManager.VehicleListSelectedRowModel = holder.vehicleViewHolder;
+                    showVehicleDetailActivityController(currentContext);
                 }
             });
             //TODO:Delete işlemleri ve alert dialog
-            holder.mDelete.setOnClickListener(new Button.OnClickListener()
-            {
+            holder.mDelete.setOnClickListener(new Button.OnClickListener() {
                 @Override
-                public void onClick(View v)
-                {
+                public void onClick(View v) {
                     final Context mContext = v.getContext();
                     //Are you sure? Alert Dialog.
                     AlertDialog.Builder builder = new AlertDialog.Builder(VehicleListController.this);
                     builder.setTitle(ConstraintStrings.DeleteTitle)
                             .setMessage(ConstraintStrings.DeleteQuestion)
                             .setIcon(R.drawable.alert)
-                            .setPositiveButton(ConstraintStrings.Yes, new DialogInterface.OnClickListener()
-                            {
-                                public void onClick(DialogInterface dialog, int which)
-                                {
-
+                            .setPositiveButton(ConstraintStrings.Yes, new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
                                     VehicleDAL.getInstance().DeleteVehicle(holder.vehicleViewHolder.Id);
                                     mValues.remove(position);
                                     notifyDataSetChanged();
@@ -229,8 +203,7 @@ public class VehicleListController extends BaseController
             return mValues.size();
         }
 
-        public class ViewHolder extends RecyclerView.ViewHolder
-        {
+        public class ViewHolder extends RecyclerView.ViewHolder {
             public final View mView;
             public final TextView mIdView;
             public final TextView mContentView;
@@ -242,8 +215,7 @@ public class VehicleListController extends BaseController
             public VehicleModel vehicleViewHolder;
 
 
-            public ViewHolder(View view)
-            {
+            public ViewHolder(View view) {
                 super(view);
                 mView = view;
                 mIdView = (TextView) view.findViewById(R.id.id);
@@ -254,13 +226,13 @@ public class VehicleListController extends BaseController
                 mNickname = (TextView) view.findViewById(R.id.nicknamelabel);
                 mCircle = (TextView) view.findViewById(R.id.circle);
                 // TODO : VehicleListController içindeki circle Random renk ayarı
-                if (vehicleViewHolder != null)
-                {((GradientDrawable) mCircle.getBackground()).setColor(vehicleViewHolder.NicknameColor);}
+                if (vehicleViewHolder != null) {
+                    ((GradientDrawable) mCircle.getBackground()).setColor(vehicleViewHolder.NicknameColor);
+                }
             }
 
             @Override
-            public String toString()
-            {
+            public String toString() {
                 return super.toString() + " '" + mContentView.getText() + "'";
             }
         }
