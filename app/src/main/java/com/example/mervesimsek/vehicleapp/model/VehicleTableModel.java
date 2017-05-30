@@ -56,7 +56,7 @@ public class VehicleTableModel extends BaseTableModel {
     }
 
     private String CREATE_TABLE_SQL = "CREATE TABLE #TableName# ("
-            + "#ID# INTEGER PRIMARY KEY AUTOINCREMENT,"
+            + "#Id# INTEGER PRIMARY KEY AUTOINCREMENT,"
             + "#BrandName# TEXT,"
             + "#ModelName# TEXT,"
             + "#ModelYear# TEXT,"

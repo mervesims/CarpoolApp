@@ -90,7 +90,9 @@ public class VehicleListController extends BaseController {
 
     public void getData() {
         List<VehicleModel> dataList = VehicleDAL.getInstance().GetVehicleList();
-        this.LoadDataSourceRecyclerView(dataList);
+        if (dataList != null && dataList.size() > 0) {
+            this.LoadDataSourceRecyclerView(dataList);
+        }
     }
 
     @Override

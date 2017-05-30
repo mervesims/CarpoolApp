@@ -33,7 +33,7 @@ import static com.example.mervesimsek.vehicleapp.common.CommonObjectManager.Stat
  * on handsets.
  */
 
-class VehicleDetailFragmentController extends Fragment {
+public class VehicleDetailFragmentController extends Fragment {
     EditText txtModelName;
     EditText txtModelYear;
     EditText txtTypeName;

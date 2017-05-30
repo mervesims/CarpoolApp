@@ -26,7 +26,7 @@ import static com.example.mervesimsek.vehicleapp.common.CommonObjectManager.Oper
  * item details are presented side-by-side with a list of items
  * in a {@link VehicleListController}.
  */
-class VehicleDetailActivityController extends BaseController {
+public class VehicleDetailActivityController extends BaseController {
 
 
     @Override
