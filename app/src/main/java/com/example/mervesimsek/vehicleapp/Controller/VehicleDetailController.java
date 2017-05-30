@@ -23,6 +23,7 @@ import com.example.mervesimsek.vehicleapp.R;
 import static com.example.mervesimsek.vehicleapp.common.CommonObjectManager.OperationStatus.detail;
 import static com.example.mervesimsek.vehicleapp.common.CommonObjectManager.OperationStatus.insert;
 import static com.example.mervesimsek.vehicleapp.common.CommonObjectManager.OperationStatus.update;
+import static com.example.mervesimsek.vehicleapp.common.CommonObjectManager.Status;
 
 
 /**
@@ -67,10 +68,10 @@ class VehicleDetailFragmentController extends Fragment {
     public void SetTextEdit(String valueText, Integer editTextXmlid, View rootView) {
         EditText editTextdetail = ((EditText) rootView.findViewById(editTextXmlid));
 
-        editTextdetail.setFocusable(CommonObjectManager.Status == insert);
-        editTextdetail.setFocusableInTouchMode(CommonObjectManager.Status == insert);
+        editTextdetail.setFocusable(Status == insert);
+        editTextdetail.setFocusableInTouchMode(Status == insert);
 
-        if (CommonObjectManager.Status == update)
+        if (Status == update)
             editTextdetail.setText(valueText);
     }
 
@@ -121,18 +122,14 @@ class VehicleDetailFragmentController extends Fragment {
 
     }
 
-    private void setupView() {
-        String asdasd = "";
-    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View rootView = inflater.inflate(R.layout.item_detail, container, false);
 
-        if (CommonObjectManager.VehicleListSelectedRowModel != null) {
+        if (CommonObjectManager.VehicleListSelectedRowModel != null && Status != detail) {
             VehicleModel _model = CommonObjectManager.VehicleListSelectedRowModel;
-            if (CommonObjectManager.Status == update) {
+            if (Status == update) {
                 this.setToolbarTitle(_model.Nickname);
             } else {
                 this.setToolbarTitle("Add New Car");
@@ -153,9 +150,10 @@ class VehicleDetailFragmentController extends Fragment {
             SetTextEdit(_model.Color, R.id.txt_color_name, rootView);
             SetTextEdit(_model.Plate, R.id.txt_plate_name, rootView);
             SetTextEdit(_model.Nickname, R.id.txt_nickname, rootView);
-
         }
-        CommonObjectManager.Status = detail;
+        if (Status != insert ) {
+            Status = detail;
+        }
         return rootView;
     }
 
@@ -209,36 +207,38 @@ class VehicleDetailFragmentController extends Fragment {
     }
 
     private void updateVehicle() {
+
         if (this.checkValidations()) {
             VehicleModel vehicleModel = new VehicleModel();
-            vehicleModel.Id = CommonObjectManager.VehicleListSelectedRowModel.Id;
-            vehicleModel.BrandName = txtBrand.getText().toString();
-            vehicleModel.ModelName = txtModelName.getText().toString();
-            vehicleModel.ModelYear = txtModelYear.getText().toString();
-            vehicleModel.TypeName = txtTypeName.getText().toString();
-            vehicleModel.Color = txtColor.getText().toString();
-            vehicleModel.Plate = txtPlate.getText().toString();
-            vehicleModel.Nickname = txtNickName.getText().toString();
+            vehicleModel.Id           = CommonObjectManager.VehicleListSelectedRowModel.Id;
+            vehicleModel.BrandName    = txtBrand.getText().toString();
+            vehicleModel.ModelName    = txtModelName.getText().toString();
+            vehicleModel.ModelYear    = txtModelYear.getText().toString();
+            vehicleModel.TypeName     = txtTypeName.getText().toString();
+            vehicleModel.Color        = txtColor.getText().toString();
+            vehicleModel.Plate        = txtPlate.getText().toString();
+            vehicleModel.Nickname     = txtNickName.getText().toString();
 
-            if (CommonObjectManager.Status == update) {
+            if (Status == update) {
                 VehicleDAL.getInstance().UpdateVehicle(vehicleModel);
-            } else if (CommonObjectManager.Status == insert) {
+            } else if (Status == insert) {
                 VehicleDAL.getInstance().InsertVehicle(vehicleModel);
             }
-            
-
         }
     }
 
+
     public void btnEditOnclick() {
-        CommonObjectManager.Status = update;
+        Status = update;
         disableUIControlsBy(true);
     }
 
     public void btnSaveClick() {
-        updateVehicle();
+
+            updateVehicle();
+
         if (this.checkValidations()) {
-            this.getActivity().onBackPressed();
+             this.getActivity().onBackPressed();
         }
 
     }

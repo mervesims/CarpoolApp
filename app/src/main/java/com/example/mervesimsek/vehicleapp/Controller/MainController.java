@@ -46,11 +46,12 @@ public class MainController extends BaseController
         super.customOnCreate(savedInstanceState, R.layout.activity_main,R.id.toolbar);
 
 
-
+        //Font
         TextView logo = (TextView) findViewById(R.id.logo);
         Typeface font = Typeface.createFromAsset(context.getAssets(), "fonts/gist.ttf");
         logo.setTypeface(font);
 
+        //Three FloatingActionButton
         ShapeDrawable drawable = new ShapeDrawable(new OvalShape());
         drawable.getPaint().setColor(getResources().getColor(R.color.buttonpressed2));
         final FloatingActionButton actionMyCars = (FloatingActionButton) findViewById(R.id.action_a);
@@ -80,13 +81,12 @@ public class MainController extends BaseController
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-
         // create database instance, because it should be used only 1 instance
         DatabaseConnectionService dcs = new DatabaseConnectionService();
         dcs.SetupDatabase(context);
     }
 
-    //Navigation Drawer Kapatma
+    //Navigation Drawer Close
     @Override
     public void onBackPressed()
     {

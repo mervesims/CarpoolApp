@@ -41,6 +41,7 @@ import java.util.List;
 import static com.example.mervesimsek.vehicleapp.common.CommonObjectManager.OperationStatus.detail;
 import static com.example.mervesimsek.vehicleapp.common.CommonObjectManager.OperationStatus.insert;
 import static com.example.mervesimsek.vehicleapp.common.CommonObjectManager.OperationStatus.update;
+import static com.example.mervesimsek.vehicleapp.common.CommonObjectManager.Status;
 
 
 /**
@@ -76,9 +77,11 @@ public class VehicleListController extends BaseController {
             }
         });
 
+
         this.recyclerView = (RecyclerView) findViewById(R.id.item_list);
         assert this.recyclerView != null;
 
+        this.getData();
 
         if (findViewById(R.id.item_detail_container) != null) {
             mTwoPane = true;
@@ -93,13 +96,13 @@ public class VehicleListController extends BaseController {
     @Override
     protected void onResume() {
         super.onResume();
-        if (CommonObjectManager.Status != detail) {
+        if (CommonObjectManager.Status == insert || CommonObjectManager.Status == update) {
             this.getData();
         }
     }
 
     private void showAddActivityScreen() {
-        CommonObjectManager.Status = insert;
+        Status = insert;
         Intent intent = new Intent(VehicleListController.this, VehicleDetailActivityController.class);
         startActivity(intent);
     }
@@ -150,7 +153,7 @@ public class VehicleListController extends BaseController {
         }
 
         private void showVehicleDetailActivityController(Context context) {
-             CommonObjectManager.Status = update;
+             Status = update;
             Intent intent = new Intent(context, VehicleDetailActivityController.class);
             context.startActivity(intent);
 
@@ -168,7 +171,7 @@ public class VehicleListController extends BaseController {
             holder.mDetail.setOnClickListener(new Button.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    CommonObjectManager.Status = detail;
+                 //   Status = detail;
                     CommonObjectManager.VehicleListSelectedRowModel = holder.vehicleViewHolder;
                     showVehicleDetailActivityController(currentContext);
                 }
