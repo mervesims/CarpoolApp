@@ -38,5 +38,4 @@
         <include layout="@layout/item_list" />
     </FrameLayout>
 
-
 </android.support.design.widget.CoordinatorLayout>

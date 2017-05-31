@@ -42,4 +42,5 @@
     <string name="cardcontentbrandname">Brand Name : </string>
     <string name="cardcontentmodelyear">Model Year : </string>
 
+    <string name="pageblankmessage">There is no record to show.</string>
 </resources>

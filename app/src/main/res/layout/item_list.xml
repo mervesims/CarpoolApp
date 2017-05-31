@@ -1,4 +1,3 @@
-
 <android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -8,5 +7,8 @@
     android:layout_height="match_parent"
     app:layoutManager="LinearLayoutManager"
     tools:context="com.example.mervesimsek.vehicleapp.controller.VehicleListController"
-    tools:listitem="@layout/item_list_content" />
+    tools:listitem="@layout/item_list_content" >
+
+
+</android.support.v7.widget.RecyclerView>
 

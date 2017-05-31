@@ -18,4 +18,5 @@ public class ConstraintStrings {
     public static String DeleteQuestion = "Are you sure?";
     public static String DeleteTitle = "Delete Record";
     public static String ShareMessage =" Carpool App ";
+    public static String PageBlankMessage = "There is no record to show.";
 }

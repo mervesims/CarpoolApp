@@ -8,6 +8,7 @@ import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
@@ -36,6 +37,8 @@ import com.example.mervesimsek.vehicleapp.dal.VehicleDAL;
 import com.example.mervesimsek.vehicleapp.model.VehicleModel;
 import com.example.mervesimsek.vehicleapp.R;
 
+import org.w3c.dom.Text;
+
 import java.util.List;
 
 import static com.example.mervesimsek.vehicleapp.common.CommonObjectManager.OperationStatus.detail;
@@ -61,11 +64,12 @@ public class VehicleListController extends BaseController {
 
     SearchView searchView;
     RecyclerView recyclerView;
-
+    TextView textView;
 
     @Override
     protected void customOnCreate(@Nullable Bundle savedInstanceState, int layoutResID, int toolbarResID) {
         super.customOnCreate(savedInstanceState, R.layout.activity_item_list, R.id.toolbar);
+
 
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fabnew);
@@ -79,13 +83,17 @@ public class VehicleListController extends BaseController {
 
 
         this.recyclerView = (RecyclerView) findViewById(R.id.item_list);
-        assert this.recyclerView != null;
+         assert this.recyclerView != null;
+
 
         this.getData();
 
         if (findViewById(R.id.item_detail_container) != null) {
             mTwoPane = true;
         }
+
+
+
     }
 
     public void getData() {
